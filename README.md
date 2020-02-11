@@ -1,2 +1,3 @@
-# connect_the_dots
-Inference of SMC activity on chromatin from simulated and real data
+# Connect the dots
+Inference of SMC activity from simulated chromatin dynamics and real data.
+

@@ -3,28 +3,29 @@
 
 ## Installation instructions
 
-There are a few dependencies that need to be installed before one can run `connect_the_dots`.
+There are a few dependencies that need to be installed before one can run `connect_the_dots`. These instructions are only for installation on our Ubuntu machines (tested for a clean installation of Ubuntu 18.04, July 23rd, 2020)
 
-1. Install `BioFormats` 
+1. Install `BioFormats` (this is a general interface
 
-    - https://github.com/ome/bioformats   
-    - After downloading, install via the command line: run `ant jars`
+    - run `git clone https://github.com/ome/bioformats` into your desired folder
+    - After downloading, install via the command line: run `ant jars`. If `ant` is not installed, run `sudo apt-get install ant`
     - https://docs.openmicroscopy.org/bio-formats/5.8.2/developers/building-bioformats.html#source-obtain-and-build
     
     
 2. Install Java-Development-Kit
 
-    - https://openjdk.java.net/install/
-    
+    - `sudo apt install default-jdk`
+        - https://openjdk.java.net/install/
 
 3. Install `javabridge`
     
-    - IMPORTANT: Make sure you have correctly set the JAVA_HOME variable so that javabridge knows where to look for Java (see issue here: https://github.com/LeeKamentsky/python-javabridge/issues/152)
+    - IMPORTANT: Make sure you have correctly set the JAVA_HOME variable so that javabridge knows where to look for Java
+    - For our system, this amounts to running in the command line: `JAVA_HOME="/usr/lib/jvm/default-java/"`. For more details see issue here: https://github.com/LeeKamentsky/python-javabridge/issues/152. 
     - `Boto3` is a required dependency, so run: `pip install boto3`
     - Finally, run `pip install javabridge`
 
 
-4. Install `python-bioformats`
+4. Install `python-bioformats` from the people at CellProfiler
 
     - run `pip install python-bioformats`
     

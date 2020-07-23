@@ -1,0 +1,9 @@
+README.md
+setup.py
+connect_the_dots/collect_tracks.py
+connect_the_dots/connectTheDots.py
+connect_the_dots/snakemake_python_functions.py
+connect_the_dots.egg-info/PKG-INFO
+connect_the_dots.egg-info/SOURCES.txt
+connect_the_dots.egg-info/dependency_links.txt
+connect_the_dots.egg-info/top_level.txt

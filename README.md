@@ -5,7 +5,8 @@
 
 There are a few dependencies that need to be installed before one can run `connect_the_dots`. These instructions are only for installation on our Ubuntu machines (tested for a clean installation of Ubuntu 18.04, July 23rd, 2020)
 
-Please note that if any command below has the words `sudo` in them, it is likely you do not have to run them again on our system. `sudo` means that we have installed something system wide, therefore it usually only has to be done once.
+**Please note that if any command below has the words `sudo` in them, it is likely you do not have to run them on our system.** 
+`sudo` means that the installation is system wide, therefore it usually only has to be done once by one user.
 
 1. Install `BioFormats` 
 

@@ -38,8 +38,12 @@ There are a few dependencies that need to be installed before one can run `conne
     - This is used to parse metadata
     - run `pip install tifffile`   
 
+6. Install ffmpeg (optional)
+ 
+    - If this is not already installed on the system (i.e. if movies of trajectories are not saving)
+    - run `sudo apt install ffmpeg`
 
-6. Now, you should be all set!
+7. Now, you should be all set!
 
     - run `python setup.py develop`, and you are ready to go!
 

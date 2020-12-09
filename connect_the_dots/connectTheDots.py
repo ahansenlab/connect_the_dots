@@ -1352,3 +1352,12 @@ def get_weighted_centroid_from_dot_volume(dot_volume,x_low,y_low,z_low, win,dot_
     dot_size_pixels = np.count_nonzero(np.ndarray.flatten(mask))
     
     return (centerX, centerY, centerZ, mean_intensity, mean_surrounding, sum_intensity, dot_size_pixels)
+
+
+import re
+import itertools
+def natural_sort(l):
+    # found here: https://stackoverflow.com/questions/4836710/is-there-a-built-in-function-for-string-natural-sort
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+    return sorted(l, key = alphanum_key)

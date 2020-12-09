@@ -36,9 +36,16 @@ There are a few dependencies that need to be installed before one can run `conne
     - run `pip install tifffile`   
 
 
-6. Now, you should be all set!
+6. Install the latest version of `trackpy`
+
+    - Run `git clone https://github.com/soft-matter/trackpy`
+    - Run `python setup.py develop`
+    
+
+7. Now, you should be all set!
 
     - run `python setup.py develop`, and you are ready to go!
+    
 
 ## References (to cite)
 

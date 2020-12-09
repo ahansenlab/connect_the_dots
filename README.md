@@ -5,7 +5,10 @@
 
 There are a few dependencies that need to be installed before one can run `connect_the_dots`. These instructions are only for installation on our Ubuntu machines (tested for a clean installation of Ubuntu 18.04, July 23rd, 2020)
 
-1. Install `BioFormats` (this is a general interface
+**Please note that if any command below has the words `sudo` in them, it is likely you do not have to run them on our system.** 
+`sudo` means that the installation is system wide, therefore it usually only has to be done once by one user.
+
+1. Install `BioFormats` 
 
     - run `git clone https://github.com/ome/bioformats` into your desired folder
     - After downloading, install via the command line: run `ant jars`. If `ant` is not installed, run `sudo apt-get install ant`
@@ -35,17 +38,14 @@ There are a few dependencies that need to be installed before one can run `conne
     - This is used to parse metadata
     - run `pip install tifffile`   
 
-
-6. Install the latest version of `trackpy`
-
-    - Run `git clone https://github.com/soft-matter/trackpy`
-    - Run `python setup.py develop`
-    
+6. Install ffmpeg (optional)
+ 
+    - If this is not already installed on the system (i.e. if movies of trajectories are not saving)
+    - run `sudo apt install ffmpeg`
 
 7. Now, you should be all set!
 
     - run `python setup.py develop`, and you are ready to go!
-    
 
 ## References (to cite)
 

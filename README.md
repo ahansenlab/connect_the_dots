@@ -48,7 +48,7 @@ There are a few dependencies that need to be installed before one can run `conne
     - run `python setup.py develop`, and you are ready to go!
 
 ## Here's the API
-See the [docs](https://github.com/ahansenlab/connect_the_dots/doc/build/html/index.html) for more information.
+See the [docs](https://github.com/ahansenlab/connect_the_dots/blob/master/doc/build/html/index.html) for more information.
 
 ## References (to cite)
 

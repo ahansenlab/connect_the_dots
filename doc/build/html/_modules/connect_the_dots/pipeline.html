@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>connect_the_dots.pipeline &#8212; connect_the_dots 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for connect_the_dots.pipeline</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functions for the data analysis pipeline of connect_the_dots.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">## Import required modules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># for plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="c1"># for plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># for manipulating arrays</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># for making/deleting directories</span>
+<span class="kn">import</span> <span class="nn">bioformats</span> <span class="c1"># for reading image series</span>
+<span class="kn">import</span> <span class="nn">javabridge</span> <span class="c1"># for interfacing with java (required for bioformats)</span>
+<span class="kn">from</span> <span class="nn">tifffile</span> <span class="kn">import</span> <span class="n">xml2dict</span> <span class="c1"># for parsing the metadata from bioformats</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="c1"># for saving python objects and other data</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span> <span class="c1"># for making fits to the PSF</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_laplace</span><span class="p">,</span> <span class="n">gaussian_filter</span> <span class="c1"># for dot localization (image filtering)</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span> <span class="c1"># for segmenting images</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">remove_small_objects</span><span class="p">,</span> <span class="n">closing</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span> <span class="c1"># for morphological filtering of images</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">clear_border</span> <span class="c1"># for filtering images</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># for creating and manipulating tabulated data</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">trackpy</span> <span class="c1"># library containing tracking algorithms</span>
+<span class="kn">import</span> <span class="nn">pywt</span> <span class="c1"># wavelet transform library</span>
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># regex </span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<span class="c1"># settings for making nice pdfs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DejaVu Sans&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+
+<span class="n">javabridge</span><span class="o">.</span><span class="n">start_vm</span><span class="p">(</span><span class="n">class_path</span><span class="o">=</span><span class="n">bioformats</span><span class="o">.</span><span class="n">JARS</span><span class="p">)</span> <span class="c1"># start java virtual machine</span>
+
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<div class="viewcode-block" id="search_for"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.search_for">[docs]</a><span class="k">def</span> <span class="nf">search_for</span><span class="p">(</span><span class="n">start_folder</span><span class="p">,</span> <span class="n">name_includes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name_excludes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Search directories for files containing or excluding specific strings.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start_folder : str</span>
+<span class="sd">        Parent directory for recursive filename search.</span>
+<span class="sd">    </span>
+<span class="sd">    name_includes : list of strings</span>
+<span class="sd">        List of strings to include in the search data. Search does not do case matching. </span>
+
+<span class="sd">    name_excludes : list of strings</span>
+<span class="sd">        List of strings to exclude from the search. Search does not do case matching. </span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Two lists: 1) list of file names, 2) list of the absolute file path.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filenames_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">filepath_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">start_folder</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.*&#39;</span><span class="p">):</span>
+
+        <span class="n">parent_folder</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">parent_folder</span> <span class="ow">in</span> <span class="n">name_excludes</span><span class="p">:</span>
+            <span class="k">continue</span>   
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">all</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_includes</span><span class="p">])</span><span class="o">==</span><span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> \
+            <span class="nb">any</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_excludes</span><span class="p">])</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+            <span class="k">continue</span>
+            
+        <span class="n">filenames_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">filepath_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">start_folder</span><span class="p">,</span><span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">filenames_list</span><span class="p">,</span> <span class="n">filepath_list</span></div>
+
+
+<div class="viewcode-block" id="get_CZI_metadata"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.get_CZI_metadata">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains the metadata from a CZI image series.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+<span class="sd">           </span>
+<span class="sd">    verbose : {T,F}, optional</span>
+<span class="sd">              If true, prints (sizeX,sizeY,sizeZ,sizeT,num_channels) to standard output</span>
+<span class="sd">            </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    (sizeX,sizeY,sizeZ,sizeT,num_channels) : tuple of ints</span>
+<span class="sd">                Information on the length of the sizes of the `X`, `Y`, `Z` (spatial) and `T` </span>
+<span class="sd">                (temporal) dimensions of the image series and the number of channels, `num_channels`.</span>
+<span class="sd">                In case of failutre to load, returns a 5-tuple of values 0. </span>
+
+<span class="sd">    metadata : dict, or None</span>
+<span class="sd">               Dictionary containing the full metadata formatted in the Bioformats OME style. </span>
+<span class="sd">               If loading is unsuccessful, `None` is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="kc">None</span>
+        
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">xml2dict</span><span class="p">(</span><span class="n">bioformats</span><span class="o">.</span><span class="n">get_omexml_metadata</span><span class="p">(</span><span class="n">czi_image</span><span class="p">))</span>
+    <span class="n">sizeT</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeT&#39;</span><span class="p">]</span>
+    <span class="n">sizeX</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeX&#39;</span><span class="p">]</span>
+    <span class="n">sizeY</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeY&#39;</span><span class="p">]</span>
+    <span class="n">sizeZ</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeZ&#39;</span><span class="p">]</span>
+    <span class="n">num_channels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;Channel&#39;</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">metadata</span></div>
+
+
+<div class="viewcode-block" id="get_CZI_zstack"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.get_CZI_zstack">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_zstack</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">frame</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">img_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains a single z-stack from a 3D imaging time-series for a specified time and channel.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+
+<span class="sd">    frame : int</span>
+<span class="sd">               The temporal slice of the image series from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    channel : int</span>
+<span class="sd">               The channel from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+
+<span class="sd">    img_info : tuple of ints, optional </span>
+<span class="sd">               5-tuple containing lengths of the `X`, `Y`, `Z` (spatial), `T` (temporal) dimensions</span>
+<span class="sd">               of the image series, and the number of channels, `num_channels`.</span>
+<span class="sd">               E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata(). </span>
+<span class="sd">               Pass these pre-computed values for increased speed in batch processing.</span>
+<span class="sd">                </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    zstack : numpy.ndarray, or None</span>
+<span class="sd">             Z-stack of the image series specified by the desired `frame`; contains 3 spatial </span>
+<span class="sd">             dimensions. If loading is unsuccessful, `None` is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare file name, check that file exists </span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># retrieve image dimensions, and number of channels</span>
+    <span class="k">if</span> <span class="n">img_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_info</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span> <span class="o">=</span> <span class="n">img_info</span>
+        
+    
+    <span class="c1"># make sure frame and channel are in bounds</span>
+    <span class="k">assert</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">sizeT</span>
+    <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="n">num_channels</span>
+        
+    <span class="c1">#initialize array and load z-stack</span>
+    <span class="n">zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sizeZ</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">,</span><span class="n">sizeX</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">bioformats</span><span class="o">.</span><span class="n">ImageReader</span><span class="p">(</span><span class="n">czi_image</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizeZ</span><span class="p">):</span>
+            <span class="n">zstack</span><span class="p">[</span><span class="n">z</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">zstack</span></div>
+
+<div class="viewcode-block" id="get_CZI_zstack_timeseries"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.get_CZI_zstack_timeseries">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_zstack_timeseries</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">frames</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">img_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains a time-series of z-stacks for a specified channel from .CZI data.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+
+<span class="sd">    frames : range or list of ints</span>
+<span class="sd">               The temporal slices of the image series from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    channel : int</span>
+<span class="sd">               The channel from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+
+<span class="sd">    img_info : tuple of ints, optional </span>
+<span class="sd">               5-tuple containing lengths of the `X`, `Y`, `Z` (spatial), `T` (temporal) dimensions</span>
+<span class="sd">               of the image series, and the number of channels, `num_channels`.</span>
+<span class="sd">               E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata(). </span>
+<span class="sd">               Pass these pre-computed values for increased speed in batch processing.</span>
+<span class="sd">                </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    zstack : numpy.ndarray, or None</span>
+<span class="sd">             Z-stack of the image time-series; contains 4 spatial dimensions. </span>
+<span class="sd">             If loading is unsuccessful, `None` is returned. Dimensions are (Z,Y,X,T).</span>
+<span class="sd">             </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare file name, check that file exists </span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># retrieve image dimensions, and number of channels</span>
+    <span class="k">if</span> <span class="n">img_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_info</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span> <span class="o">=</span> <span class="n">img_info</span>
+    
+    <span class="c1"># make sure frame and channel are in bounds</span>
+    <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">sizeT</span>
+    <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="n">num_channels</span>
+        
+    <span class="c1">#initialize array and load z-stack</span>
+    <span class="n">num_slices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+    <span class="n">zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sizeZ</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">,</span><span class="n">sizeX</span><span class="p">,</span><span class="n">num_slices</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">bioformats</span><span class="o">.</span><span class="n">ImageReader</span><span class="p">(</span><span class="n">czi_image</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizeZ</span><span class="p">):</span>
+                <span class="n">zstack</span><span class="p">[</span><span class="n">z</span><span class="p">,:,:,</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">zstack</span>    </div>
+    
+    
+
+<div class="viewcode-block" id="natural_sort"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.natural_sort">[docs]</a><span class="k">def</span> <span class="nf">natural_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="c1"># found here: https://stackoverflow.com/questions/4836710/is-there-a-built-in-function-for-string-natural-sort</span>
+    <span class="n">convert</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">else</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">alphanum_key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">key</span><span class="p">:</span> <span class="p">[</span> <span class="n">convert</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;([0-9]+)&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">alphanum_key</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="wavelet_filter_zstack"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.wavelet_filter_zstack">[docs]</a><span class="k">def</span> <span class="nf">wavelet_filter_zstack</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">filtered_levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="n">wavelet_type</span><span class="o">=</span><span class="s1">&#39;haar&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform 3D (or 4D) discrete wavelet transform and coefficient filtering.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack : ndarray</span>
+<span class="sd">        Numpy ndarray containing 3 (or 4) dimensions. Dimensions should all be even for best performance!        </span>
+<span class="sd">    </span>
+<span class="sd">    filtered_levels : list of ints</span>
+<span class="sd">        Wavelet coefficient levels to be removed for the image reconstruction.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rec : ndarray </span>
+<span class="sd">        Filtered zstack</span>
+<span class="sd">        </span>
+<span class="sd">    num_levels : int</span>
+<span class="sd">        Number of levels that could be accessed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## Do Wavelet-decomposition of the image</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">filtered_levels</span> 
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavedecn</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">wavelet_type</span><span class="p">)</span>
+
+    <span class="c1">## Reconstruct image, after filtering different wavelet coefficients </span>
+    <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">coeffs</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coeffs</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> 
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wavelet level </span><span class="si">{level}</span><span class="s2"> does not exist. There are only {len(levels)} levels.&quot;</span> <span class="o">+</span> \
+                              <span class="s2">&quot;Check image input size. max_levels = log2(smallest_dimension_of_data/(filter_size-1))&quot;</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">waverecn</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="n">wavelet_type</span><span class="p">)</span> 
+
+    <span class="c1">## crop rec to match zstack </span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            
+    <span class="k">return</span> <span class="n">rec</span></div>
+
+<div class="viewcode-block" id="filter_zstack_DoG"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.filter_zstack_DoG">[docs]</a><span class="k">def</span> <span class="nf">filter_zstack_DoG</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma1</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span><span class="n">dog_sigma2</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="n">absolute_value</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Applies Difference of Gaussian (DoG) filtering on a single z-stack. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">             Z-stack of the image series for a single channel (containing 3 spatial dimentions)</span>
+<span class="sd">    </span>
+<span class="sd">    dog_sigma1 : float, optional</span>
+<span class="sd">                 Standard deviation of the first Gaussian distribution of the DoG filter. </span>
+<span class="sd">                 `dog_sigma1` should be close in size to the &quot;dots&quot; being tracked.</span>
+<span class="sd">             </span>
+<span class="sd">    dog_sigma2 : float, optional</span>
+<span class="sd">                 Standard deviation of the second Gaussian distribution of the DoG filter. </span>
+<span class="sd">                 `dog_sigma2` should be ~10-times larger than `dog_sigma1`; it helps to smooth </span>
+<span class="sd">                 local sources noise and background of the image. </span>
+<span class="sd">    </span>
+<span class="sd">    absolute_value : {T,F}, optional</span>
+<span class="sd">                     Toggles on/off taking the absolute value of the DoG filter result. </span>
+<span class="sd">                     </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filtered_zstack : numpy.ndarray</span>
+<span class="sd">                      Absolute value of Difference of Gaussian filtered z-stack. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filtered_zstack</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma1</span><span class="p">)</span><span class="o">-</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">absolute_value</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="n">filtered_zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">filtered_zstack</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">filtered_zstack</span></div>
+
+
+<div class="viewcode-block" id="filter_zstack_LoG"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.filter_zstack_LoG">[docs]</a><span class="k">def</span> <span class="nf">filter_zstack_LoG</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">log_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">num_std_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the Laplacian of Gaussian (LoG) filtered image and the image of </span>
+<span class="sd">    edges detected by the LoG method applied on the image.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    img : numpy.ndarray</span>
+<span class="sd">            Image on which to perform the edge detection.</span>
+<span class="sd">            </span>
+<span class="sd">    log_sigma : float</span>
+<span class="sd">            The standard deviation of the gaussian used in &#39;Laplacian of Gaussian&#39;. It is</span>
+<span class="sd">            akin to a smoothing parameter.</span>
+<span class="sd">            </span>
+<span class="sd">    num_std_threshold : float</span>
+<span class="sd">            The number of standard deviations used above &quot;zero&quot; to classify a zero-crossing</span>
+<span class="sd">            event of the &#39;Laplacian of Gaussian&#39; as being an edge. Only set `num_std_threshold`</span>
+<span class="sd">            greater than zero; also, only </span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    log_img</span>
+<span class="sd">    </span>
+<span class="sd">    edges_img</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log_img</span> <span class="o">=</span> <span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">log_sigma</span><span class="p">)</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">log_img</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">num_std_threshold</span>
+    <span class="n">edges_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">edges_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">edges_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">region</span> <span class="o">=</span> <span class="n">log_img</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">log_img</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
+            <span class="n">max_val</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="n">min_val</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">zerocross</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">min_val</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">zerocross</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">max_val</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span> <span class="ow">and</span> <span class="n">zerocross</span><span class="p">:</span>
+                <span class="n">edges_img</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">log_img</span><span class="p">,</span> <span class="n">edges_img</span> </div>
+
+    
+<div class="viewcode-block" id="get_image_objects"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.get_image_objects">[docs]</a><span class="k">def</span> <span class="nf">get_image_objects</span><span class="p">(</span><span class="n">zstack_to_mask</span><span class="p">,</span><span class="n">zstack</span><span class="p">,</span><span class="n">min_size_pixels</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">max_size_pixels</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+                      <span class="n">percentile_threshold</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span>
+                      <span class="n">do_dilation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">return_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a binary mask on the zstack, and segments the binary image. 3D objects are identified</span>
+<span class="sd">    and selected based on their pixel sizes.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack_to_mask : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">        zstack used to create the binary mask (possibly filtered)</span>
+<span class="sd">        </span>
+<span class="sd">    zstack : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">        zstack used to obtain the intensity values of the dot localization (raw data)</span>
+<span class="sd">        </span>
+<span class="sd">    min_size_pixels : int</span>
+<span class="sd">        Minimum size of object to be extracted by the segmentation</span>
+<span class="sd">        </span>
+<span class="sd">    max_size_pixels : int</span>
+<span class="sd">        Maximum size of object to be extracted by the segmentation</span>
+<span class="sd">    </span>
+<span class="sd">    percentile_threshold : float (0 to 100)</span>
+<span class="sd">        Percentile threshold with which to binarize the zstack and create object masks.</span>
+<span class="sd">        </span>
+<span class="sd">    do_dilation : {T,F}</span>
+<span class="sd">        Perform morphological filtering and size selection on image after binary dilation. Default == True.</span>
+<span class="sd">        </span>
+<span class="sd">    return_mask : {T,F}</span>
+<span class="sd">        Returns the mask. By default, the mask is not returned.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A data frame containing the following column headers:    </span>
+<span class="sd">    x, y, z, mean_intensity, max_intensity, dot_size_pixels</span>
+<span class="sd">    </span>
+<span class="sd">    If return_mask == True:</span>
+<span class="sd">    blobs : np.ndarray</span>
+<span class="sd">        The thresholded zstack</span>
+<span class="sd">    blobs_filt : np.ndarray</span>
+<span class="sd">        The thresholded zstack, after feature size selection</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">## Apply threshold to binarize image </span>
+    <span class="n">stack_threshold</span> <span class="o">=</span> <span class="n">percentile_threshold</span>
+    <span class="n">blobs</span> <span class="o">=</span> <span class="n">zstack_to_mask</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">blobs</span><span class="p">[</span><span class="n">blobs</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span><span class="n">stack_threshold</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">blobs</span><span class="p">[</span><span class="n">blobs</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    
+    <span class="k">if</span> <span class="n">do_dilation</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">blobs</span> <span class="o">=</span> <span class="n">dilation</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
+        
+    
+    <span class="c1">## Measure blobs/region properties </span>
+    <span class="n">blobs_labels</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+    <span class="n">blob_metrics</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">regionprops</span><span class="p">(</span><span class="n">blobs_labels</span><span class="p">,</span> <span class="n">zstack</span><span class="p">)</span> <span class="c1">## note that we use the unfiltered zstack as input</span>
+    
+    <span class="c1"># print(&#39;labels created&#39;)</span>
+    <span class="c1"># get object centroids i.e. (z,y,x) coordinates, volumes and intensities</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">weighted_centroid</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">vol</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">max_intensity</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">mean_intensity</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+
+    <span class="c1">## Filter localized dots based on size</span>
+    <span class="n">good_dots</span> <span class="o">=</span> <span class="p">[</span><span class="n">vi</span> <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vol</span><span class="p">)</span> <span class="k">if</span> <span class="p">((</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="n">min_size_pixels</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">v</span> <span class="o">&lt;=</span> <span class="n">max_size_pixels</span><span class="p">))]</span>
+
+    <span class="c1">## Update the list of localized dots</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+
+    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">dot_size_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">vol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+
+    
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">Y</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">Z</span><span class="p">,</span><span class="s1">&#39;mean_intensity&#39;</span><span class="p">:</span><span class="n">mean_intensity</span><span class="p">,</span>
+                  <span class="s1">&#39;max_intensity&#39;</span><span class="p">:</span><span class="n">max_intensity</span><span class="p">,</span><span class="s1">&#39;dot_size_in_pixels&#39;</span><span class="p">:</span><span class="n">dot_size_pixels</span><span class="p">})</span>
+    
+    <span class="k">if</span> <span class="n">return_mask</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">df</span>
+    
+<span class="c1">#     blobs_filt = np.zeros_like(blobs)</span>
+<span class="c1">#     for v in good_dots:</span>
+<span class="c1">#         blobs_filt[blobs_labels==(v+1)] = 1</span>
+    
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">blobs</span><span class="c1">#, blobs_filt</span></div>
+
+
+<div class="viewcode-block" id="get_localizations_iterative"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.get_localizations_iterative">[docs]</a><span class="k">def</span> <span class="nf">get_localizations_iterative</span><span class="p">(</span><span class="n">filtered_zstack_timeseries</span><span class="p">,</span> 
+                                <span class="n">zstack_timeseries</span><span class="p">,</span>
+                                <span class="n">frames</span><span class="p">,</span> 
+                                <span class="n">channel</span><span class="p">,</span>
+                                <span class="n">percentile_threshold</span><span class="o">=</span><span class="mf">99.95</span><span class="p">,</span>
+                                <span class="n">max_dot_size</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                                <span class="n">min_dot_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> 
+                                <span class="n">search_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
+                                <span class="n">min_track_length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+                                <span class="n">max_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                <span class="n">min_dot_size_increment</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                <span class="n">percentile_threshold_increment</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                                <span class="n">current_iteration</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use trackpy to create trajectories from dot localizations.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filtered_zstack_timeseries : numpy.ndarray</span>
+<span class="sd">        Post-filtering 4-D zstack of the image series data used to make a binary mask.</span>
+<span class="sd">        </span>
+<span class="sd">    zstack_timeseries : numpy.ndarray</span>
+<span class="sd">        Raw 4-D zstack of the image series data.</span>
+<span class="sd">    </span>
+<span class="sd">    frames : range or list of int</span>
+<span class="sd">        Frames to process.</span>
+<span class="sd">        </span>
+<span class="sd">    channel : int</span>
+<span class="sd">        </span>
+<span class="sd">    percentile_threshold : float </span>
+<span class="sd">        Percentile from 0 to 100 by which to threshold the `filtered_zstack_timeseries`.</span>
+<span class="sd">        </span>
+<span class="sd">    max_dot_size : int</span>
+<span class="sd">        Maximum size of the dots in numbers of pixels</span>
+<span class="sd">        </span>
+<span class="sd">    min_dot_size : int</span>
+<span class="sd">        Minimum size of the dots in numbers of pixels</span>
+<span class="sd">    </span>
+<span class="sd">    search_range : 3-tuple of ints</span>
+<span class="sd">        Maximum frame-to-frame displacement (Z,Y,X) of dots</span>
+<span class="sd">        </span>
+<span class="sd">    memory : int</span>
+<span class="sd">        Number of frames a dot may &quot;disappear&quot; and still be called the same trajectory.</span>
+<span class="sd">        </span>
+<span class="sd">    min_track_length : int</span>
+<span class="sd">        Minimum length of trajectories kept</span>
+<span class="sd">        </span>
+<span class="sd">    max_iterations : int</span>
+<span class="sd">        Maximum number of iterations of parameter updates for trajectory creation</span>
+<span class="sd">        </span>
+<span class="sd">    min_dot_size_increment : int</span>
+<span class="sd">        Increment added to `min_dot_size` if trajectory creation fails.</span>
+<span class="sd">        </span>
+<span class="sd">    percentile_threshold_increment : float</span>
+<span class="sd">        Increment added to `percentile_threshold` if trajectory creation fails by `min_dot_size_increment`.</span>
+<span class="sd">        </span>
+<span class="sd">    current_iteration : int</span>
+<span class="sd">        Keeps track of the number of iterations. </span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict : dictionary of particle localizations</span>
+<span class="sd">    dict : dictionary of particle trajectories</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting iteration: </span><span class="si">{current_iteration}</span><span class="s2">&quot;</span><span class="p">)</span>
+                  
+    <span class="n">loc_df</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting objects channel: </span><span class="si">{ch}</span><span class="s2">, frame: </span><span class="si">{frame}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">get_image_objects</span><span class="p">(</span><span class="n">filtered_zstack_timeseries</span><span class="p">[:,:,:,</span><span class="n">frame</span><span class="p">],</span>
+                                                 <span class="n">zstack_timeseries</span><span class="p">[:,:,:,</span><span class="n">frame</span><span class="p">],</span>
+                                                 <span class="n">percentile_threshold</span><span class="o">=</span><span class="n">percentile_threshold</span><span class="p">,</span>
+                                                 <span class="n">min_size_pixels</span><span class="o">=</span><span class="n">min_dot_size</span><span class="p">,</span>
+                                                 <span class="n">max_size_pixels</span><span class="o">=</span><span class="n">max_dot_size</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">loc_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">loc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">loc_df</span><span class="p">,</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linking trajectories, channel: </span><span class="si">{ch}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">linked_df</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">linked_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">linked_df</span> <span class="o">=</span> <span class="n">create_trajectories</span><span class="p">(</span><span class="n">loc_df</span><span class="p">,</span> 
+                        <span class="n">max_dot_size</span> <span class="o">=</span> <span class="n">max_dot_size</span><span class="p">,</span>
+                        <span class="n">min_dot_size</span> <span class="o">=</span> <span class="n">min_dot_size</span><span class="o">+</span><span class="n">min_dot_size_increment</span><span class="o">*</span><span class="n">count</span><span class="p">,</span> 
+                        <span class="n">search_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
+                        <span class="n">min_track_length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory linking failed. Incrementing the minimum dot size.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># increase the threshold on the minimum dot size</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">linked_df</span> <span class="o">=</span> <span class="kc">None</span>
+            
+    <span class="c1"># if increasing the minimum dot size threshold does not help</span>
+    <span class="k">if</span> <span class="n">linked_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory linking failed. Re-processing image series with higher percentile threshold.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># increase the percentile threshold</span>
+        <span class="n">percentile_threshold</span> <span class="o">+=</span> <span class="n">percentile_threshold_increment</span>
+        <span class="n">loc_df</span><span class="p">,</span> <span class="n">linked_df</span> <span class="o">=</span> <span class="n">get_localizations_iterative</span><span class="p">(</span><span class="n">filtered_zstack_timeseries</span><span class="p">,</span> 
+                                        <span class="n">zstack_timeseries</span><span class="p">,</span>
+                                        <span class="n">frames</span><span class="p">,</span> 
+                                        <span class="n">channels</span><span class="p">,</span>
+                                        <span class="n">percentile_threshold</span><span class="o">=</span><span class="n">percentile_threshold</span><span class="p">,</span>
+                                        <span class="n">max_dot_size</span> <span class="o">=</span> <span class="n">max_dot_size</span><span class="p">,</span>
+                                        <span class="n">min_dot_size</span> <span class="o">=</span> <span class="n">min_dot_size</span><span class="p">,</span> 
+                                        <span class="n">search_range</span><span class="o">=</span><span class="p">[(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">)],</span>
+                                        <span class="n">min_track_length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+                                        <span class="n">max_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                        <span class="n">current_iteration</span><span class="o">=</span><span class="n">current_iteration</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>        
+
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;One iteration failed&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loc_df</span><span class="p">,</span> <span class="n">linked_df</span></div>
+
+<div class="viewcode-block" id="create_trajectories"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.create_trajectories">[docs]</a><span class="k">def</span> <span class="nf">create_trajectories</span><span class="p">(</span><span class="n">loc_df</span><span class="p">,</span> 
+                        <span class="n">max_dot_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+                        <span class="n">min_dot_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+                        <span class="n">search_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
+                        <span class="n">memory</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                        <span class="n">min_track_length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use trackpy to create trajectories from dot localizations.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    loc_df : Pandas DataFrame</span>
+<span class="sd">        DataFrame of object localizations in 3D and time. </span>
+<span class="sd">    </span>
+<span class="sd">    max_dot_size : int</span>
+<span class="sd">        Maximum size of the dots in numbers of pixels</span>
+<span class="sd">        </span>
+<span class="sd">    min_dot_size : int</span>
+<span class="sd">        Minimum size of the dots in numbers of pixels</span>
+<span class="sd">        </span>
+<span class="sd">    search_range : 3-tuple of ints</span>
+<span class="sd">        Maximum frame-to-frame displacement (Z,Y,X) of dots</span>
+<span class="sd">        </span>
+<span class="sd">    memory : int</span>
+<span class="sd">        Number of frames a dot may &quot;disappear&quot; and still be called the same trajectory.</span>
+<span class="sd">        </span>
+<span class="sd">    min_track_length : int</span>
+<span class="sd">        Minimum length of trajectories kept</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict : dictionary of particle trajectories</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># filter the trajectories based on dot size</span>
+    <span class="n">tmp_df</span> <span class="o">=</span> <span class="n">loc_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp_df</span> <span class="o">=</span> <span class="n">tmp_df</span><span class="p">[(</span><span class="n">tmp_df</span><span class="o">.</span><span class="n">dot_size_in_pixels</span><span class="o">&lt;</span><span class="n">max_dot_size</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">tmp_df</span><span class="o">.</span><span class="n">dot_size_in_pixels</span><span class="o">&gt;</span><span class="n">min_dot_size</span><span class="p">))]</span>
+    
+    <span class="c1"># create trajectories</span>
+    <span class="n">tmp_df</span> <span class="o">=</span> <span class="n">trackpy</span><span class="o">.</span><span class="n">link_df</span><span class="p">(</span><span class="n">tmp_df</span><span class="p">,</span> \
+            <span class="n">search_range</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">search_range</span><span class="p">),</span> \
+            <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">)</span>
+    
+    <span class="c1"># filter trajectories based on minimum length</span>
+    <span class="n">tmp_df</span> <span class="o">=</span> <span class="n">tmp_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;particle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">min_track_length</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tmp_df</span></div>
+    
+<div class="viewcode-block" id="link_trajectories_across_channels"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.link_trajectories_across_channels">[docs]</a><span class="k">def</span> <span class="nf">link_trajectories_across_channels</span><span class="p">(</span><span class="n">linked_df</span><span class="p">,</span> 
+                                      <span class="n">min_overlap_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                     <span class="n">corrcoeff_min</span> <span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                     <span class="n">distance_max</span> <span class="o">=</span> <span class="mi">35</span><span class="p">):</span>
+    
+    <span class="n">fake_linked_df</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># get 4D tracks for Channel 0</span>
+    <span class="n">particles0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fake_linked_df</span><span class="p">[</span><span class="n">fake_linked_df</span><span class="o">.</span><span class="n">channel</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">particle</span><span class="p">))</span>
+    <span class="n">tracks_df0</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particles0</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">fake_linked_df</span><span class="p">[</span><span class="n">fake_linked_df</span><span class="o">.</span><span class="n">particle</span><span class="o">==</span><span class="n">p</span><span class="p">][[</span><span class="s1">&#39;frame&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">tracks_df0</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+
+    <span class="c1"># get 4D tracks for Channel 1</span>
+    <span class="n">particles1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">fake_linked_df</span><span class="p">[</span><span class="n">fake_linked_df</span><span class="o">.</span><span class="n">channel</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">particle</span><span class="p">))</span>
+    <span class="n">tracks_df1</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">particles1</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">fake_linked_df</span><span class="p">[</span><span class="n">fake_linked_df</span><span class="o">.</span><span class="n">particle</span><span class="o">==</span><span class="n">p</span><span class="p">][[</span><span class="s1">&#39;frame&#39;</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">tracks_df1</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+
+    <span class="n">min_id_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">particles1</span><span class="p">)</span>
+    
+    <span class="c1">## Find likely pairs of trajectories</span>
+    <span class="n">likely_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p0i</span> <span class="ow">in</span> <span class="n">tracks_df0</span><span class="p">:</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">tracks_df0</span><span class="p">[</span><span class="n">p0i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">p1i</span> <span class="ow">in</span> <span class="n">tracks_df1</span><span class="p">:</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">tracks_df1</span><span class="p">[</span><span class="n">p1i</span><span class="p">]</span>
+            <span class="n">times</span><span class="p">,</span> <span class="n">comm0</span><span class="p">,</span> <span class="n">comm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">p0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">p1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">return_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">min_overlap_length</span><span class="p">:</span>  
+                <span class="n">corrcoeffX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">corrcoeffY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">2</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">corrcoeffZ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">3</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#                 residualsX = np.mean(np.abs(p0[comm0,1]-p1[comm1,1]))</span>
+<span class="c1">#                 residualsY = np.mean(np.abs(p0[comm0,2]-p1[comm1,2]))</span>
+<span class="c1">#                 residualsZ = np.mean(np.abs(p0[comm0,3]-p1[comm1,3]))</span>
+                <span class="n">residualsX</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">residualsY</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+                <span class="n">residualsZ</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="n">comm0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">p1</span><span class="p">[</span><span class="n">comm1</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
+                <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">residualsX</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">residualsY</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">residualsZ</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+                <span class="c1"># link trajectories if they satisfy a minimum correlation coefficient </span>
+                <span class="c1"># and are within an expected maximum distance (in nm) of residuals_max</span>
+                <span class="n">corrcoeff_good</span> <span class="o">=</span> <span class="nb">all</span><span class="p">([</span><span class="n">corrcoeff_min</span> <span class="o">&lt;</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="n">corrcoeffX</span><span class="p">,</span><span class="n">corrcoeffY</span><span class="p">,</span><span class="n">corrcoeffZ</span><span class="p">]])</span>
+                <span class="n">residuals_good</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">distance</span> <span class="o">&lt;</span> <span class="n">distance_max</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">corrcoeff_good</span> <span class="ow">and</span> <span class="n">residuals_good</span><span class="p">:</span>
+                    <span class="n">likely_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">p0i</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">p1i</span><span class="p">)))</span>
+
+    <span class="c1">################## REFINE THE PAIRING###################</span>
+    <span class="c1"># cluster trajectories together </span>
+    <span class="c1"># find conflicts or overlaps</span>
+
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">find_clusters</span><span class="p">(</span><span class="n">likely_pairs</span><span class="p">)</span>        
+    <span class="n">likelier_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># generate all possible orderings within the cluster</span>
+    <span class="c1"># for each ordering:</span>
+    <span class="c1">#     check for overlaps within a channel </span>
+    <span class="c1">#      -- if overlap exists, discard this; continue</span>
+    <span class="c1">#     check for continuous overlap across channels for all segments</span>
+    <span class="c1">#       -- if overlap is non-contiguous discard; continue</span>
+    <span class="c1">#     if overlaps are contiguous in time and non-overlapping within a channel</span>
+    <span class="c1">#       -- score the total length of contig, score average correlation, score average distance; store</span>
+    <span class="c1"># for each stored/scored ordering</span>
+    <span class="k">for</span> <span class="n">ci</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">likelier_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>        
+            <span class="c1"># generate all possible orderings within the cluster</span>
+            <span class="n">orderings</span> <span class="o">=</span> <span class="n">partition_select</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+            <span class="c1"># for each ordering</span>
+            <span class="n">good_ordering_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orderings</span><span class="p">):</span>
+                <span class="c1"># assert the ordering is at least of size 2</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1">#bad_orderings.append(si)</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># split the channels and get time points for each group</span>
+                <span class="n">group0</span> <span class="o">=</span> <span class="p">[</span><span class="n">tracks_df0</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">min_id_value</span><span class="p">]</span>
+                <span class="n">group1</span> <span class="o">=</span> <span class="p">[</span><span class="n">tracks_df1</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">min_id_value</span><span class="p">]</span>
+
+
+                <span class="c1"># allow for an overlap equal to the number of groups collected -1</span>
+                <span class="n">max_overlap0</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">#len(group0)-1</span>
+                <span class="n">max_overlap1</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">#len(group1)-1</span>
+
+                <span class="c1"># CHECK FOR OVERLAPS WITHIN A CHANNEL</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">group0</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">has_overlap0</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">,</span> <span class="n">group0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">has_overlap0</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">group1</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">has_overlap1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">,</span> <span class="n">group1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">has_overlap1</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">has_overlap0</span><span class="p">)</span><span class="o">&gt;</span><span class="n">max_overlap0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">has_overlap1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">max_overlap1</span><span class="p">)</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+                    <span class="c1">#bad_orderings.append(si)</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># CHECK FOR FULLY CONNECTED TRAJECTORIES</span>
+                <span class="c1"># count the number of connections for each trajectory</span>
+                <span class="n">num_links</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;group0_</span><span class="si">{k}</span><span class="s2">&quot;</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group0</span><span class="p">))}</span>
+                <span class="n">num_links</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;group1_</span><span class="si">{k}</span><span class="s2">&quot;</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group1</span><span class="p">))})</span>
+                <span class="k">for</span> <span class="n">gi0</span><span class="p">,</span> <span class="n">g0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group0</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">gi1</span><span class="p">,</span> <span class="n">g1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group1</span><span class="p">):</span>
+                        <span class="n">intersect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span><span class="n">g1</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersect</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">num_links</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;group0_</span><span class="si">{gi0}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                            <span class="n">num_links</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;group1_</span><span class="si">{gi1}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="c1"># if any elements are disconnected, remove this ordering </span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">num_links</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">num_links</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1">#bad_orderings.append(si)</span>
+                        <span class="k">continue</span>
+
+                <span class="c1"># WITH THE REMAINING &quot;GOOD ORDERINGS&quot;, compute various metrics</span>
+                <span class="c1"># combine all group0 together</span>
+                <span class="c1"># combine all group1 together</span>
+                <span class="n">times0</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">(</span><span class="n">group0</span><span class="p">)</span>
+                <span class="n">times1</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">(</span><span class="n">group1</span><span class="p">)</span>
+                <span class="n">times</span><span class="p">,</span> <span class="n">comm0</span><span class="p">,</span> <span class="n">comm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">times0</span><span class="p">,</span><span class="n">times1</span><span class="p">,</span><span class="n">return_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+                <span class="c1"># get X, Y, Z positions for the trajectory</span>
+                <span class="n">groupX0</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df0</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">min_id_value</span><span class="p">])</span>
+                <span class="n">groupX1</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df1</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">min_id_value</span><span class="p">])</span>
+                <span class="n">groupY0</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df0</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">min_id_value</span><span class="p">])</span>
+                <span class="n">groupY1</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df1</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">min_id_value</span><span class="p">])</span>
+                <span class="n">groupZ0</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df0</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">min_id_value</span><span class="p">])</span>
+                <span class="n">groupZ1</span> <span class="o">=</span> <span class="n">group_arrays</span><span class="p">([</span><span class="n">tracks_df1</span><span class="p">[</span><span class="n">s</span><span class="p">][:,</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">min_id_value</span><span class="p">])</span>
+
+                <span class="c1"># get only the overlapping subset of trajectory values</span>
+                <span class="n">groupX0</span> <span class="o">=</span> <span class="n">groupX0</span><span class="p">[</span><span class="n">comm0</span><span class="p">]</span>
+                <span class="n">groupX1</span> <span class="o">=</span> <span class="n">groupX1</span><span class="p">[</span><span class="n">comm1</span><span class="p">]</span>
+                <span class="n">groupY0</span> <span class="o">=</span> <span class="n">groupY0</span><span class="p">[</span><span class="n">comm0</span><span class="p">]</span>
+                <span class="n">groupY1</span> <span class="o">=</span> <span class="n">groupY1</span><span class="p">[</span><span class="n">comm1</span><span class="p">]</span>
+                <span class="n">groupZ0</span> <span class="o">=</span> <span class="n">groupZ0</span><span class="p">[</span><span class="n">comm0</span><span class="p">]</span>
+                <span class="n">groupZ1</span> <span class="o">=</span> <span class="n">groupZ1</span><span class="p">[</span><span class="n">comm1</span><span class="p">]</span>
+
+                <span class="c1"># get mean correlation coefficient </span>
+                <span class="n">corrcoeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">groupX0</span><span class="p">,</span><span class="n">groupX0</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> \
+                            <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">groupY0</span><span class="p">,</span><span class="n">groupY0</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> \
+                            <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">groupZ0</span><span class="p">,</span><span class="n">groupZ0</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span>
+
+                <span class="c1"># get the mean distance </span>
+                <span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">groupX0</span><span class="o">-</span><span class="n">groupX1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> \
+                                            <span class="p">(</span><span class="n">groupY0</span><span class="o">-</span><span class="n">groupY1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> \
+                                            <span class="p">(</span><span class="n">groupZ0</span><span class="o">-</span><span class="n">groupZ1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+                <span class="c1">#print((ci, si))</span>
+                <span class="c1"># get the overlap length</span>
+                <span class="n">good_ordering_metrics</span><span class="p">[</span><span class="n">si</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">),</span><span class="n">residuals</span><span class="p">,</span><span class="n">corrcoeff</span><span class="p">)</span>
+
+            <span class="c1"># sort by longest trajectory first</span>
+            <span class="n">best_lengths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">good_ordering_metrics</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">good_ordering_metrics</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#             best_trajectory_idx = np.argmin(best_lengths)</span>
+            <span class="c1"># sort by hightest correlation first</span>
+            <span class="n">best_correlations</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">good_ordering_metrics</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">good_ordering_metrics</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># sort by lowest distance first</span>
+            <span class="n">best_distance</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">good_ordering_metrics</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">good_ordering_metrics</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="c1"># ranked choice vote</span>
+            <span class="n">rank_choice</span> <span class="o">=</span>  <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">best_lengths</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="n">bl</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">bd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">best_lengths</span><span class="p">)),</span><span class="n">best_lengths</span><span class="p">,</span><span class="n">best_correlations</span><span class="p">,</span><span class="n">best_distance</span><span class="p">):</span>
+                <span class="n">rank_choice</span><span class="p">[</span><span class="n">bl</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rank</span>
+                <span class="c1">#rank_choice[bc] += rank  # this metric is useless here -- most correlations are close to 1</span>
+                <span class="c1">#rank_choice[bd] += rank</span>
+
+            <span class="c1"># get best ranked trajectory</span>
+            <span class="n">min_rank</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">rank_choice</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> 
+            <span class="n">best_trajectory_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">rank_choice</span> <span class="k">if</span> <span class="n">rank_choice</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="n">min_rank</span><span class="p">]</span> 
+            <span class="n">best_trajectory_idx</span> <span class="o">=</span> <span class="n">best_trajectory_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># note, these may not be *pairs*, but a tuples of some length </span>
+            <span class="n">likelier_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orderings</span><span class="p">[</span><span class="n">best_trajectory_idx</span><span class="p">])</span> 
+
+    <span class="c1"># update likely_pairs with likelier pairs</span>
+    <span class="n">likely_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lp</span> <span class="ow">in</span> <span class="n">likelier_pairs</span><span class="p">:</span>
+        <span class="n">lp</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lp</span><span class="p">)</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">likely_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1">#print(lp)</span>
+            <span class="k">for</span> <span class="n">lpi</span> <span class="ow">in</span> <span class="n">lp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">likely_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">lp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lpi</span><span class="p">)</span> <span class="p">)</span>
+    <span class="c1"># update particle names</span>
+    <span class="k">for</span> <span class="n">p1i</span><span class="p">,</span> <span class="n">p2i</span> <span class="ow">in</span> <span class="n">likely_pairs</span><span class="p">:</span>
+        <span class="n">fake_linked_df</span><span class="p">[</span><span class="s1">&#39;particle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">p2i</span><span class="p">,</span><span class="n">p1i</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">linked_particles_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">likely_pairs</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">fake_linked_df</span><span class="p">,</span> <span class="n">linked_particles_ids</span></div>
+    
+        
+        
+
+<div class="viewcode-block" id="find_clusters"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.find_clusters">[docs]</a><span class="k">def</span> <span class="nf">find_clusters</span><span class="p">(</span> <span class="n">tuples</span> <span class="p">):</span>
+    <span class="c1"># https://stackoverflow.com/questions/21646703/grouping-elements-from-2-tuples-recursively</span>
+    <span class="n">clusterlist</span><span class="o">=</span><span class="p">[]</span>
+    <span class="c1"># clustermap maps an element to the id of the containing</span>
+    <span class="c1"># cluster within clusterlist</span>
+    <span class="n">clustermap</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># here we find the current cluster id for elem, by following the</span>
+    <span class="c1"># chain within clusterlist, and replace that entire chain</span>
+    <span class="c1"># with the new cluster id n.   We return the old cluster id.</span>
+    <span class="k">def</span> <span class="nf">set_cluster_id</span><span class="p">(</span> <span class="n">elem</span><span class="p">,</span> <span class="n">n</span> <span class="p">):</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clustermap</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">clustermap</span><span class="p">[</span><span class="n">elem</span><span class="p">]</span>
+        <span class="c1"># clusters may be replaced by references to other clusters,</span>
+        <span class="c1"># we follow that chain</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">clusterlist</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">int</span> <span class="p">):</span>
+            <span class="n">k1</span> <span class="o">=</span> <span class="n">clusterlist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="c1"># this is optional, we make the chain shorter</span>
+            <span class="c1"># by making this entry point directly to the current cluster</span>
+            <span class="n">clusterlist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k1</span>
+        <span class="k">return</span> <span class="n">k</span>
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tuples</span><span class="p">:</span>
+        <span class="c1"># for each tuple we create a new cluster</span>
+        <span class="n">thiscluster</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span> <span class="n">clusterlist</span> <span class="p">)</span> <span class="c1"># the id of thiscluster</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="c1"># we absorb existing clusters into the new one</span>
+            <span class="c1"># if there is overlap</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">set_cluster_id</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">n</span><span class="p">:</span>
+                <span class="n">thiscluster</span><span class="o">.</span><span class="n">update</span><span class="p">(</span> <span class="n">clusterlist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="p">)</span>
+                <span class="c1"># we replace the existing cluster</span>
+                <span class="c1"># with a reference to the new one</span>
+                <span class="n">clusterlist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> 
+            <span class="n">clustermap</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">clusterlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thiscluster</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">clusterlist</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="nb">set</span> <span class="p">)</span> <span class="p">]</span>  </div>
+  
+
+<div class="viewcode-block" id="partition_select"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.partition_select">[docs]</a><span class="k">def</span> <span class="nf">partition_select</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="n">min_sz</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function generates a unique list of all possible partitions</span>
+<span class="sd">    between the items in collection. It also removes all partitions </span>
+<span class="sd">    smaller than min_sz in length.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_partition</span><span class="p">(</span><span class="n">collection</span><span class="p">):</span>
+        <span class="c1">#https://stackoverflow.com/questions/19368375/set-partitions-in-python</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">[</span> <span class="n">collection</span> <span class="p">]</span>
+            <span class="k">return</span>
+        <span class="n">first</span> <span class="o">=</span> <span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">smaller</span> <span class="ow">in</span> <span class="n">_partition</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="c1"># insert `first` in each of the subpartition&#39;s subsets</span>
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">subset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">smaller</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">smaller</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span> <span class="n">first</span> <span class="p">]</span> <span class="o">+</span> <span class="n">subset</span><span class="p">]</span>  <span class="o">+</span> <span class="n">smaller</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="c1"># put `first` in its own subset </span>
+            <span class="c1">#yield [ [ first ] ] + smaller</span>
+            <span class="k">yield</span> <span class="p">[[</span><span class="n">first</span><span class="p">]]</span> <span class="o">+</span> <span class="n">smaller</span>
+         
+    <span class="n">ordering</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_partition</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+    <span class="n">flat_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">ordering</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">:</span>
+            <span class="n">flat_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+    <span class="n">flat_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flat_list</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">fl</span> <span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="n">flat_list</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fl</span><span class="p">)</span><span class="o">&gt;=</span> <span class="n">min_sz</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="group_arrays"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.group_arrays">[docs]</a><span class="k">def</span> <span class="nf">group_arrays</span><span class="p">(</span><span class="n">list_of_arrays</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="n">list_of_arrays</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="filter_large_displacements_in_trackpy_trajectories"><a class="viewcode-back" href="../../index.html#connect_the_dots.pipeline.filter_large_displacements_in_trackpy_trajectories">[docs]</a><span class="k">def</span> <span class="nf">filter_large_displacements_in_trackpy_trajectories</span><span class="p">(</span><span class="n">linked_df</span><span class="p">,</span><span class="n">distance_max</span><span class="o">=</span><span class="mi">35</span><span class="p">):</span>
+    <span class="n">new_df_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">mean_intensity</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean_intensity</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">max_intensity</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max_intensity</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">dot_size_in_pixels</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dot_size_in_pixels</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">particle</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">linked_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(particle==</span><span class="si">{p}</span><span class="s2">) and (channel==</span><span class="si">{ch}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">values</span>    
+
+            <span class="n">bad_frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">&lt;</span> <span class="n">distance_max</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> 
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_frames</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">bad_frames</span><span class="p">)</span><span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># find change points</span>
+                <span class="n">changepoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">bad_frames</span><span class="o">==</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+
+                <span class="n">ind0</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">ind1</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">changepoints</span><span class="p">[</span><span class="n">count</span><span class="p">]:</span>
+                        <span class="k">if</span>  <span class="n">ind</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                            <span class="n">ind0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">ind1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">frame</span> <span class="o">==</span> <span class="n">changepoints</span><span class="p">[</span><span class="n">count</span><span class="p">]:</span>
+                        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">if</span>  <span class="n">ind</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                            <span class="n">ind1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                            <span class="n">ind</span> <span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">ind0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                            <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">ind_keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">ind0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">ind1</span><span class="p">)])</span>
+                <span class="k">if</span> <span class="n">ind_keep</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span> 
+                    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">dot_size_in_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">dot_size_in_pixels</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">particle</span> <span class="o">=</span> <span class="p">[</span><span class="n">particle</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">dot_size_in_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">dot_size_in_pixels</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">particle</span> <span class="o">=</span> <span class="p">[</span><span class="n">particle</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+
+            <span class="c1">## filter out big displacements in Y</span>
+            <span class="n">bad_frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">&lt;</span> <span class="n">distance_max</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> 
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_frames</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">bad_frames</span><span class="p">)</span><span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># find change points</span>
+                <span class="n">changepoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">bad_frames</span><span class="o">==</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+
+                <span class="n">ind0</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">ind1</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">changepoints</span><span class="p">[</span><span class="n">count</span><span class="p">]:</span>
+                        <span class="k">if</span>  <span class="n">ind</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                            <span class="n">ind0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">ind1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">frame</span> <span class="o">==</span> <span class="n">changepoints</span><span class="p">[</span><span class="n">count</span><span class="p">]:</span>
+                        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">if</span>  <span class="n">ind</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                            <span class="n">ind1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                            <span class="n">ind</span> <span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">ind0</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                            <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">ind_keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">ind0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">ind1</span><span class="p">)])</span>
+                <span class="k">if</span> <span class="n">ind_keep</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span> 
+                    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">dot_size_in_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">dot_size_in_pixels</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">particle</span> <span class="o">=</span> <span class="p">[</span><span class="n">particle</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                    <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind0</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">dot_size_in_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">dot_size_in_pixels</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">particle</span> <span class="o">=</span> <span class="p">[</span><span class="n">particle</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+                    <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="n">ind1</span><span class="p">]</span>
+
+            <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;particle&#39;</span><span class="p">:</span><span class="n">particle</span><span class="p">,</span>
+                          <span class="s1">&#39;channel&#39;</span><span class="p">:</span><span class="n">channel</span><span class="p">,</span>
+                          <span class="s1">&#39;frame&#39;</span><span class="p">:</span><span class="n">times</span><span class="p">,</span>
+                          <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x</span><span class="p">,</span>
+                          <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">,</span>
+                          <span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">z</span><span class="p">,</span>
+                          <span class="s1">&#39;mean_intensity&#39;</span><span class="p">:</span><span class="n">mean_intensity</span><span class="p">,</span>
+                          <span class="s1">&#39;max_intensity&#39;</span><span class="p">:</span><span class="n">max_intensity</span><span class="p">,</span>
+                          <span class="s1">&#39;dot_size_in_pixels&#39;</span><span class="p">:</span><span class="n">dot_size_in_pixels</span><span class="p">})</span>
+
+            <span class="n">new_df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_df</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">new_df_list</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Hugo B. Brandao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

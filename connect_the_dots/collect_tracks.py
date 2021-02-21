@@ -6,6 +6,7 @@ import copy
 import h5py
 import pandas as pd
 import re
+import xmltodict
 
 from operator import mul
 from functools import reduce

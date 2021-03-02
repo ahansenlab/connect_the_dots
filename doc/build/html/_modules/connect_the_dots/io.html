@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>connect_the_dots.io &#8212; connect_the_dots 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for connect_the_dots.io</h1><div class="highlight"><pre>
+<span></span><span class="c1">## Input/output functions. </span>
+<span class="c1"># Written by Hugo B. Brandao (hbrandao@g.harvard.edu)</span>
+<span class="c1"># (c) 2021, Hugo B. Brandao</span>
+
+<span class="c1">## Import required modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># for manipulating arrays</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># for making/deleting directories</span>
+<span class="kn">import</span> <span class="nn">bioformats</span> <span class="c1"># for reading image series</span>
+<span class="kn">import</span> <span class="nn">javabridge</span> <span class="c1"># for interfacing with java (required for bioformats)</span>
+<span class="kn">from</span> <span class="nn">tifffile</span> <span class="kn">import</span> <span class="n">xml2dict</span> <span class="c1"># for parsing the metadata from bioformats</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="c1"># for saving python objects and other data</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="n">javabridge</span><span class="o">.</span><span class="n">start_vm</span><span class="p">(</span><span class="n">class_path</span><span class="o">=</span><span class="n">bioformats</span><span class="o">.</span><span class="n">JARS</span><span class="p">)</span> <span class="c1"># start java virtual machine</span>
+
+
+<div class="viewcode-block" id="search_for"><a class="viewcode-back" href="../../api.html#connect_the_dots.io.search_for">[docs]</a><span class="k">def</span> <span class="nf">search_for</span><span class="p">(</span><span class="n">start_folder</span><span class="p">,</span> <span class="n">name_includes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name_excludes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Search directories for files containing or excluding specific strings.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start_folder : str</span>
+<span class="sd">        Parent directory for recursive filename search.</span>
+<span class="sd">    </span>
+<span class="sd">    name_includes : list of strings</span>
+<span class="sd">        List of strings to include in the search data. Search does not do case matching. </span>
+
+<span class="sd">    name_excludes : list of strings</span>
+<span class="sd">        List of strings to exclude from the search. Search does not do case matching. </span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Two lists: 1) list of file names, 2) list of the absolute file path.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filenames_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">filepath_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="n">start_folder</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s1">&#39;*.*&#39;</span><span class="p">):</span>
+
+        <span class="n">parent_folder</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">parent_folder</span> <span class="ow">in</span> <span class="n">name_excludes</span><span class="p">:</span>
+            <span class="k">continue</span>   
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">all</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_includes</span><span class="p">])</span><span class="o">==</span><span class="kc">False</span><span class="p">)</span> <span class="ow">or</span> \
+            <span class="nb">any</span><span class="p">([</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_excludes</span><span class="p">])</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+            <span class="k">continue</span>
+            
+        <span class="n">filenames_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">filepath_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">start_folder</span><span class="p">,</span><span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">filenames_list</span><span class="p">,</span> <span class="n">filepath_list</span></div>
+
+
+<div class="viewcode-block" id="get_CZI_metadata"><a class="viewcode-back" href="../../api.html#connect_the_dots.io.get_CZI_metadata">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains the metadata from a CZI image series.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+<span class="sd">           </span>
+<span class="sd">    verbose : {T,F}, optional</span>
+<span class="sd">              If true, prints (sizeX,sizeY,sizeZ,sizeT,num_channels) to standard output</span>
+<span class="sd">            </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    (sizeX,sizeY,sizeZ,sizeT,num_channels) : tuple of ints</span>
+<span class="sd">                Information on the length of the sizes of the `X`, `Y`, `Z` (spatial) and `T` </span>
+<span class="sd">                (temporal) dimensions of the image series and the number of channels, `num_channels`.</span>
+<span class="sd">                In case of failutre to load, returns a 5-tuple of values 0. </span>
+
+<span class="sd">    metadata : dict, or None</span>
+<span class="sd">               Dictionary containing the full metadata formatted in the Bioformats OME style. </span>
+<span class="sd">               If loading is unsuccessful, `None` is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="kc">None</span>
+        
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">xml2dict</span><span class="p">(</span><span class="n">bioformats</span><span class="o">.</span><span class="n">get_omexml_metadata</span><span class="p">(</span><span class="n">czi_image</span><span class="p">))</span>
+    <span class="n">sizeT</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeT&#39;</span><span class="p">]</span>
+    <span class="n">sizeX</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeX&#39;</span><span class="p">]</span>
+    <span class="n">sizeY</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeY&#39;</span><span class="p">]</span>
+    <span class="n">sizeZ</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;SizeZ&#39;</span><span class="p">]</span>
+    <span class="n">num_channels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;OME&#39;</span><span class="p">][</span><span class="s1">&#39;Image&#39;</span><span class="p">][</span><span class="s1">&#39;Pixels&#39;</span><span class="p">][</span><span class="s1">&#39;Channel&#39;</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">metadata</span></div>
+
+
+<div class="viewcode-block" id="get_CZI_zstack"><a class="viewcode-back" href="../../api.html#connect_the_dots.io.get_CZI_zstack">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_zstack</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">frame</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">img_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains a single z-stack from a 3D imaging time-series for a specified time and channel.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+
+<span class="sd">    frame : int</span>
+<span class="sd">               The temporal slice of the image series from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    channel : int</span>
+<span class="sd">               The channel from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+
+<span class="sd">    img_info : tuple of ints, optional </span>
+<span class="sd">               5-tuple containing lengths of the `X`, `Y`, `Z` (spatial), `T` (temporal) dimensions</span>
+<span class="sd">               of the image series, and the number of channels, `num_channels`.</span>
+<span class="sd">               E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata(). </span>
+<span class="sd">               Pass these pre-computed values for increased speed in batch processing.</span>
+<span class="sd">                </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    zstack : numpy.ndarray, or None</span>
+<span class="sd">             Z-stack of the image series specified by the desired `frame`; contains 3 spatial </span>
+<span class="sd">             dimensions. If loading is unsuccessful, `None` is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare file name, check that file exists </span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># retrieve image dimensions, and number of channels</span>
+    <span class="k">if</span> <span class="n">img_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_info</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span> <span class="o">=</span> <span class="n">img_info</span>
+        
+    
+    <span class="c1"># make sure frame and channel are in bounds</span>
+    <span class="k">assert</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">sizeT</span>
+    <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="n">num_channels</span>
+        
+    <span class="c1">#initialize array and load z-stack</span>
+    <span class="n">zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sizeZ</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">,</span><span class="n">sizeX</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">bioformats</span><span class="o">.</span><span class="n">ImageReader</span><span class="p">(</span><span class="n">czi_image</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizeZ</span><span class="p">):</span>
+            <span class="n">zstack</span><span class="p">[</span><span class="n">z</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">zstack</span></div>
+
+<div class="viewcode-block" id="get_CZI_zstack_timeseries"><a class="viewcode-back" href="../../api.html#connect_the_dots.io.get_CZI_zstack_timeseries">[docs]</a><span class="k">def</span> <span class="nf">get_CZI_zstack_timeseries</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">frames</span><span class="p">,</span><span class="n">channel</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">img_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtains a time-series of z-stacks for a specified channel from .CZI data.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">               Name of the file from which to retrieve the z-stack.</span>
+
+<span class="sd">    frames : range or list of ints</span>
+<span class="sd">               The temporal slices of the image series from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    channel : int</span>
+<span class="sd">               The channel from which to retrieve the z-stack.</span>
+<span class="sd">            </span>
+<span class="sd">    filepath : str, optional</span>
+<span class="sd">               Path to the file.</span>
+
+<span class="sd">    img_info : tuple of ints, optional </span>
+<span class="sd">               5-tuple containing lengths of the `X`, `Y`, `Z` (spatial), `T` (temporal) dimensions</span>
+<span class="sd">               of the image series, and the number of channels, `num_channels`.</span>
+<span class="sd">               E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata(). </span>
+<span class="sd">               Pass these pre-computed values for increased speed in batch processing.</span>
+<span class="sd">                </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    zstack : numpy.ndarray, or None</span>
+<span class="sd">             Z-stack of the image time-series; contains 4 spatial dimensions. </span>
+<span class="sd">             If loading is unsuccessful, `None` is returned. Dimensions are (Z,Y,X,T).</span>
+<span class="sd">             </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># prepare file name, check that file exists </span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filepath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">czi_image</span> <span class="o">=</span> <span class="n">filename</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">czi_image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># retrieve image dimensions, and number of channels</span>
+    <span class="k">if</span> <span class="n">img_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">),</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_CZI_metadata</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_info</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="p">(</span><span class="n">sizeX</span><span class="p">,</span><span class="n">sizeY</span><span class="p">,</span><span class="n">sizeZ</span><span class="p">,</span><span class="n">sizeT</span><span class="p">,</span><span class="n">num_channels</span><span class="p">)</span> <span class="o">=</span> <span class="n">img_info</span>
+    
+    <span class="c1"># make sure frame and channel are in bounds</span>
+    <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">frame</span> <span class="o">&lt;</span> <span class="n">sizeT</span>
+    <span class="k">assert</span> <span class="n">channel</span> <span class="o">&lt;</span> <span class="n">num_channels</span>
+        
+    <span class="c1">#initialize array and load z-stack</span>
+    <span class="n">num_slices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+    <span class="n">zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sizeZ</span><span class="p">,</span> <span class="n">sizeY</span><span class="p">,</span><span class="n">sizeX</span><span class="p">,</span><span class="n">num_slices</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">bioformats</span><span class="o">.</span><span class="n">ImageReader</span><span class="p">(</span><span class="n">czi_image</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sizeZ</span><span class="p">):</span>
+                <span class="n">zstack</span><span class="p">[</span><span class="n">z</span><span class="p">,:,:,</span><span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">zstack</span>    </div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Hugo B. Brandao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

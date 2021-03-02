@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Connect the Dots &#8212; connect_the_dots 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Setup" href="installation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Setup"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">connect_the_dots 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="connect-the-dots">
+<h1>Connect the Dots<a class="headerlink" href="#connect-the-dots" title="Permalink to this headline">¶</a></h1>
+<p>Image processing API.</p>
+<div class="section" id="module-connect_the_dots.io">
+<span id="loading-raw-images"></span><h2>Loading raw images<a class="headerlink" href="#module-connect_the_dots.io" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="connect_the_dots.io.search_for">
+<code class="sig-prename descclassname">connect_the_dots.io.</code><code class="sig-name descname">search_for</code><span class="sig-paren">(</span><em class="sig-param">start_folder</em>, <em class="sig-param">name_includes=None</em>, <em class="sig-param">name_excludes=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/io.html#search_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.io.search_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search directories for files containing or excluding specific strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_folder</strong> (<em>str</em>) – Parent directory for recursive filename search.</p></li>
+<li><p><strong>name_includes</strong> (<em>list of strings</em>) – List of strings to include in the search data. Search does not do case matching.</p></li>
+<li><p><strong>name_excludes</strong> (<em>list of strings</em>) – List of strings to exclude from the search. Search does not do case matching.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Two lists</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><ol class="arabic simple">
+<li><p>list of file names, 2) list of the absolute file path.</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.io.get_CZI_metadata">
+<code class="sig-prename descclassname">connect_the_dots.io.</code><code class="sig-name descname">get_CZI_metadata</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/io.html#get_CZI_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.io.get_CZI_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains the metadata from a CZI image series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the file from which to retrieve the z-stack.</p></li>
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the file.</p></li>
+<li><p><strong>verbose</strong> (<em>{T</em><em>,</em><em>F}</em><em>, </em><em>optional</em>) – If true, prints (sizeX,sizeY,sizeZ,sizeT,num_channels) to standard output</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>(sizeX,sizeY,sizeZ,sizeT,num_channels)</strong> (<em>tuple of ints</em>) – Information on the length of the sizes of the <code class="xref any docutils literal notranslate"><span class="pre">X</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Y</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Z</span></code> (spatial) and <code class="xref any docutils literal notranslate"><span class="pre">T</span></code>
+(temporal) dimensions of the image series and the number of channels, <code class="xref any docutils literal notranslate"><span class="pre">num_channels</span></code>.
+In case of failutre to load, returns a 5-tuple of values 0.</p></li>
+<li><p><strong>metadata</strong> (<em>dict, or None</em>) – Dictionary containing the full metadata formatted in the Bioformats OME style.
+If loading is unsuccessful, <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> is returned.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.io.get_CZI_zstack">
+<code class="sig-prename descclassname">connect_the_dots.io.</code><code class="sig-name descname">get_CZI_zstack</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">frame</em>, <em class="sig-param">channel</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">img_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/io.html#get_CZI_zstack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.io.get_CZI_zstack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains a single z-stack from a 3D imaging time-series for a specified time and channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the file from which to retrieve the z-stack.</p></li>
+<li><p><strong>frame</strong> (<em>int</em>) – The temporal slice of the image series from which to retrieve the z-stack.</p></li>
+<li><p><strong>channel</strong> (<em>int</em>) – The channel from which to retrieve the z-stack.</p></li>
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the file.</p></li>
+<li><p><strong>img_info</strong> (<em>tuple of ints</em><em>, </em><em>optional</em>) – 5-tuple containing lengths of the <code class="xref any docutils literal notranslate"><span class="pre">X</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Y</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Z</span></code> (spatial), <code class="xref any docutils literal notranslate"><span class="pre">T</span></code> (temporal) dimensions
+of the image series, and the number of channels, <code class="xref any docutils literal notranslate"><span class="pre">num_channels</span></code>.
+E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata().
+Pass these pre-computed values for increased speed in batch processing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>zstack</strong> – Z-stack of the image series specified by the desired <code class="xref any docutils literal notranslate"><span class="pre">frame</span></code>; contains 3 spatial
+dimensions. If loading is unsuccessful, <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> is returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray, or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.io.get_CZI_zstack_timeseries">
+<code class="sig-prename descclassname">connect_the_dots.io.</code><code class="sig-name descname">get_CZI_zstack_timeseries</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">frames</em>, <em class="sig-param">channel</em>, <em class="sig-param">filepath=None</em>, <em class="sig-param">img_info=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/io.html#get_CZI_zstack_timeseries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.io.get_CZI_zstack_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains a time-series of z-stacks for a specified channel from .CZI data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the file from which to retrieve the z-stack.</p></li>
+<li><p><strong>frames</strong> (<em>range</em><em> or </em><em>list of ints</em>) – The temporal slices of the image series from which to retrieve the z-stack.</p></li>
+<li><p><strong>channel</strong> (<em>int</em>) – The channel from which to retrieve the z-stack.</p></li>
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the file.</p></li>
+<li><p><strong>img_info</strong> (<em>tuple of ints</em><em>, </em><em>optional</em>) – 5-tuple containing lengths of the <code class="xref any docutils literal notranslate"><span class="pre">X</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Y</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">Z</span></code> (spatial), <code class="xref any docutils literal notranslate"><span class="pre">T</span></code> (temporal) dimensions
+of the image series, and the number of channels, <code class="xref any docutils literal notranslate"><span class="pre">num_channels</span></code>.
+E.g. (sizeX,sizeY,sizeZ,sizeT,num_channels). See output of get_CZI_metadata().
+Pass these pre-computed values for increased speed in batch processing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>zstack</strong> – Z-stack of the image time-series; contains 4 spatial dimensions.
+If loading is unsuccessful, <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> is returned. Dimensions are (Z,Y,X,T).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray, or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-connect_the_dots.filtering">
+<span id="image-processing-filtering"></span><h2>Image processing, filtering<a class="headerlink" href="#module-connect_the_dots.filtering" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="connect_the_dots.filtering.natural_sort">
+<code class="sig-prename descclassname">connect_the_dots.filtering.</code><code class="sig-name descname">natural_sort</code><span class="sig-paren">(</span><em class="sig-param">l</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/filtering.html#natural_sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.filtering.natural_sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes in a list of strings and returns the list sorted in “natural” order.
+(e.g. [test1, test10, test11, test2, test20] -&gt; [test1, test2, test10, test11, test20])
+Source: <a class="reference external" href="https://stackoverflow.com/questions/4836710/is-there-a-built-in-function-for-string-natural-sort">https://stackoverflow.com/questions/4836710/is-there-a-built-in-function-for-string-natural-sort</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>l</strong> (<em>list of str</em>) – Unsorted list of strings</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sorted_l</strong> – Sorted list of strings</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.filtering.wavelet_filter_zstack">
+<code class="sig-prename descclassname">connect_the_dots.filtering.</code><code class="sig-name descname">wavelet_filter_zstack</code><span class="sig-paren">(</span><em class="sig-param">zstack, filtered_levels=[0, 4], wavelet_type='haar'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/filtering.html#wavelet_filter_zstack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.filtering.wavelet_filter_zstack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform 3D (or 4D) discrete wavelet transform and coefficient filtering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zstack</strong> (<em>ndarray</em>) – Numpy ndarray containing 3 (or 4) dimensions. Dimensions should all be even for best performance!</p></li>
+<li><p><strong>filtered_levels</strong> (<em>list of ints</em>) – Wavelet coefficient levels to be removed for the image reconstruction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rec</strong> (<em>ndarray</em>) – Filtered zstack</p></li>
+<li><p><strong>num_levels</strong> (<em>int</em>) – Number of levels that could be accessed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.filtering.filter_zstack_DoG">
+<code class="sig-prename descclassname">connect_the_dots.filtering.</code><code class="sig-name descname">filter_zstack_DoG</code><span class="sig-paren">(</span><em class="sig-param">zstack</em>, <em class="sig-param">dog_sigma1=1.5</em>, <em class="sig-param">dog_sigma2=15</em>, <em class="sig-param">absolute_value=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/filtering.html#filter_zstack_DoG"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.filtering.filter_zstack_DoG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies Difference of Gaussian (DoG) filtering on a single z-stack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zstack</strong> (<em>numpy.ndarray</em><em> [</em><em>sizeZ by sizeY by sizeX</em><em>]</em>) – Z-stack of the image series for a single channel (containing 3 spatial dimentions)</p></li>
+<li><p><strong>dog_sigma1</strong> (<em>float</em><em>, </em><em>optional</em>) – Standard deviation of the first Gaussian distribution of the DoG filter.
+<code class="xref any docutils literal notranslate"><span class="pre">dog_sigma1</span></code> should be close in size to the “dots” being tracked.</p></li>
+<li><p><strong>dog_sigma2</strong> (<em>float</em><em>, </em><em>optional</em>) – Standard deviation of the second Gaussian distribution of the DoG filter.
+<code class="xref any docutils literal notranslate"><span class="pre">dog_sigma2</span></code> should be ~10-times larger than <code class="xref any docutils literal notranslate"><span class="pre">dog_sigma1</span></code>; it helps to smooth
+local sources noise and background of the image.</p></li>
+<li><p><strong>absolute_value</strong> (<em>{T</em><em>,</em><em>F}</em><em>, </em><em>optional</em>) – Toggles on/off taking the absolute value of the DoG filter result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>filtered_zstack</strong> – Absolute value of Difference of Gaussian filtered z-stack.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.filtering.filter_zstack_LoG">
+<code class="sig-prename descclassname">connect_the_dots.filtering.</code><code class="sig-name descname">filter_zstack_LoG</code><span class="sig-paren">(</span><em class="sig-param">img</em>, <em class="sig-param">log_sigma=2</em>, <em class="sig-param">num_std_threshold=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/filtering.html#filter_zstack_LoG"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.filtering.filter_zstack_LoG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Laplacian of Gaussian (LoG) filtered image and the image of
+edges detected by the LoG method applied on the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>numpy.ndarray</em>) – Image on which to perform the edge detection.</p></li>
+<li><p><strong>log_sigma</strong> (<em>float</em>) – The standard deviation of the gaussian used in ‘Laplacian of Gaussian’. It is
+akin to a smoothing parameter.</p></li>
+<li><p><strong>num_std_threshold</strong> (<em>float</em>) – The number of standard deviations used above “zero” to classify a zero-crossing
+event of the ‘Laplacian of Gaussian’ as being an edge. Only set <code class="xref any docutils literal notranslate"><span class="pre">num_std_threshold</span></code>
+greater than zero; also, only</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>log_img</em></p></li>
+<li><p><em>edges_img</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.filtering.get_image_objects">
+<code class="sig-prename descclassname">connect_the_dots.filtering.</code><code class="sig-name descname">get_image_objects</code><span class="sig-paren">(</span><em class="sig-param">zstack_to_mask</em>, <em class="sig-param">zstack</em>, <em class="sig-param">min_size_pixels=20</em>, <em class="sig-param">max_size_pixels=10000</em>, <em class="sig-param">percentile_threshold=99.9</em>, <em class="sig-param">do_dilation=True</em>, <em class="sig-param">return_mask=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/filtering.html#get_image_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.filtering.get_image_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a binary mask on the zstack, and segments the binary image. 3D objects are identified
+and selected based on their pixel sizes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zstack_to_mask</strong> (<em>numpy.ndarray</em><em> [</em><em>sizeZ by sizeY by sizeX</em><em>]</em>) – zstack used to create the binary mask (possibly filtered)</p></li>
+<li><p><strong>zstack</strong> (<em>numpy.ndarray</em><em> [</em><em>sizeZ by sizeY by sizeX</em><em>]</em>) – zstack used to obtain the intensity values of the dot localization (raw data)</p></li>
+<li><p><strong>min_size_pixels</strong> (<em>int</em>) – Minimum size of object to be extracted by the segmentation</p></li>
+<li><p><strong>max_size_pixels</strong> (<em>int</em>) – Maximum size of object to be extracted by the segmentation</p></li>
+<li><p><strong>percentile_threshold</strong> (<em>float</em><em> (</em><em>0 to 100</em><em>)</em>) – Percentile threshold with which to binarize the zstack and create object masks.</p></li>
+<li><p><strong>do_dilation</strong> (<em>{T</em><em>,</em><em>F}</em>) – Perform morphological filtering and size selection on image after binary dilation. Default == True.</p></li>
+<li><p><strong>return_mask</strong> (<em>{T</em><em>,</em><em>F}</em>) – Returns the mask. By default, the mask is not returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A data frame containing the following column headers</em></p></li>
+<li><p><em>x, y, z, mean_intensity, max_intensity, dot_size_pixels</em></p></li>
+<li><p><em>If return_mask == True</em></p></li>
+<li><p><strong>blobs</strong> (<em>np.ndarray</em>) – The thresholded zstack</p></li>
+<li><p><strong>blobs_filt</strong> (<em>np.ndarray</em>) – The thresholded zstack, after feature size selection</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-connect_the_dots.tracking">
+<span id="tracking-dots"></span><h2>Tracking dots<a class="headerlink" href="#module-connect_the_dots.tracking" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="connect_the_dots.tracking.get_localizations_iterative">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">get_localizations_iterative</code><span class="sig-paren">(</span><em class="sig-param">filtered_zstack_timeseries</em>, <em class="sig-param">zstack_timeseries</em>, <em class="sig-param">frames</em>, <em class="sig-param">channel</em>, <em class="sig-param">percentile_threshold=99.95</em>, <em class="sig-param">max_dot_size=10000</em>, <em class="sig-param">min_dot_size=20</em>, <em class="sig-param">search_range=(5</em>, <em class="sig-param">15</em>, <em class="sig-param">15)</em>, <em class="sig-param">min_track_length=15</em>, <em class="sig-param">max_iterations=5</em>, <em class="sig-param">min_dot_size_increment=5</em>, <em class="sig-param">percentile_threshold_increment=0.01</em>, <em class="sig-param">current_iteration=0</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#get_localizations_iterative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.get_localizations_iterative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use trackpy to create trajectories from dot localizations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filtered_zstack_timeseries</strong> (<em>numpy.ndarray</em>) – Post-filtering 4-D zstack of the image series data used to make a binary mask.</p></li>
+<li><p><strong>zstack_timeseries</strong> (<em>numpy.ndarray</em>) – Raw 4-D zstack of the image series data.</p></li>
+<li><p><strong>frames</strong> (<em>range</em><em> or </em><em>list of int</em>) – Frames to process.</p></li>
+<li><p><strong>channel</strong> (<em>int</em>) – </p></li>
+<li><p><strong>percentile_threshold</strong> (<em>float</em>) – Percentile from 0 to 100 by which to threshold the <code class="xref any docutils literal notranslate"><span class="pre">filtered_zstack_timeseries</span></code>.</p></li>
+<li><p><strong>max_dot_size</strong> (<em>int</em>) – Maximum size of the dots in numbers of pixels</p></li>
+<li><p><strong>min_dot_size</strong> (<em>int</em>) – Minimum size of the dots in numbers of pixels</p></li>
+<li><p><strong>search_range</strong> (<em>3-tuple of ints</em>) – Maximum frame-to-frame displacement (Z,Y,X) of dots</p></li>
+<li><p><strong>memory</strong> (<em>int</em>) – Number of frames a dot may “disappear” and still be called the same trajectory.</p></li>
+<li><p><strong>min_track_length</strong> (<em>int</em>) – Minimum length of trajectories kept</p></li>
+<li><p><strong>max_iterations</strong> (<em>int</em>) – Maximum number of iterations of parameter updates for trajectory creation</p></li>
+<li><p><strong>min_dot_size_increment</strong> (<em>int</em>) – Increment added to <code class="xref any docutils literal notranslate"><span class="pre">min_dot_size</span></code> if trajectory creation fails.</p></li>
+<li><p><strong>percentile_threshold_increment</strong> (<em>float</em>) – Increment added to <code class="xref any docutils literal notranslate"><span class="pre">percentile_threshold</span></code> if trajectory creation fails by <code class="xref any docutils literal notranslate"><span class="pre">dot_size_increment</span></code>.</p></li>
+<li><p><strong>current_iteration</strong> (<em>int</em>) – Keeps track of the number of iterations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>dict</strong> (<em>dictionary of particle localizations</em>)</p></li>
+<li><p><strong>dict</strong> (<em>dictionary of particle trajectories</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.create_trajectories">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">create_trajectories</code><span class="sig-paren">(</span><em class="sig-param">loc_df</em>, <em class="sig-param">max_dot_size=inf</em>, <em class="sig-param">min_dot_size=0</em>, <em class="sig-param">search_range=(5</em>, <em class="sig-param">15</em>, <em class="sig-param">15)</em>, <em class="sig-param">memory=5</em>, <em class="sig-param">min_track_length=15</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#create_trajectories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.create_trajectories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use trackpy to create trajectories from dot localizations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc_df</strong> (<em>Pandas DataFrame</em>) – DataFrame of object localizations in 3D and time.</p></li>
+<li><p><strong>max_dot_size</strong> (<em>int</em>) – Maximum size of the dots in numbers of pixels</p></li>
+<li><p><strong>min_dot_size</strong> (<em>int</em>) – Minimum size of the dots in numbers of pixels</p></li>
+<li><p><strong>search_range</strong> (<em>3-tuple of ints</em>) – Maximum frame-to-frame displacement (Z,Y,X) of dots</p></li>
+<li><p><strong>memory</strong> (<em>int</em>) – Number of frames a dot may “disappear” and still be called the same trajectory.</p></li>
+<li><p><strong>min_track_length</strong> (<em>int</em>) – Minimum length of trajectories kept</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dict</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary of particle trajectories</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.link_trajectories_across_channels">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">link_trajectories_across_channels</code><span class="sig-paren">(</span><em class="sig-param">linked_df</em>, <em class="sig-param">min_overlap_length=10</em>, <em class="sig-param">corrcoeff_min=0.3</em>, <em class="sig-param">distance_max=35</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#link_trajectories_across_channels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.link_trajectories_across_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links trajectories together across channels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>linked_df</strong> (<em>pandas.DataFrame</em>) – DataFrame of particle trajectories (connected separately for each channel) in 3D and time.</p></li>
+<li><p><strong>min_overlap_length</strong> (<em>int</em>) – Minimum number of frames of overlap between channels necessary to connect two trajectories</p></li>
+<li><p><strong>corrcoeff_min</strong> (<em>float</em>) – Minimum correlation coefficient between dot pairs (for each dimension separately) in order
+for trajectories to be linked together.</p></li>
+<li><p><strong>distance_max</strong> (<em>int</em>) – Maximum distance in pixels between dots in connected trajectories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>joined_df</strong> (<em>pandas.DataFrame</em>) – DataFrame of particle trajectories (connected separately for each channel) in 3D and time.
+This DataFrame may contain some trajectories that do not meet the likely pair criteria. To
+obtain a clean list, use <code class="xref any docutils literal notranslate"><span class="pre">linked_trajectory_ids</span></code>.</p></li>
+<li><p><strong>linked_trajectory_ids</strong> (<em>pandas.DataFrame</em>) – List of trajectory IDs in <code class="xref any docutils literal notranslate"><span class="pre">joined_df</span></code> meeting the criteria for likely pairs.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.find_clusters">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">find_clusters</code><span class="sig-paren">(</span><em class="sig-param">trajectory_pairs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#find_clusters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.find_clusters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifies clusters of trajectories which could be stitched together.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trajectory_pairs</strong> (<em>list of 2-tuples of ints</em>) – List of 2-tuples of particle IDs, containing potential matched pairs of
+trajectories across channels. This is used for stitching trajectories together.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>clustered_tuples</strong> – List of n-tuples of particle IDs containing groups of potential trajectory segments.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>n-tuples of ints</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.partition_select">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">partition_select</code><span class="sig-paren">(</span><em class="sig-param">vals</em>, <em class="sig-param">min_sz=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#partition_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.partition_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function generates a unique list of all possible partitions
+between the items in <code class="xref any docutils literal notranslate"><span class="pre">vals</span></code>. It also removes all partitions
+smaller than min_sz in length.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.group_arrays">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">group_arrays</code><span class="sig-paren">(</span><em class="sig-param">list_of_arrays</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#group_arrays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.group_arrays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.filter_large_displacements_in_trackpy_trajectories">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">filter_large_displacements_in_trackpy_trajectories</code><span class="sig-paren">(</span><em class="sig-param">linked_df</em>, <em class="sig-param">distance_max=35</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#filter_large_displacements_in_trackpy_trajectories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.filter_large_displacements_in_trackpy_trajectories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trajectory quality check. Removes localizations with big frame-to-frame steps.
+Removal is based on absolute dot positions (i.e. within each channel) and not between channels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>linked_df</strong> (<em>pandas.DataFrame</em>) – DataFrame of dot trajectories and localizations.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>new_df_list</strong> – A cleaned up version of the <code class="xref any docutils literal notranslate"><span class="pre">linked_df</span></code>, without the large displacements.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.infer_missing_dot_locations">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">infer_missing_dot_locations</code><span class="sig-paren">(</span><em class="sig-param">gapped_df</em>, <em class="sig-param">max_gap_length=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#infer_missing_dot_locations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.infer_missing_dot_locations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes existing joint trajectories dataframes and interpolates to guess where
+dots may be in frames where localizations are missing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gapped_df</strong> (<em>pandas.DataFrame</em>) – DataFrame of trajectories that have been linked across channels.</p></li>
+<li><p><strong>max_gap_length</strong> (<em>int</em>) – Maximum number of frames with which to use within channel interpolation. If
+the number of missing frames exceeds this value, displacements from the
+adjacent channel are used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>search_df</strong> – DataFrame containing best guesses of where a dot is likely to be in a missing frame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.dot_volume_container">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">dot_volume_container</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#dot_volume_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.dot_volume_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Container used to serialize dot volume objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="connect_the_dots.tracking.fill_missing_dot_localizations">
+<code class="sig-prename descclassname">connect_the_dots.tracking.</code><code class="sig-name descname">fill_missing_dot_localizations</code><span class="sig-paren">(</span><em class="sig-param">Z_dict</em>, <em class="sig-param">search_df</em>, <em class="sig-param">window_XYZ=(20</em>, <em class="sig-param">20</em>, <em class="sig-param">10)</em>, <em class="sig-param">gaussian_width=2</em>, <em class="sig-param">img_percentile_threshold=99.99</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">min_vol=15</em>, <em class="sig-param">max_vol=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/connect_the_dots/tracking.html#fill_missing_dot_localizations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#connect_the_dots.tracking.fill_missing_dot_localizations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in missing dot localizations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z_dict</strong> (<em>dict of np.ndarrays</em>) – Dictionary of the z-stack timeseries data</p></li>
+<li><p><strong>search_df</strong> (<em>pandas.DataFrame</em>) – DataFrame of dot locations for valid trajectories.</p></li>
+<li><p><strong>window_XYZ</strong> (<em>tuple of ints</em>) – Search window size around the dot locations specified by <code class="xref any docutils literal notranslate"><span class="pre">search_df</span></code>.</p></li>
+<li><p><strong>gaussian_width</strong> (<em>float</em>) – Gaussian kernel width for filtering raw data to create the thresholding mask.</p></li>
+<li><p><strong>img_percentile_threshold</strong> (<em>float</em>) – Percentile threshold for dot identification (0 to 100). Default is 99.99.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_particles</strong> (<em>pandas.DataFrame</em>) – DataFrame of dot locations for valid trajectories after re-localization and gap filling.</p></li>
+<li><p><strong>dot_volume_dict</strong> (<em>dot_volume_container</em>) – Dictionary of 3D dot volumes containing
+1. numpy.ndarray of a volume of dimensions <code class="xref any docutils literal notranslate"><span class="pre">window_XYZ</span></code> around the inferred dot center
+2. <code class="xref any docutils literal notranslate"><span class="pre">raw_centroids</span></code> relative locations of new dot localizations within the dot volume
+3. <code class="xref any docutils literal notranslate"><span class="pre">centroids</span></code> absolute location of the new dot localizations within the 3D zstack</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Connect the Dots</a><ul>
+<li><a class="reference internal" href="#module-connect_the_dots.io">Loading raw images</a></li>
+<li><a class="reference internal" href="#module-connect_the_dots.filtering">Image processing, filtering</a></li>
+<li><a class="reference internal" href="#module-connect_the_dots.tracking">Tracking dots</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Setup</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Setup"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">connect_the_dots 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Hugo B. Brandao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

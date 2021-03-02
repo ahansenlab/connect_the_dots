@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Setup &#8212; connect_the_dots 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Connect the Dots" href="api.html" />
+    <link rel="prev" title="Welcome to Connect the Dots" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Connect the Dots"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Connect the Dots"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">connect_the_dots 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>3D “dot” tracking for pairs of tagged chromatin loci.</p>
+<div class="section" id="installation-instructions">
+<h2>Installation instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h2>
+<p>There are a few dependencies that need to be installed before one can run <code class="xref any docutils literal notranslate"><span class="pre">connect_the_dots</span></code>. These instructions are only for installation on our Ubuntu machines (tested for a clean installation of Ubuntu 20.04, February 12th, 2020)</p>
+<p><strong>Please note that if any command below has the words `sudo` in them, it is likely you do not have to run them on our system.</strong>
+<code class="xref any docutils literal notranslate"><span class="pre">sudo</span></code> means that the installation is system wide, therefore it usually only has to be done once by one user.</p>
+<ol class="arabic">
+<li><p>Install <code class="xref any docutils literal notranslate"><span class="pre">BioFormats</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>run <code class="xref any docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/ome/bioformats</span></code> into your desired folder</p></li>
+<li><p>After downloading, install via the command line: run <code class="xref any docutils literal notranslate"><span class="pre">ant</span> <span class="pre">jars</span></code>. If <code class="xref any docutils literal notranslate"><span class="pre">ant</span></code> is not installed, run <code class="xref any docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ant</span></code></p></li>
+<li><p><a class="reference external" href="https://docs.openmicroscopy.org/bio-formats/5.8.2/developers/building-bioformats.html#source-obtain-and-build">https://docs.openmicroscopy.org/bio-formats/5.8.2/developers/building-bioformats.html#source-obtain-and-build</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install Java-Development-Kit</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="xref any docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">default-jdk</span></code></dt><dd><ul>
+<li><p><a class="reference external" href="https://openjdk.java.net/install/">https://openjdk.java.net/install/</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install <code class="xref any docutils literal notranslate"><span class="pre">javabridge</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IMPORTANT: Make sure you have correctly set the JAVA_HOME variable so that javabridge knows where to look for Java</p></li>
+<li><p>For our system, this amounts to running in the command line: <code class="xref any docutils literal notranslate"><span class="pre">JAVA_HOME=&quot;/usr/lib/jvm/default-java/&quot;</span></code>. For more details see issue here: <a class="reference external" href="https://github.com/LeeKamentsky/python-javabridge/issues/152">https://github.com/LeeKamentsky/python-javabridge/issues/152</a>.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">Boto3</span></code> is a required dependency, so run: <code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">boto3</span></code></p></li>
+<li><p>Finally, run <code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">javabridge</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install <code class="xref any docutils literal notranslate"><span class="pre">python-bioformats</span></code> from the people at CellProfiler</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>run <code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">python-bioformats</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install <code class="xref any docutils literal notranslate"><span class="pre">tifffile</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This is used to parse metadata</p></li>
+<li><p>run <code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tifffile</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install ffmpeg (optional)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If this is not already installed on the system (i.e. if movies of trajectories are not saving)</p></li>
+<li><p>run <code class="xref any docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">ffmpeg</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Now, you should be all set!</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>run <code class="xref any docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></code>, and you are ready to go!</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Bioformats: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/20513764">https://www.ncbi.nlm.nih.gov/pubmed/20513764</a></p></li>
+<li><p>Cell profiler: <a class="reference external" href="https://genomebiology.biomedcentral.com/articles/10.1186/gb-2006-7-10-r100">https://genomebiology.biomedcentral.com/articles/10.1186/gb-2006-7-10-r100</a></p></li>
+<li><p>Scipy: <a class="reference external" href="https://www.nature.com/articles/s41592-019-0686-2">https://www.nature.com/articles/s41592-019-0686-2</a></p></li>
+<li><p>Numpy: <a class="reference external" href="https://www.nature.com/articles/s41586-020-2649-2">https://www.nature.com/articles/s41586-020-2649-2</a></p></li>
+<li><p>Pandas: <a class="reference external" href="https://pandas.pydata.org/about/citing.html">https://pandas.pydata.org/about/citing.html</a></p></li>
+<li><p>Trackpy: <a class="reference external" href="http://soft-matter.github.io/trackpy/dev/introduction.html">http://soft-matter.github.io/trackpy/dev/introduction.html</a></p></li>
+<li><p>Scikit-image: <a class="reference external" href="https://scikit-image.org/">https://scikit-image.org/</a></p></li>
+<li><p>PyWavelets: <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/">https://pywavelets.readthedocs.io/en/latest/</a> (<a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.01237">https://joss.theoj.org/papers/10.21105/joss.01237</a>)</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Setup</a><ul>
+<li><a class="reference internal" href="#installation-instructions">Installation instructions</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Connect the Dots</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">Connect the Dots</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="Connect the Dots"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Connect the Dots"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">connect_the_dots 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Hugo B. Brandao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

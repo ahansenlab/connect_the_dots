@@ -64,9 +64,15 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-# html_theme = 'nature'
-html_theme = 'classic'
+
+html_theme = 'sphinxdoc'  # top (simple, no frills)
+html_theme = 'bizstyle'  # top (simple, clean)
+html_theme = 'nature' # top (simple, fancy)
+
+# html_theme = 'agogo'  # nice
+# html_theme = 'classic' # meh
+# html_theme = 'haiku' # meh
+#html_theme = 'pyramid' # yuck
 
 
 # Add any paths that contain custom static files (such as style sheets) here,

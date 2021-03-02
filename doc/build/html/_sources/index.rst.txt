@@ -3,21 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to connect_the_dots's documentation!
-============================================
+Welcome to Connect the Dots
+===========================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
     
-.. automodule:: connect_the_dots.pipeline
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   installation
+   api  

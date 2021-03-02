@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>connect_the_dots.filtering &#8212; connect_the_dots 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for connect_the_dots.filtering</h1><div class="highlight"><pre>
+<span></span><span class="c1">## Filtering functions for 3D or 4D time series data. </span>
+<span class="c1"># Written by Hugo B. Brandao (hbrandao@g.harvard.edu)</span>
+<span class="c1"># (c) 2021, Hugo B. Brandao</span>
+
+<span class="c1">## Import required modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># for manipulating arrays</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span> <span class="c1"># for making fits to the PSF</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_laplace</span><span class="p">,</span> <span class="n">gaussian_filter</span> <span class="c1"># for dot localization (image filtering)</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span> <span class="c1"># for segmenting images</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">remove_small_objects</span><span class="p">,</span> <span class="n">closing</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">dilation</span> <span class="c1"># for morphological filtering of images</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">clear_border</span> <span class="c1"># for filtering images</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># for creating and manipulating tabulated data</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span><span class="p">,</span> <span class="n">groupby</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">trackpy</span> <span class="c1"># library containing tracking algorithms</span>
+<span class="kn">import</span> <span class="nn">pywt</span> <span class="c1"># wavelet transform library</span>
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># regex </span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<div class="viewcode-block" id="natural_sort"><a class="viewcode-back" href="../../api.html#connect_the_dots.filtering.natural_sort">[docs]</a><span class="k">def</span> <span class="nf">natural_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in a list of strings and returns the list sorted in &quot;natural&quot; order. </span>
+<span class="sd">    (e.g. [test1, test10, test11, test2, test20] -&gt; [test1, test2, test10, test11, test20])</span>
+<span class="sd">    Source: https://stackoverflow.com/questions/4836710/is-there-a-built-in-function-for-string-natural-sort</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    l : list of str</span>
+<span class="sd">        Unsorted list of strings</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sorted_l : list of str</span>
+<span class="sd">        Sorted list of strings</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="n">convert</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">text</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">else</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">alphanum_key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">key</span><span class="p">:</span> <span class="p">[</span> <span class="n">convert</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;([0-9]+)&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">alphanum_key</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="wavelet_filter_zstack"><a class="viewcode-back" href="../../api.html#connect_the_dots.filtering.wavelet_filter_zstack">[docs]</a><span class="k">def</span> <span class="nf">wavelet_filter_zstack</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">filtered_levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="n">wavelet_type</span><span class="o">=</span><span class="s1">&#39;haar&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform 3D (or 4D) discrete wavelet transform and coefficient filtering.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack : ndarray</span>
+<span class="sd">        Numpy ndarray containing 3 (or 4) dimensions. Dimensions should all be even for best performance!        </span>
+<span class="sd">    </span>
+<span class="sd">    filtered_levels : list of ints</span>
+<span class="sd">        Wavelet coefficient levels to be removed for the image reconstruction.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rec : ndarray </span>
+<span class="sd">        Filtered zstack</span>
+<span class="sd">        </span>
+<span class="sd">    num_levels : int</span>
+<span class="sd">        Number of levels that could be accessed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">## Do Wavelet-decomposition of the image</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">filtered_levels</span> 
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavedecn</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">wavelet_type</span><span class="p">)</span>
+
+    <span class="c1">## Reconstruct image, after filtering different wavelet coefficients </span>
+    <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">coeffs</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">coeffs</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> 
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wavelet level </span><span class="si">{level}</span><span class="s2"> does not exist. There are only {len(levels)} levels.&quot;</span> <span class="o">+</span> \
+                              <span class="s2">&quot;Check image input size. max_levels = log2(smallest_dimension_of_data/(filter_size-1))&quot;</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">waverecn</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="n">wavelet_type</span><span class="p">)</span> 
+
+    <span class="c1">## crop rec to match zstack </span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">0</span><span class="p">:</span><span class="n">zstack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            
+    <span class="k">return</span> <span class="n">rec</span></div>
+
+<div class="viewcode-block" id="filter_zstack_DoG"><a class="viewcode-back" href="../../api.html#connect_the_dots.filtering.filter_zstack_DoG">[docs]</a><span class="k">def</span> <span class="nf">filter_zstack_DoG</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma1</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span><span class="n">dog_sigma2</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span><span class="n">absolute_value</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Applies Difference of Gaussian (DoG) filtering on a single z-stack. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">             Z-stack of the image series for a single channel (containing 3 spatial dimentions)</span>
+<span class="sd">    </span>
+<span class="sd">    dog_sigma1 : float, optional</span>
+<span class="sd">                 Standard deviation of the first Gaussian distribution of the DoG filter. </span>
+<span class="sd">                 `dog_sigma1` should be close in size to the &quot;dots&quot; being tracked.</span>
+<span class="sd">             </span>
+<span class="sd">    dog_sigma2 : float, optional</span>
+<span class="sd">                 Standard deviation of the second Gaussian distribution of the DoG filter. </span>
+<span class="sd">                 `dog_sigma2` should be ~10-times larger than `dog_sigma1`; it helps to smooth </span>
+<span class="sd">                 local sources noise and background of the image. </span>
+<span class="sd">    </span>
+<span class="sd">    absolute_value : {T,F}, optional</span>
+<span class="sd">                     Toggles on/off taking the absolute value of the DoG filter result. </span>
+<span class="sd">                     </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    filtered_zstack : numpy.ndarray</span>
+<span class="sd">                      Absolute value of Difference of Gaussian filtered z-stack. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filtered_zstack</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma1</span><span class="p">)</span><span class="o">-</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">zstack</span><span class="p">,</span><span class="n">dog_sigma2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">absolute_value</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+        <span class="n">filtered_zstack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">filtered_zstack</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">filtered_zstack</span></div>
+
+
+<div class="viewcode-block" id="filter_zstack_LoG"><a class="viewcode-back" href="../../api.html#connect_the_dots.filtering.filter_zstack_LoG">[docs]</a><span class="k">def</span> <span class="nf">filter_zstack_LoG</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">log_sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">num_std_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the Laplacian of Gaussian (LoG) filtered image and the image of </span>
+<span class="sd">    edges detected by the LoG method applied on the image.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    img : numpy.ndarray</span>
+<span class="sd">            Image on which to perform the edge detection.</span>
+<span class="sd">            </span>
+<span class="sd">    log_sigma : float</span>
+<span class="sd">            The standard deviation of the gaussian used in &#39;Laplacian of Gaussian&#39;. It is</span>
+<span class="sd">            akin to a smoothing parameter.</span>
+<span class="sd">            </span>
+<span class="sd">    num_std_threshold : float</span>
+<span class="sd">            The number of standard deviations used above &quot;zero&quot; to classify a zero-crossing</span>
+<span class="sd">            event of the &#39;Laplacian of Gaussian&#39; as being an edge. Only set `num_std_threshold`</span>
+<span class="sd">            greater than zero; also, only </span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    log_img</span>
+<span class="sd">    </span>
+<span class="sd">    edges_img</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log_img</span> <span class="o">=</span> <span class="n">gaussian_laplace</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">log_sigma</span><span class="p">)</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">log_img</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">num_std_threshold</span>
+    <span class="n">edges_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">edges_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">edges_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">region</span> <span class="o">=</span> <span class="n">log_img</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">log_img</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
+            <span class="n">max_val</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="n">min_val</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">zerocross</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">min_val</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">zerocross</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">max_val</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span> <span class="ow">and</span> <span class="n">zerocross</span><span class="p">:</span>
+                <span class="n">edges_img</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">log_img</span><span class="p">,</span> <span class="n">edges_img</span> </div>
+
+    
+<div class="viewcode-block" id="get_image_objects"><a class="viewcode-back" href="../../api.html#connect_the_dots.filtering.get_image_objects">[docs]</a><span class="k">def</span> <span class="nf">get_image_objects</span><span class="p">(</span><span class="n">zstack_to_mask</span><span class="p">,</span><span class="n">zstack</span><span class="p">,</span><span class="n">min_size_pixels</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                      <span class="n">max_size_pixels</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+                      <span class="n">percentile_threshold</span><span class="o">=</span><span class="mf">99.9</span><span class="p">,</span>
+                      <span class="n">do_dilation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">return_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a binary mask on the zstack, and segments the binary image. 3D objects are identified</span>
+<span class="sd">    and selected based on their pixel sizes.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zstack_to_mask : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">        zstack used to create the binary mask (possibly filtered)</span>
+<span class="sd">        </span>
+<span class="sd">    zstack : numpy.ndarray [sizeZ by sizeY by sizeX]</span>
+<span class="sd">        zstack used to obtain the intensity values of the dot localization (raw data)</span>
+<span class="sd">        </span>
+<span class="sd">    min_size_pixels : int</span>
+<span class="sd">        Minimum size of object to be extracted by the segmentation</span>
+<span class="sd">        </span>
+<span class="sd">    max_size_pixels : int</span>
+<span class="sd">        Maximum size of object to be extracted by the segmentation</span>
+<span class="sd">    </span>
+<span class="sd">    percentile_threshold : float (0 to 100)</span>
+<span class="sd">        Percentile threshold with which to binarize the zstack and create object masks.</span>
+<span class="sd">        </span>
+<span class="sd">    do_dilation : {T,F}</span>
+<span class="sd">        Perform morphological filtering and size selection on image after binary dilation. Default == True.</span>
+<span class="sd">        </span>
+<span class="sd">    return_mask : {T,F}</span>
+<span class="sd">        Returns the mask. By default, the mask is not returned.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A data frame containing the following column headers:    </span>
+<span class="sd">    x, y, z, mean_intensity, max_intensity, dot_size_pixels</span>
+<span class="sd">    </span>
+<span class="sd">    If return_mask == True:</span>
+<span class="sd">    blobs : np.ndarray</span>
+<span class="sd">        The thresholded zstack</span>
+<span class="sd">    blobs_filt : np.ndarray</span>
+<span class="sd">        The thresholded zstack, after feature size selection</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">## Apply threshold to binarize image </span>
+    <span class="n">stack_threshold</span> <span class="o">=</span> <span class="n">percentile_threshold</span>
+    <span class="n">blobs</span> <span class="o">=</span> <span class="n">zstack_to_mask</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">blobs</span><span class="p">[</span><span class="n">blobs</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span><span class="n">stack_threshold</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">blobs</span><span class="p">[</span><span class="n">blobs</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    
+    <span class="k">if</span> <span class="n">do_dilation</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">blobs</span> <span class="o">=</span> <span class="n">dilation</span><span class="p">(</span><span class="n">blobs</span><span class="p">)</span>
+        
+    
+    <span class="c1">## Measure blobs/region properties </span>
+    <span class="n">blobs_labels</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">blobs</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+    <span class="n">blob_metrics</span> <span class="o">=</span> <span class="n">measure</span><span class="o">.</span><span class="n">regionprops</span><span class="p">(</span><span class="n">blobs_labels</span><span class="p">,</span> <span class="n">zstack</span><span class="p">)</span> <span class="c1">## note that we use the unfiltered zstack as input</span>
+    
+    <span class="c1"># print(&#39;labels created&#39;)</span>
+    <span class="c1"># get object centroids i.e. (z,y,x) coordinates, volumes and intensities</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">weighted_centroid</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">vol</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">max_intensity</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">mean_intensity</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">blob_metrics</span><span class="p">]</span>
+
+    <span class="c1">## Filter localized dots based on size</span>
+    <span class="n">good_dots</span> <span class="o">=</span> <span class="p">[</span><span class="n">vi</span> <span class="k">for</span> <span class="n">vi</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vol</span><span class="p">)</span> <span class="k">if</span> <span class="p">((</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="n">min_size_pixels</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">v</span> <span class="o">&lt;=</span> <span class="n">max_size_pixels</span><span class="p">))]</span>
+
+    <span class="c1">## Update the list of localized dots</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+
+    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_intensity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_intensity</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+    <span class="n">dot_size_pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">vol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">good_dots</span><span class="p">]</span>
+
+    
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">X</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">Y</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">:</span><span class="n">Z</span><span class="p">,</span><span class="s1">&#39;mean_intensity&#39;</span><span class="p">:</span><span class="n">mean_intensity</span><span class="p">,</span>
+                  <span class="s1">&#39;max_intensity&#39;</span><span class="p">:</span><span class="n">max_intensity</span><span class="p">,</span><span class="s1">&#39;dot_size_in_pixels&#39;</span><span class="p">:</span><span class="n">dot_size_pixels</span><span class="p">})</span>
+    
+    <span class="k">if</span> <span class="n">return_mask</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">df</span>
+    
+<span class="c1">#     blobs_filt = np.zeros_like(blobs)</span>
+<span class="c1">#     for v in good_dots:</span>
+<span class="c1">#         blobs_filt[blobs_labels==(v+1)] = 1</span>
+    
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">blobs</span><span class="c1">#, blobs_filt</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">connect_the_dots 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Hugo B. Brandao.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

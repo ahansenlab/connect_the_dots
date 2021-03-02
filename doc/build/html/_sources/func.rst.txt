@@ -1,6 +1,0 @@
-Connect the dots documentation!
-===============================
-
-.. automodule:: connect_the_dots.connect_the_dots
-   :members:
-   :undoc-members:

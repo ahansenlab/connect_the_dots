@@ -1,7 +1,7 @@
 # Connect the dots
 3D "dot" tracking for pairs of tagged chromatin loci. 
 
-## Installation instructions
+## Basic installation instructions
 
 There are a few dependencies that need to be installed before one can run `connect_the_dots`. These instructions are only for installation on our Ubuntu machines (tested for a clean installation of Ubuntu 18.04, July 23rd, 2020)
 
@@ -42,10 +42,17 @@ There are a few dependencies that need to be installed before one can run `conne
  
     - If this is not already installed on the system (i.e. if movies of trajectories are not saving)
     - run `sudo apt install ffmpeg`
+    
+7. Install Keras and Tensorflow2 (optional)
+    
+    - Install Tensorflow 2. Run `pip install --upgrade tensorflow`
+    - Install Keras. Run `pip install keras`
+    - For additional information, refer to (https://www.tensorflow.org/install)        
 
-7. Now, you should be all set!
+8. Now, you should be all set!
 
     - run `python setup.py develop`, and you are ready to go!
+    
 
 ## Here's the API
 See the [docs](https://github.com/ahansenlab/connect_the_dots/blob/master/doc/build/html/index.html) for more information.

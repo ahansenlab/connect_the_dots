@@ -19,6 +19,9 @@ from matplotlib.patches import Rectangle
 from matplotlib import animation
 import pandas as pd
 
+import gc # trying to get garbage collection to work with matplotlib
+import time
+
 javabridge.start_vm(class_path=bioformats.JARS) # start java virtual machine
 
 
@@ -441,8 +444,15 @@ def make_movie(Z_dict,
     ani = animation.FuncAnimation(fig, updatefig_2colour,
                                   frames=np.arange(0,sizeT,1), 
                                   interval=millisecond_per_frame, blit=True)
-    plt.show()
+    #plt.show() # this line was causing issues with snakemake
     ani.save(f'{output_filename}') 
+    
+    
+    fig.clf()
+    plt.close()
+    gc.collect() 
+    print("sleeping 3 seconds")
+    time.sleep(3) # give some time
     
 # internal helper function to help with plotting
 def gridspec_inches(

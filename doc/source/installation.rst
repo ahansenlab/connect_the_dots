@@ -49,9 +49,18 @@ There are a few dependencies that need to be installed before one can run `conne
     - If this is not already installed on the system (i.e. if movies of trajectories are not saving)
     - run `sudo apt install ffmpeg`
 
-7. Now, you should be all set!
+7. Install Keras and Tensorflow2 (optional)
+    
+    - Install Tensorflow 2. Run `pip install tensorflow`
+    - Install Keras. Run `pip install keras`
+    - For additional information, refer to (https://www.tensorflow.org/install)    
+
+
+8. Now, you should be all set!
 
     - run `python setup.py develop`, and you are ready to go!
+
+
 
 
 References

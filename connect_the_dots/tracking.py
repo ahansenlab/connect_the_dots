@@ -129,19 +129,20 @@ def get_localizations_iterative(filtered_zstack_timeseries,
 
     linked_df = None
     count = 0
-    while linked_df is None:
+    while (linked_df is None) and (count <= max_iterations):
+    #while (linked_df is None):
         try:
             linked_df = create_trajectories(loc_df, 
                         max_dot_size = max_dot_size,
                         min_dot_size = min_dot_size+min_dot_size_increment*count, 
-                        search_range=(5,15,15),
-                        min_track_length = 15)
+                        search_range=search_range,
+                        min_track_length = min_track_length)
         except:
-            if verbose==True:
-                print(f"Trajectory linking failed. Incrementing the minimum dot size.")
-
             # increase the threshold on the minimum dot size
             count += 1
+            if verbose==True:
+                print(f"Trajectory linking failed. Incrementing the minimum dot size to {min_dot_size+min_dot_size_increment*count}.")
+                
             linked_df = None
             
     # if increasing the minimum dot size threshold does not help
@@ -155,14 +156,15 @@ def get_localizations_iterative(filtered_zstack_timeseries,
         loc_df, linked_df = get_localizations_iterative(filtered_zstack_timeseries, 
                                         zstack_timeseries,
                                         frames, 
-                                        channels,
+                                        channel,
                                         percentile_threshold=percentile_threshold,
                                         max_dot_size = max_dot_size,
                                         min_dot_size = min_dot_size, 
-                                        search_range=[(5,15,15)],
-                                        min_track_length = 15,
-                                        max_iterations=5,
-                                        current_iteration=current_iteration+1)        
+                                        search_range=search_range,
+                                        min_track_length = min_track_length,
+                                        max_iterations=max_iterations,
+                                        current_iteration=current_iteration+1,
+                                        verbose=verbose)        
 
         warnings.warn("One iteration failed")
     return loc_df, linked_df

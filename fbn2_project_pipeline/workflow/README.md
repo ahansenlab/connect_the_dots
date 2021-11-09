@@ -3,8 +3,8 @@ How to run the pipeline (2021/04/26):
 
 ## Installation
 1. Run:
-```pip install snakemake
-```
+`pip install snakemake`
+
 
 ## Optional steps to set up the pipeline run
 

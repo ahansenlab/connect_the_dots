@@ -1,0 +1,803 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	67	get_trajectories_from_timeseries
+	68
+
+[Tue Mar  2 11:42:07 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 38
+    wildcards: sample=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Tue Mar  2 11:42:11 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie_filt.mp4
+    jobid: 54
+    wildcards: sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Tue Mar  2 11:42:15 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 47
+    wildcards: sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Tue Mar  2 11:42:19 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 50
+    wildcards: sample=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Tue Mar  2 11:43:00 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 1
+    wildcards: sample=2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 11:59:25 2021]
+Finished job 1.
+1 of 68 steps (1%) done
+
+[Tue Mar  2 11:59:25 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    output: results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks.csv, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie.mp4, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie_filt.mp4
+    jobid: 3
+    wildcards: sample=2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 12:16:17 2021]
+Finished job 3.
+2 of 68 steps (3%) done
+
+[Tue Mar  2 12:16:17 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 6
+    wildcards: sample=2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 12:32:54 2021]
+Finished job 6.
+3 of 68 steps (4%) done
+
+[Tue Mar  2 12:32:54 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie_filt.mp4
+    jobid: 8
+    wildcards: sample=2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 12:55:40 2021]
+Finished job 8.
+4 of 68 steps (6%) done
+
+[Tue Mar  2 12:55:40 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 2
+    wildcards: sample=2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 13:14:18 2021]
+Finished job 2.
+5 of 68 steps (7%) done
+
+[Tue Mar  2 13:14:18 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 7
+    wildcards: sample=2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 13:29:31 2021]
+Finished job 7.
+6 of 68 steps (9%) done
+
+[Tue Mar  2 13:29:31 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 65
+    wildcards: sample=2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 13:43:43 2021]
+Finished job 65.
+7 of 68 steps (10%) done
+
+[Tue Mar  2 13:43:43 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 4
+    wildcards: sample=2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 13:59:51 2021]
+Finished job 4.
+8 of 68 steps (12%) done
+
+[Tue Mar  2 13:59:51 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 5
+    wildcards: sample=2021_02_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 14:14:51 2021]
+Finished job 5.
+9 of 68 steps (13%) done
+
+[Tue Mar  2 14:14:51 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie_filt.mp4
+    jobid: 48
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 14:35:59 2021]
+Finished job 48.
+10 of 68 steps (15%) done
+
+[Tue Mar  2 14:35:59 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 31
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 14:50:58 2021]
+Finished job 31.
+11 of 68 steps (16%) done
+
+[Tue Mar  2 14:50:58 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 16
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 15:05:30 2021]
+Finished job 16.
+12 of 68 steps (18%) done
+
+[Tue Mar  2 15:05:30 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+    output: results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.tracks.csv, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.movie.mp4, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.movie_filt.mp4
+    jobid: 9
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 15:19:06 2021]
+Finished job 9.
+13 of 68 steps (19%) done
+
+[Tue Mar  2 15:19:06 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi
+    output: results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi.tracks.csv, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi.movie.mp4, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi.movie_filt.mp4
+    jobid: 22
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-02_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 15:34:01 2021]
+Finished job 22.
+14 of 68 steps (21%) done
+
+[Tue Mar  2 15:34:01 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 41
+    wildcards: sample=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 16:30:16 2021]
+Finished job 41.
+15 of 68 steps (22%) done
+
+[Tue Mar  2 16:30:16 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie_filt.mp4
+    jobid: 32
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 16:45:26 2021]
+Finished job 32.
+16 of 68 steps (24%) done
+
+[Tue Mar  2 16:45:26 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie_filt.mp4
+    jobid: 26
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 17:01:07 2021]
+Finished job 26.
+17 of 68 steps (25%) done
+
+[Tue Mar  2 17:01:07 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 34
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 17:15:12 2021]
+Finished job 34.
+18 of 68 steps (26%) done
+
+[Tue Mar  2 17:15:12 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 11
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 17:32:35 2021]
+Finished job 11.
+19 of 68 steps (28%) done
+
+[Tue Mar  2 17:32:35 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 56
+    wildcards: sample=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 17:53:08 2021]
+Finished job 56.
+20 of 68 steps (29%) done
+
+[Tue Mar  2 17:53:08 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi
+    output: results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.tracks.csv, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.movie.mp4, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.movie_filt.mp4
+    jobid: 64
+    wildcards: sample=2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 18:10:20 2021]
+Finished job 64.
+21 of 68 steps (31%) done
+
+[Tue Mar  2 18:10:20 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 51
+    wildcards: sample=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 18:26:37 2021]
+Finished job 51.
+22 of 68 steps (32%) done
+
+[Tue Mar  2 18:26:37 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 10
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 18:42:32 2021]
+Finished job 10.
+23 of 68 steps (34%) done
+
+[Tue Mar  2 18:42:32 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 19
+    wildcards: sample=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 19:01:42 2021]
+Finished job 19.
+24 of 68 steps (35%) done
+
+[Tue Mar  2 19:01:42 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 49
+    wildcards: sample=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 19:19:45 2021]
+Finished job 49.
+25 of 68 steps (37%) done
+
+[Tue Mar  2 19:19:45 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie_filt.mp4
+    jobid: 21
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 19:35:26 2021]
+Finished job 21.
+26 of 68 steps (38%) done
+
+[Tue Mar  2 19:35:26 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 20
+    wildcards: sample=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 19:49:29 2021]
+Finished job 20.
+27 of 68 steps (40%) done
+
+[Tue Mar  2 19:49:29 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.movie_filt.mp4
+    jobid: 40
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 20:09:49 2021]
+Finished job 40.
+28 of 68 steps (41%) done
+
+[Tue Mar  2 20:09:49 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi
+    output: results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.tracks.csv, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.movie.mp4, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.movie_filt.mp4
+    jobid: 17
+    wildcards: sample=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 20:24:18 2021]
+Finished job 17.
+29 of 68 steps (43%) done
+
+[Tue Mar  2 20:24:18 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 15
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 20:47:53 2021]
+Finished job 15.
+30 of 68 steps (44%) done
+
+[Tue Mar  2 20:47:53 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie_filt.mp4
+    jobid: 27
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 21:02:52 2021]
+Finished job 27.
+31 of 68 steps (46%) done
+
+[Tue Mar  2 21:02:52 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 18
+    wildcards: sample=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 21:17:22 2021]
+Finished job 18.
+32 of 68 steps (47%) done
+
+[Tue Mar  2 21:17:22 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 52
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 21:35:24 2021]
+Finished job 52.
+33 of 68 steps (49%) done
+
+[Tue Mar  2 21:35:24 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi.movie_filt.mp4
+    jobid: 24
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-03_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 21:50:21 2021]
+Finished job 24.
+34 of 68 steps (50%) done
+
+[Tue Mar  2 21:50:21 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 62
+    wildcards: sample=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 22:06:41 2021]
+Finished job 62.
+35 of 68 steps (51%) done
+
+[Tue Mar  2 22:06:41 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 33
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 22:22:19 2021]
+Finished job 33.
+36 of 68 steps (53%) done
+
+[Tue Mar  2 22:22:19 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 30
+    wildcards: sample=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 22:39:13 2021]
+Finished job 30.
+37 of 68 steps (54%) done
+
+[Tue Mar  2 22:39:13 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 14
+    wildcards: sample=2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 22:53:20 2021]
+Finished job 14.
+38 of 68 steps (56%) done
+
+[Tue Mar  2 22:53:20 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.movie_filt.mp4
+    jobid: 63
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 23:09:02 2021]
+Finished job 63.
+39 of 68 steps (57%) done
+
+[Tue Mar  2 23:09:02 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 57
+    wildcards: sample=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 23:30:58 2021]
+Finished job 57.
+40 of 68 steps (59%) done
+
+[Tue Mar  2 23:30:58 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 44
+    wildcards: sample=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Tue Mar  2 23:45:44 2021]
+Finished job 44.
+41 of 68 steps (60%) done
+
+[Tue Mar  2 23:45:44 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.movie_filt.mp4
+    jobid: 28
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 00:02:04 2021]
+Finished job 28.
+42 of 68 steps (62%) done
+
+[Wed Mar  3 00:02:04 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 46
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 00:16:39 2021]
+Finished job 46.
+43 of 68 steps (63%) done
+
+[Wed Mar  3 00:16:39 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 45
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 00:32:39 2021]
+Finished job 45.
+44 of 68 steps (65%) done
+
+[Wed Mar  3 00:32:39 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 29
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 00:47:41 2021]
+Finished job 29.
+45 of 68 steps (66%) done
+
+[Wed Mar  3 00:47:41 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 58
+    wildcards: sample=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 01:06:47 2021]
+Finished job 58.
+46 of 68 steps (68%) done
+
+[Wed Mar  3 01:06:47 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 37
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 01:34:14 2021]
+Finished job 37.
+47 of 68 steps (69%) done
+
+[Wed Mar  3 01:34:14 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 55
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 01:50:14 2021]
+Finished job 55.
+48 of 68 steps (71%) done
+
+[Wed Mar  3 01:50:14 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.movie_filt.mp4
+    jobid: 67
+    wildcards: sample=2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 02:05:00 2021]
+Finished job 67.
+49 of 68 steps (72%) done
+
+[Wed Mar  3 02:05:00 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi
+    output: results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.tracks.csv, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.movie.mp4, results/tracks4/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.movie_filt.mp4
+    jobid: 23
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 02:19:05 2021]
+Finished job 23.
+50 of 68 steps (74%) done
+
+[Wed Mar  3 02:19:05 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 36
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 02:33:09 2021]
+Finished job 36.
+51 of 68 steps (75%) done
+
+[Wed Mar  3 02:33:09 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 60
+    wildcards: sample=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 02:48:30 2021]
+Finished job 60.
+52 of 68 steps (76%) done
+
+[Wed Mar  3 02:48:30 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi
+    output: results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.tracks.csv, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.movie.mp4, results/tracks4/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.movie_filt.mp4
+    jobid: 25
+    wildcards: sample=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 03:22:37 2021]
+Finished job 25.
+53 of 68 steps (78%) done
+
+[Wed Mar  3 03:22:37 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 61
+    wildcards: sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 03:38:40 2021]
+Finished job 61.
+54 of 68 steps (79%) done
+
+[Wed Mar  3 03:38:40 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 35
+    wildcards: sample=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 03:52:16 2021]
+Finished job 35.
+55 of 68 steps (81%) done
+
+[Wed Mar  3 03:52:16 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.movie_filt.mp4
+    jobid: 53
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 04:15:09 2021]
+Finished job 53.
+56 of 68 steps (82%) done
+
+[Wed Mar  3 04:15:09 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 42
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 04:30:07 2021]
+Finished job 42.
+57 of 68 steps (84%) done
+
+[Wed Mar  3 04:30:07 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 43
+    wildcards: sample=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 04:45:28 2021]
+Finished job 43.
+58 of 68 steps (85%) done
+
+[Wed Mar  3 04:45:28 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 39
+    wildcards: sample=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 05:09:59 2021]
+Finished job 39.
+59 of 68 steps (87%) done
+
+[Wed Mar  3 05:09:59 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 12
+    wildcards: sample=2020_09_04_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 05:24:14 2021]
+Finished job 12.
+60 of 68 steps (88%) done
+
+[Wed Mar  3 05:24:14 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.movie_filt.mp4
+    jobid: 59
+    wildcards: sample=2020_10_29_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+[Wed Mar  3 05:36:21 2021]
+Finished job 59.
+61 of 68 steps (90%) done
+
+[Wed Mar  3 05:36:21 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie.mp4, results/tracks4/2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.movie_filt.mp4
+    jobid: 66
+    wildcards: sample=2020_10_30_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Wed Mar  3 05:36:33 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks4/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 13
+    wildcards: sample=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-03-02T114206.889399.snakemake.log

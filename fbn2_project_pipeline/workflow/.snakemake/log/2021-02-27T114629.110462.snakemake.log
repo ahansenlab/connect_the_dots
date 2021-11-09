@@ -1,0 +1,10 @@
+FileNotFoundError in line 8 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
+[Errno 2] File config/samples.csv does not exist: 'config/samples.csv'
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile", line 8, in <module>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 676, in parser_f
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 448, in _read
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 880, in __init__
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1114, in _make_engine
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1891, in __init__
+  File "pandas/_libs/parsers.pyx", line 374, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 673, in pandas._libs.parsers.TextReader._setup_parser_source

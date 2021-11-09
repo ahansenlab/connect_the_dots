@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 174 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+Missing input files for rule convert_into_tracklib_format_for_tier3:
+results/z_summaries/Trajectory_curation_spreadsheet_postML.xlsx

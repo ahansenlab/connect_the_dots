@@ -1,0 +1,5 @@
+Building DAG of jobs...
+WorkflowError:
+Unable to obtain modification time of file results/z_summaries/Summary_stats_Rad21_0_hr.csv although it existed before. It could be that a concurrent process has deleted it while Snakemake was running.
+  File "/home/hbrandao/anaconda3/lib/python3.7/asyncio/runners.py", line 43, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/asyncio/base_events.py", line 583, in run_until_complete

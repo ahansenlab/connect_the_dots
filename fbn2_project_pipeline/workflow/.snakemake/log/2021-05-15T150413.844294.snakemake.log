@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	413	classify_replicated_trajectories
+	414
+
+[Sat May 15 15:04:27 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1763
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

@@ -1,0 +1,4 @@
+ModuleNotFoundError in line 1 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
+No module named 'maplotlib'
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 1, in <module>
+  File "/home/hbrandao/libs/connect_the_dots/connect_the_dots/io.py", line 15, in <module>

@@ -1,0 +1,10 @@
+from snakemake.utils import validate
+  
+# Do beads
+configfile: "config/config_beads.yaml"
+validate(config, schema="schemas/config.schema.yaml")
+rule build_samples_file_beads:
+    output:
+        config["samples_file_name"]
+    script:
+        "scripts/build_samples_file.py"

@@ -1,0 +1,71 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	43	get_trajectories_from_timeseries
+	44
+
+[Fri May 14 11:01:39 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    output: results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks.csv, results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl
+    jobid: 392
+    wildcards: group=C36, sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Fri May 14 11:01:43 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    output: results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv, results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl
+    jobid: 395
+    wildcards: group=C36, sample=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Fri May 14 11:01:47 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    output: results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks.csv, results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl
+    jobid: 411
+    wildcards: group=C36, sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Fri May 14 11:01:51 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    output: results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks.csv, results/C36/2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl
+    jobid: 404
+    wildcards: group=C36, sample=2020_10_02_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Fri May 14 11:01:55 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    output: results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks.csv, results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl
+    jobid: 407
+    wildcards: group=C36, sample=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+    resources: mem_gb=200
+
+Job failed, going on with independent jobs.
+
+[Fri May 14 11:01:59 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A/2021_01_29_Fbn2_Rad21F1M__noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low.czi
+    output: results/Rad21/2021_01_29_Fbn2_Rad21F1M__noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low.czi.tracks.csv, results/Rad21/2021_01_29_Fbn2_Rad21F1M__noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low.czi.dot_volumes.pkl
+    jobid: 32
+    wildcards: group=Rad21, sample=2021_01_29_Fbn2_Rad21F1M__noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low.czi
+    resources: mem_gb=200
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

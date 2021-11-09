@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	413	classify_trajectories
+	414
+
+[Sat May 15 15:36:08 2021]
+rule classify_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML2.csv
+    jobid: 1387
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-15T153554.618564.snakemake.log

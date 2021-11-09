@@ -1,0 +1,20 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+description: Snakemake configuration file
+type: object
+
+# possible entries of the config file and which type they should be
+properties:
+
+  img_folder:
+    type: string
+    description: Path to the root folder for imaging. Search proceeds recursively.
+    
+  samples_file_name:
+    type: string
+    description: Name of the file containing the samples to be processed. 
+    
+    
+# entries that have to be in the config file for successful validation
+required:
+  - img_folder
+  - samples_file_name

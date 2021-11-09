@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 18 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
+Missing input files for rule load_and_filter:
+/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.csv
+/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.csv

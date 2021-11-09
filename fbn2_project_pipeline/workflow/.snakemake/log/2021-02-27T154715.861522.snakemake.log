@@ -1,0 +1,76 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	9	refine_tracks
+	10
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.dot_volumes.pkl
+    jobid: 21
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.dot_volumes.pkl
+    jobid: 9
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.dot_volumes.pkl
+    jobid: 1
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.dot_volumes.pkl
+    jobid: 5
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.dot_volumes.pkl
+    jobid: 25
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.dot_volumes.pkl
+    jobid: 13
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.dot_volumes.pkl
+    jobid: 29
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.dot_volumes.pkl
+    jobid: 17
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 15:47:16 2021]
+rule refine_tracks:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.dot_volumes.pkl
+    jobid: 33
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-02-27T154715.861522.snakemake.log

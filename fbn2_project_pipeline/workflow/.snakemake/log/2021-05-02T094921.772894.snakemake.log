@@ -1,0 +1,8 @@
+Building DAG of jobs...
+InputFunctionException in line 55 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+Error:
+  AttributeError: 'Wildcards' object has no attribute 'sample'
+Wildcards:
+
+Traceback:
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 48, in get_sample_path

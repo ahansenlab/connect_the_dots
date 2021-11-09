@@ -1,0 +1,997 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 128
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	413	classify_replicated_trajectories
+	414
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1514
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1570
+    wildcards: sample_group=Rad21, sample_name=2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1430
+    wildcards: sample_group=C36, sample_name=2020_10_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_09_C58_CTCF_ninehoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_09_C58_CTCF_ninehoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_09_C58_CTCF_ninehoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1458
+    wildcards: sample_group=CTCF, sample_name=2020_11_09_C58_CTCF_ninehoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1696
+    wildcards: sample_group=Rad21, sample_name=2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1500
+    wildcards: sample_group=C27, sample_name=2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1515
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1431
+    wildcards: sample_group=C36, sample_name=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1501
+    wildcards: sample_group=C27, sample_name=2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_29_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_04_29_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_29_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1613
+    wildcards: sample_group=Rad21, sample_name=2021_04_29_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1516
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01___processed_low..czi.tracks_corrected.csv, results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01___processed_low..czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01___processed_low..czi.tracks_ML.csv
+    jobid: 1572
+    wildcards: sample_group=Rad21, sample_name=2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01___processed_low..czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1502
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_ML.csv
+    jobid: 1517
+    wildcards: sample_group=C27, sample_name=2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1573
+    wildcards: sample_group=Rad21, sample_name=2020_12_16_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1503
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/WAPL/2020_11_25_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/WAPL/2020_11_25_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/WAPL/2020_11_25_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1531
+    wildcards: sample_group=WAPL, sample_name=2020_11_25_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1671
+    wildcards: sample_group=Rad21, sample_name=2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_16_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_16_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_16_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1742
+    wildcards: sample_group=Rad21, sample_name=2020_12_16_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1672
+    wildcards: sample_group=Rad21, sample_name=2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1673
+    wildcards: sample_group=Rad21, sample_name=2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.tracks_ML.csv
+    jobid: 1758
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_ML.csv
+    jobid: 1674
+    wildcards: sample_group=Rad21, sample_name=2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C65/2020_09_22_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C65/2020_09_22_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C65/2020_09_22_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1367
+    wildcards: sample_group=C65, sample_name=2020_09_22_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1759
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_03_05_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-02.czi.tracks_corrected.csv, results/Rad21/2021_03_05_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-02.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_03_05_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-02.czi.tracks_ML.csv
+    jobid: 1619
+    wildcards: sample_group=Rad21, sample_name=2021_03_05_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-02.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1703
+    wildcards: sample_group=Rad21, sample_name=2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1675
+    wildcards: sample_group=Rad21, sample_name=2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1368
+    wildcards: sample_group=C65, sample_name=2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_ML.csv
+    jobid: 1410
+    wildcards: sample_group=C36, sample_name=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1438
+    wildcards: sample_group=C36, sample_name=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_17_Fbn2_C58CTCF_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_17_Fbn2_C58CTCF_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_17_Fbn2_C58CTCF_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1466
+    wildcards: sample_group=CTCF, sample_name=2020_11_17_Fbn2_C58CTCF_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:47 2021]
+rule classify_replicated_trajectories:
+    input: results/WAPL/2020_11_24_WAPL_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/WAPL/2020_11_24_WAPL_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/WAPL/2020_11_24_WAPL_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1536
+    wildcards: sample_group=WAPL, sample_name=2020_11_24_WAPL_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1747
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C36/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1411
+    wildcards: sample_group=C36, sample_name=2021_02_14_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/WAPL/2020_12_08_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/WAPL/2020_12_08_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/WAPL/2020_12_08_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1551
+    wildcards: sample_group=WAPL, sample_name=2020_12_08_WAPL_sixhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_15_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_15_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_15_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_ML.csv
+    jobid: 1677
+    wildcards: sample_group=Rad21, sample_name=2020_12_15_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1748
+    wildcards: sample_group=Rad21, sample_name=2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/WAPL/2020_11_26_WAPL_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/WAPL/2020_11_26_WAPL_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/WAPL/2020_11_26_WAPL_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1524
+    wildcards: sample_group=WAPL, sample_name=2020_11_26_WAPL_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1580
+    wildcards: sample_group=Rad21, sample_name=2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_ML.csv
+    jobid: 1412
+    wildcards: sample_group=C36, sample_name=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1762
+    wildcards: sample_group=Rad21, sample_name=2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_corrected.csv, results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_ML.csv
+    jobid: 1622
+    wildcards: sample_group=Rad21, sample_name=2021_01_27_Fbn2_Rad21IAA_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1763
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_23_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_23_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_23_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_ML.csv
+    jobid: 1707
+    wildcards: sample_group=Rad21, sample_name=2020_12_23_Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01.czi.tracks_corrected.csv, results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01.czi.tracks_ML.csv
+    jobid: 1582
+    wildcards: sample_group=Rad21, sample_name=2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1442
+    wildcards: sample_group=C36, sample_name=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_05_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_05_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_05_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1470
+    wildcards: sample_group=CTCF, sample_name=2020_11_05_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1708
+    wildcards: sample_group=Rad21, sample_name=2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1512
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01__processed_low..czi.tracks_corrected.csv, results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01__processed_low..czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01__processed_low..czi.tracks_ML.csv
+    jobid: 1681
+    wildcards: sample_group=Rad21, sample_name=2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01__processed_low..czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1513
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1640
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_27_Fbn2_F1Rad21M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_27_Fbn2_F1Rad21M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_27_Fbn2_F1Rad21M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.tracks_ML.csv
+    jobid: 1682
+    wildcards: sample_group=Rad21, sample_name=2020_10_27_Fbn2_F1Rad21M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1584
+    wildcards: sample_group=Rad21, sample_name=2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1724
+    wildcards: sample_group=Rad21, sample_name=2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_25_Fbn2_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03__processed_low.czi.tracks_corrected.csv, results/Rad21/2021_01_25_Fbn2_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03__processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_25_Fbn2_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03__processed_low.czi.tracks_ML.csv
+    jobid: 1599
+    wildcards: sample_group=Rad21, sample_name=2021_01_25_Fbn2_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03__processed_low.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1585
+    wildcards: sample_group=Rad21, sample_name=2021_02_24_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1725
+    wildcards: sample_group=Rad21, sample_name=2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1445
+    wildcards: sample_group=C36, sample_name=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_06_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_06_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_06_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1473
+    wildcards: sample_group=CTCF, sample_name=2020_11_06_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.tracks_ML.csv
+    jobid: 1418
+    wildcards: sample_group=C36, sample_name=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1628
+    wildcards: sample_group=Rad21, sample_name=2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_18_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_18_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_18_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1586
+    wildcards: sample_group=Rad21, sample_name=2020_12_18_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1642
+    wildcards: sample_group=Rad21, sample_name=2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1446
+    wildcards: sample_group=C36, sample_name=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.tracks_corrected.csv, results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.tracks_ML.csv
+    jobid: 1601
+    wildcards: sample_group=Rad21, sample_name=2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_01_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_01_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_01_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1685
+    wildcards: sample_group=Rad21, sample_name=2021_05_01_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi.tracks_ML.csv
+    jobid: 1489
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-03_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+    jobid: 1629
+    wildcards: sample_group=Rad21, sample_name=2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1643
+    wildcards: sample_group=Rad21, sample_name=2020_12_18_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1391
+    wildcards: sample_group=C36, sample_name=2020_09_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1657
+    wildcards: sample_group=Rad21, sample_name=2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01.czi.tracks_corrected.csv, results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01.czi.tracks_ML.csv
+    jobid: 1686
+    wildcards: sample_group=Rad21, sample_name=2021_05_07_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_ML.csv
+    jobid: 1602
+    wildcards: sample_group=Rad21, sample_name=2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1392
+    wildcards: sample_group=C36, sample_name=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_27_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_27_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_27_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1603
+    wildcards: sample_group=Rad21, sample_name=2020_10_27_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_02_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_02_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_02_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi.tracks_ML.csv
+    jobid: 1491
+    wildcards: sample_group=C27, sample_name=2020_09_02_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie8-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1729
+    wildcards: sample_group=Rad21, sample_name=2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_02_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_02_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_02_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1659
+    wildcards: sample_group=Rad21, sample_name=2021_05_02_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_17_Fbn2_C58CTCF_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_17_Fbn2_C58CTCF_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_17_Fbn2_C58CTCF_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1477
+    wildcards: sample_group=CTCF, sample_name=2020_11_17_Fbn2_C58CTCF_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_ML.csv
+    jobid: 1716
+    wildcards: sample_group=Rad21, sample_name=2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1492
+    wildcards: sample_group=C27, sample_name=2020_09_01_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+    jobid: 1646
+    wildcards: sample_group=Rad21, sample_name=2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_25_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_25_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_25_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1590
+    wildcards: sample_group=Rad21, sample_name=2021_02_25_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_27_Fbn2_F1Rad21M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_27_Fbn2_F1Rad21M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_27_Fbn2_F1Rad21M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1730
+    wildcards: sample_group=Rad21, sample_name=2020_10_27_Fbn2_F1Rad21M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1660
+    wildcards: sample_group=Rad21, sample_name=2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie5-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1772
+    wildcards: sample_group=Rad21, sample_name=2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie5-01_processed_low.czi
+
+
+[Sat May 15 15:07:48 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1493
+    wildcards: sample_group=C27, sample_name=2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1689
+    wildcards: sample_group=Rad21, sample_name=2021_02_20_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1633
+    wildcards: sample_group=Rad21, sample_name=2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_03_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_03_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_03_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1717
+    wildcards: sample_group=Rad21, sample_name=2021_05_03_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_eighthoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_eighthoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_eighthoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks_ML.csv
+    jobid: 1605
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_eighthoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1661
+    wildcards: sample_group=Rad21, sample_name=2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1494
+    wildcards: sample_group=C27, sample_name=2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1396
+    wildcards: sample_group=C36, sample_name=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1592
+    wildcards: sample_group=Rad21, sample_name=2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/CTCF/2020_11_12_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/CTCF/2020_11_12_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/CTCF/2020_11_12_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1480
+    wildcards: sample_group=CTCF, sample_name=2020_11_12_Fbn2_CTCF58_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_10_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_10_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_10_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_ML.csv
+    jobid: 1607
+    wildcards: sample_group=Rad21, sample_name=2020_12_10_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1691
+    wildcards: sample_group=Rad21, sample_name=2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi.tracks_ML.csv
+    jobid: 1495
+    wildcards: sample_group=C27, sample_name=2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_20_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_corrected.csv, results/Rad21/2021_01_20_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_20_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_ML.csv
+    jobid: 1635
+    wildcards: sample_group=Rad21, sample_name=2021_01_20_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1565
+    wildcards: sample_group=Rad21, sample_name=2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi.tracks_ML.csv
+    jobid: 1775
+    wildcards: sample_group=Rad21, sample_name=2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1426
+    wildcards: sample_group=C36, sample_name=2020_09_08_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_corrected.csv, results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi.tracks_ML.csv
+    jobid: 1608
+    wildcards: sample_group=Rad21, sample_name=2021_01_19_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01__processed_low..czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_23_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_23_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_23_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1692
+    wildcards: sample_group=Rad21, sample_name=2020_12_23_Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1720
+    wildcards: sample_group=Rad21, sample_name=2020_12_15_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C65/2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1384
+    wildcards: sample_group=C65, sample_name=2020_09_03_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_03_03_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_03_03_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_03_03_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1650
+    wildcards: sample_group=Rad21, sample_name=2021_03_03_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi.tracks_ML.csv
+    jobid: 1398
+    wildcards: sample_group=C36, sample_name=2020_10_23_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1664
+    wildcards: sample_group=Rad21, sample_name=2020_12_21_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie6-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1776
+    wildcards: sample_group=Rad21, sample_name=2021_02_15_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_noIAA_movie6-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1566
+    wildcards: sample_group=Rad21, sample_name=2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+    jobid: 1651
+    wildcards: sample_group=Rad21, sample_name=2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi.tracks_ML.csv
+    jobid: 1399
+    wildcards: sample_group=C36, sample_name=2020_09_25_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie7-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi.tracks_ML.csv
+    jobid: 1428
+    wildcards: sample_group=C36, sample_name=2020_09_10_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-02_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1722
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C65/2020_09_14_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C65/2020_09_14_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C65/2020_09_14_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1386
+    wildcards: sample_group=C65, sample_name=2020_09_14_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1498
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_12_23_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_12_23_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_12_23_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1652
+    wildcards: sample_group=Rad21, sample_name=2020_12_23_Fbn2_Rad21_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie2-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie2-01.czi.tracks_ML.csv
+    jobid: 1736
+    wildcards: sample_group=Rad21, sample_name=2021_03_01_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie2-01.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_02_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1568
+    wildcards: sample_group=Rad21, sample_name=2021_02_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1499
+    wildcards: sample_group=C27, sample_name=2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1737
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.tracks_ML.csv
+    jobid: 1401
+    wildcards: sample_group=C36, sample_name=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_08_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_05_08_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_08_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+    jobid: 1597
+    wildcards: sample_group=Rad21, sample_name=2021_05_08_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi
+
+
+[Sat May 15 15:07:49 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1569
+    wildcards: sample_group=Rad21, sample_name=2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

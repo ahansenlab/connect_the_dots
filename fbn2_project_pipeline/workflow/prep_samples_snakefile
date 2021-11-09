@@ -1,0 +1,11 @@
+from snakemake.utils import validate
+
+# Do regular samples 
+configfile: "config/config.yaml"
+validate(config, schema="schemas/config.schema.yaml")
+
+rule build_samples_file:
+    output:
+        config["samples_file_name"]
+    script:
+        "scripts/build_samples_file.py"

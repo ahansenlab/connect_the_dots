@@ -1,0 +1,54 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	find_trajectory_pairs
+	1	make_movies
+	1	refine_tracks
+	4
+
+[Sun Feb 28 02:38:52 2021]
+rule find_trajectory_pairs:
+    input: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.tracks.csv
+    output: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.joined_tracks.csv
+    jobid: 5
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+
+[Sun Feb 28 02:38:54 2021]
+Finished job 5.
+1 of 4 steps (25%) done
+
+[Sun Feb 28 02:38:54 2021]
+rule refine_tracks:
+    input: results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch0_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch1_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch0_filt.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch1_filt.npy, results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.joined_tracks.csv
+    output: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.refined_tracks.csv, results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.dot_volumes.pkl
+    jobid: 2
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+
+[Sun Feb 28 02:45:45 2021]
+Finished job 2.
+2 of 4 steps (50%) done
+
+[Sun Feb 28 02:45:45 2021]
+rule make_movies:
+    input: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.refined_tracks.csv, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch0_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch1_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch0_filt.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch1_filt.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.metadata.pkl
+    output: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.movie.mp4
+    jobid: 1
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+
+[Sun Feb 28 02:48:18 2021]
+Finished job 1.
+3 of 4 steps (75%) done
+
+[Sun Feb 28 02:48:18 2021]
+localrule all:
+    input: results/tracks/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.movie.mp4
+    jobid: 0
+
+[Sun Feb 28 02:48:18 2021]
+Finished job 0.
+4 of 4 steps (100%) done
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-02-28T023852.493602.snakemake.log

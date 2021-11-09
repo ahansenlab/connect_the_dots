@@ -1,0 +1,366 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	456	get_bead_localizations
+	457
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie2-01_processed_low.czi
+    output: results/beads/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie2-01_processed_low.czi.localizations.csv
+    jobid: 191
+    wildcards: sample=2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie2-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A/2020_11_20_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie9-01_processed_low.czi
+    output: results/beads/2020_11_20_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie9-01_processed_low.czi.localizations.csv
+    jobid: 402
+    wildcards: sample=2020_11_20_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie9-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie3-01_processed_low.czi
+    output: results/beads/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie3-01_processed_low.czi.localizations.csv
+    jobid: 183
+    wildcards: sample=2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie3-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie15-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie15-01_processed_low.czi.localizations.csv
+    jobid: 213
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie15-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie5-01_processed_low.czi
+    output: results/beads/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie5-01_processed_low.czi.localizations.csv
+    jobid: 143
+    wildcards: sample=2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie5-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie4-01_processed_low.czi
+    output: results/beads/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie4-01_processed_low.czi.localizations.csv
+    jobid: 159
+    wildcards: sample=2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie4-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01_processed_low.czi.localizations.csv
+    jobid: 285
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi.localizations.csv
+    jobid: 271
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie1-01_processed_low.czi
+    output: results/beads/2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie1-01_processed_low.czi.localizations.csv
+    jobid: 206
+    wildcards: sample=2020_08_31_BEADS_DISH1_1000_488nm_1p2_561nm_1p5_SC8_2X_20z_160nm_780V_60T_0s_movie1-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:32:45 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi.localizations.csv
+    jobid: 280
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:34:29 2021]
+Finished job 191.
+1 of 457 steps (0.22%) done
+
+[Sun May  2 11:34:29 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi.localizations.csv
+    jobid: 122
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie7-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:34:29 2021]
+Finished job 183.
+2 of 457 steps (0.44%) done
+
+[Sun May  2 11:34:29 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi.localizations.csv
+    jobid: 276
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:34:29 2021]
+Finished job 159.
+3 of 457 steps (0.66%) done
+
+[Sun May  2 11:34:29 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie21-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie21-01_processed_low.czi.localizations.csv
+    jobid: 178
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie21-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:34:29 2021]
+Finished job 206.
+4 of 457 steps (0.88%) done
+
+[Sun May  2 11:34:29 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie13-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie13-01_processed_low.czi.localizations.csv
+    jobid: 207
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie13-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:34:33 2021]
+Finished job 143.
+5 of 457 steps (1%) done
+
+[Sun May  2 11:34:33 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie19-02_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie19-02_processed_low.czi.localizations.csv
+    jobid: 198
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie19-02_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:35:38 2021]
+Finished job 122.
+6 of 457 steps (1%) done
+
+[Sun May  2 11:35:38 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-03_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-03_processed_low.czi.localizations.csv
+    jobid: 201
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-03_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:36:02 2021]
+Finished job 280.
+7 of 457 steps (2%) done
+
+[Sun May  2 11:36:02 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie18-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie18-01_processed_low.czi.localizations.csv
+    jobid: 220
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie18-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:36:22 2021]
+Finished job 271.
+8 of 457 steps (2%) done
+
+[Sun May  2 11:36:22 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie14-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie14-01_processed_low.czi.localizations.csv
+    jobid: 193
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie14-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:36:38 2021]
+Finished job 201.
+9 of 457 steps (2%) done
+
+[Sun May  2 11:36:38 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie16-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie16-01_processed_low.czi.localizations.csv
+    jobid: 131
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie16-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:36:58 2021]
+Finished job 178.
+10 of 457 steps (2%) done
+
+[Sun May  2 11:36:58 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie20-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie20-01_processed_low.czi.localizations.csv
+    jobid: 155
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie20-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:37:23 2021]
+Finished job 276.
+11 of 457 steps (2%) done
+
+[Sun May  2 11:37:23 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie8-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie8-01_processed_low.czi.localizations.csv
+    jobid: 139
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie8-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:37:36 2021]
+Finished job 131.
+12 of 457 steps (3%) done
+
+[Sun May  2 11:37:36 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi.localizations.csv
+    jobid: 219
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie5-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:38:04 2021]
+Finished job 198.
+13 of 457 steps (3%) done
+
+[Sun May  2 11:38:04 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie10-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie10-01_processed_low.czi.localizations.csv
+    jobid: 208
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie10-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:39:15 2021]
+Finished job 220.
+14 of 457 steps (3%) done
+
+[Sun May  2 11:39:15 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A/2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-02_processed_low.czi
+    output: results/beads/2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-02_processed_low.czi.localizations.csv
+    jobid: 387
+    wildcards: sample=2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-02_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:39:35 2021]
+Finished job 402.
+15 of 457 steps (3%) done
+
+[Sun May  2 11:39:35 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie4-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie4-01_processed_low.czi.localizations.csv
+    jobid: 288
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie4-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:40:37 2021]
+Finished job 139.
+16 of 457 steps (4%) done
+
+[Sun May  2 11:40:37 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie12-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie12-01_processed_low.czi.localizations.csv
+    jobid: 216
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie12-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:40:48 2021]
+Finished job 207.
+17 of 457 steps (4%) done
+
+[Sun May  2 11:40:48 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie3-01_processed_low.czi
+    output: results/beads/2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie3-01_processed_low.czi.localizations.csv
+    jobid: 325
+    wildcards: sample=2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie3-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:40:56 2021]
+Finished job 155.
+18 of 457 steps (4%) done
+
+[Sun May  2 11:40:56 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie5-01_processed_low.czi
+    output: results/beads/2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie5-01_processed_low.czi.localizations.csv
+    jobid: 295
+    wildcards: sample=2020_10_18_BeadSandwich_488nm_1p5_561nm_1p55_SC8_2X_80z_160nm_780V_10T_00s_movie5-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:41:24 2021]
+Finished job 193.
+19 of 457 steps (4%) done
+
+[Sun May  2 11:41:24 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie11-01_processed_low.czi
+    output: results/beads/2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie11-01_processed_low.czi.localizations.csv
+    jobid: 173
+    wildcards: sample=2020_09_04_BeadSandwich_488nm_1p7_561nm_1p7_SC8_2X_80z_160nm_780V_10T_0s_movie11-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:41:32 2021]
+Finished job 219.
+20 of 457 steps (4%) done
+
+[Sun May  2 11:41:32 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01_processed_low.czi
+    output: results/beads/2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01_processed_low.czi.localizations.csv
+    jobid: 272
+    wildcards: sample=2020_11_02_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:45:07 2021]
+Finished job 272.
+21 of 457 steps (5%) done
+
+[Sun May  2 11:45:07 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A/2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    output: results/beads/2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi.localizations.csv
+    jobid: 381
+    wildcards: sample=2020_11_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    resources: mem_gb=50
+
+[Sun May  2 11:52:30 2021]
+Finished job 288.
+22 of 457 steps (5%) done
+
+[Sun May  2 11:52:30 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B/2020_12_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    output: results/beads/2020_12_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi.localizations.csv
+    jobid: 344
+    wildcards: sample=2020_12_16_BeadSandwich_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01_processed_low.czi
+    resources: mem_gb=50
+
+Terminating processes on user request, this might take some time.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Job failed, going on with independent jobs.
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-02T113245.024112.snakemake.log

@@ -1,0 +1,73 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	load_czi_zstack
+	2	track_dots
+	2	wavelet_decomposition_in_4D
+	7
+
+[Sat Feb 27 14:21:17 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+    output: results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy
+    jobid: 3
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 14:21:17 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+    output: results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy
+    jobid: 6
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 14:21:25 2021]
+Finished job 3.
+1 of 7 steps (14%) done
+
+[Sat Feb 27 14:21:25 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy
+    output: results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    jobid: 2
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 14:21:26 2021]
+Finished job 6.
+2 of 7 steps (29%) done
+
+[Sat Feb 27 14:21:26 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy
+    output: results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy
+    jobid: 5
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 14:21:39 2021]
+Finished job 2.
+3 of 7 steps (43%) done
+
+[Sat Feb 27 14:21:39 2021]
+rule track_dots:
+    input: results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    output: results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    jobid: 1
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 14:21:39 2021]
+Finished job 5.
+4 of 7 steps (57%) done
+
+[Sat Feb 27 14:21:39 2021]
+rule track_dots:
+    input: results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy
+    output: results/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.tracks.csv
+    jobid: 4
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-02-27T142117.132920.snakemake.log

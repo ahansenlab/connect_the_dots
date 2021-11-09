@@ -1,0 +1,36 @@
+## Need to tell snakemake --use-conda
+# Do not use tabs!
+# The configuration file must have the following variables defined
+# img_folder
+# samples_list
+# sample_groups
+
+img_folder: "/your/path/here/"
+samples_file_name: "config/samples_beads.csv"
+
+
+# This part below is optional (to be run with the snakemake file: `prep_samples_snakemake`)
+# It is used as a helper to create the samples file listed in `samples_file_name`:
+# It is configured as follows:
+# each group is defined by requiring the patterns `name_includes` and 
+# excluding patterns in `name_excludes`
+
+date_ranges:
+    - ('2020-08-27','2020-10-19')
+    - ('2020-10-20','2020-11-10'), # Colibri 7 to 5 swap
+    - ('2020-11-11','2021-02-07'), # Definite focus issue fixed
+    - ('2021-02-08','2021-12-31')
+
+
+sample_groups:
+    Beads:
+        - 'Beads'
+        
+samples_list:
+  Beads:
+    name_includes:
+      - '.czi'
+      - 'beads'
+    name_excludes:
+      - 'fast'
+      - '60s'  

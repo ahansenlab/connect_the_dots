@@ -1,0 +1,18 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	build_samples_file
+	1
+
+[Mon May 10 01:33:16 2021]
+rule build_samples_file:
+    output: config/samples.csv
+    jobid: 0
+
+[Mon May 10 01:33:18 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-10T013316.497420.snakemake.log

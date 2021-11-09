@@ -1,0 +1,188 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	17	compute_summary_statistics
+	18
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_B
+    output: results/z_summaries/Summary_stats_Rad21_0_hr.csv
+    jobid: 1
+    wildcards: sample_group=Rad21_0_hr
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_reprocessed, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A
+    output: results/z_summaries/Summary_stats_C36.csv
+    jobid: 4
+    wildcards: sample_group=C36
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A
+    output: results/z_summaries/Summary_stats_C65.csv
+    jobid: 3
+    wildcards: sample_group=C65
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_CTCF_0_hr.csv
+    jobid: 7
+    wildcards: sample_group=CTCF_0_hr
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A
+    output: results/z_summaries/Summary_stats_C27.csv
+    jobid: 11
+    wildcards: sample_group=C27
+
+[Sat May 15 23:38:28 2021]
+Finished job 3.
+1 of 18 steps (6%) done
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_CTCF_4_hr.csv
+    jobid: 2
+    wildcards: sample_group=CTCF_4_hr
+
+[Sat May 15 23:38:28 2021]
+Finished job 4.
+2 of 18 steps (11%) done
+[Sat May 15 23:38:28 2021]
+Finished job 7.
+3 of 18 steps (17%) done
+[Sat May 15 23:38:28 2021]
+Finished job 11.
+4 of 18 steps (22%) done
+[Sat May 15 23:38:28 2021]
+Finished job 1.
+5 of 18 steps (28%) done
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_CTCF_2_hr.csv
+    jobid: 5
+    wildcards: sample_group=CTCF_2_hr
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B
+    output: results/z_summaries/Summary_stats_Rad21_2_hr.csv
+    jobid: 14
+    wildcards: sample_group=Rad21_2_hr
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_WAPL_0_hr.csv
+    jobid: 16
+    wildcards: sample_group=WAPL_0_hr
+
+[Sat May 15 23:38:28 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_01_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_B
+    output: results/z_summaries/Summary_stats_Rad21_4_hr.csv
+    jobid: 17
+    wildcards: sample_group=Rad21_4_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 2.
+6 of 18 steps (33%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_WAPL_6_hr.csv
+    jobid: 10
+    wildcards: sample_group=WAPL_6_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 5.
+7 of 18 steps (39%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_WAPL_4_hr.csv
+    jobid: 12
+    wildcards: sample_group=WAPL_4_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 14.
+8 of 18 steps (44%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_CTCF_6_hr.csv
+    jobid: 6
+    wildcards: sample_group=CTCF_6_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 17.
+9 of 18 steps (50%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_11_A
+    output: results/z_summaries/Summary_stats_CTCF_9_hr.csv
+    jobid: 8
+    wildcards: sample_group=CTCF_9_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 16.
+10 of 18 steps (56%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A
+    output: results/z_summaries/Summary_stats_Rad21_6_hr.csv
+    jobid: 13
+    wildcards: sample_group=Rad21_6_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 10.
+11 of 18 steps (61%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_B, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A
+    output: results/z_summaries/Summary_stats_Rad21_8_hr.csv
+    jobid: 9
+    wildcards: sample_group=Rad21_8_hr
+
+[Sat May 15 23:38:29 2021]
+Finished job 12.
+12 of 18 steps (67%) done
+
+[Sat May 15 23:38:29 2021]
+rule compute_summary_statistics:
+    output: results/z_summaries/Summary_stats_Rad21.csv
+    jobid: 15
+    wildcards: sample_group=Rad21
+
+[Sat May 15 23:38:29 2021]
+Finished job 6.
+13 of 18 steps (72%) done
+[Sat May 15 23:38:29 2021]
+Finished job 13.
+14 of 18 steps (78%) done
+[Sat May 15 23:38:29 2021]
+Finished job 8.
+15 of 18 steps (83%) done
+[Sat May 15 23:38:30 2021]
+Finished job 9.
+16 of 18 steps (89%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-15T233827.647880.snakemake.log

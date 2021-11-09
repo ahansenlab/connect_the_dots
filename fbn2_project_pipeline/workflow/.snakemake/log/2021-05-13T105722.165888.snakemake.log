@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	get_bead_localizations
+	1	get_chromatic_shift_corrections
+	3
+
+[Thu May 13 10:57:22 2021]
+rule get_chromatic_shift_corrections:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_10_A/2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/Rad21/2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.chromatic_shift.npz
+    jobid: 678
+    wildcards: sample_group=Rad21, sample_name=2020_10_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Thu May 13 10:57:23 2021]
+Finished job 678.
+1 of 3 steps (33%) done
+
+[Thu May 13 10:57:23 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/Beads/2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.localizations.csv
+    jobid: 327
+    wildcards: bead_group=Beads, bead_name=2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    resources: mem_gb=50
+
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-13T105722.165888.snakemake.log

@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 58 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_fixed_mask:
+Missing input files for rule get_trajectories_from_timeseries:
+/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/wapl/2020_12_13_WAPL_noIAA_405nm_2p0_646nm_1p0_5_SC4_1X_1z_nm_900V_4hours_5min_movie1-04_processed_low.czi

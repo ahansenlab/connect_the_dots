@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	1	get_trajectories_from_timeseries
+	44	make_MIP_movies_from_trajectories
+	46
+
+[Thu May 13 09:10:12 2021]
+rule make_MIP_movies_from_trajectories:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_C/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi, results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks.csv
+    output: results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.movie.mp4
+    jobid: 267
+    wildcards: group=Rad21, sample=2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+Removing output files of failed job make_MIP_movies_from_trajectories since they might be corrupted:
+results/Rad21/2021_02_21_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.movie.mp4
+Job failed, going on with independent jobs.
+
+[Thu May 13 09:14:34 2021]
+rule make_MIP_movies_from_trajectories:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_04_Apr_May/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi, results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.tracks.csv
+    output: results/Rad21/2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi.movie.mp4
+    jobid: 206
+    wildcards: group=Rad21, sample=2021_04_25_Fbn2_Rad21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-02.czi
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

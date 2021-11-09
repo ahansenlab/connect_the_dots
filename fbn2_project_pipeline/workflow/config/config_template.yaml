@@ -1,0 +1,110 @@
+## Need to tell snakemake --use-conda
+# Do not use tabs!
+# The configuration file must have the following variables defined
+# img_folder
+# samples_list
+# sample_groups
+
+img_folder: "/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/"
+samples_file_name: "config/samples.csv"
+
+
+# This part below is optional (to be run with the snakemake file: `prep_samples_snakemake`)
+# It is used as a helper to create the samples file listed in `samples_file_name`:
+# It is configured as follows:
+# each group is defined by requiring the patterns `name_includes` and 
+# excluding patterns in `name_excludes`
+samples_list:
+  Rad21:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli' 
+      - 'advait'
+      - 'neurons'
+      - 'nocodazole'
+      - '60s'      
+      
+
+
+sample_groups:
+  C36:
+    - C36
+
+  C36:
+    name_includes:
+      - '.czi'
+      - 'c36'            
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'advait'
+      - 'neurons'
+      - 'nocodazole'
+      - '60s'
+  
+  
+  Wapl:
+    - Wapl
+    
+  beads:
+    name_includes:
+      - '.czi'
+      - 'beads'
+    name_excludes:
+      - 'asdsdf'
+      
+  Wapl:
+    name_includes:
+      - '.czi'
+      - 'wapl'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli'
+  
+  C65:
+    name_includes:
+      - '.czi'
+      - 'C65'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli' 
+      
+  C27:
+    name_includes:
+      - '.czi'
+      - 'C27'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli' 
+      
+  Rad21:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli'   
+      
+  Ctcf:
+    name_includes:
+      - '.czi'
+      - 'ctcf'
+    name_excludes:
+      - 'beads'
+      - 'fast'
+      - 'bfp'
+      - 'vermicelli' 
+      

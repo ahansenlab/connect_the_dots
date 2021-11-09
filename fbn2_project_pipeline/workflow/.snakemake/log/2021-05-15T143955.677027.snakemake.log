@@ -1,0 +1,568 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 20
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	413	classify_replicated_trajectories
+	414
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1724
+    wildcards: sample_group=Rad21, sample_name=2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1500
+    wildcards: sample_group=C27, sample_name=2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl
+    output: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1431
+    wildcards: sample_group=C36, sample_name=2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.dot_volumes.pkl
+    output: results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1725
+    wildcards: sample_group=Rad21, sample_name=2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1515
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1691
+    wildcards: sample_group=Rad21, sample_name=2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1566
+    wildcards: sample_group=Rad21, sample_name=2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+[Sat May 15 14:40:09 2021]
+
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+
+Error in rule classify_replicated_trajectories:
+    jobid: 1500
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+    jobid: 1724
+    output: results/C27/2020_09_15_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+Error in rule classify_replicated_trajectories:
+    jobid: 1725
+Error in rule classify_replicated_trajectories:
+    jobid: 1515
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1657
+    wildcards: sample_group=Rad21, sample_name=2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi
+Error in rule classify_replicated_trajectories:
+    output: results/Rad21/2021_05_06_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+
+    jobid: 1431
+    output: results/Rad21/2020_10_25_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_360T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1691
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+
+    jobid: 1566
+
+    output: results/C36/2020_09_28_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+
+    output: results/Rad21/2021_02_28_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+    output: results/Rad21/2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+Error in rule classify_replicated_trajectories:
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+    jobid: 1671
+    wildcards: sample_group=Rad21, sample_name=2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi
+    jobid: 1657
+
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie1-01.czi.tracks_ML.csv
+
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1763
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+[Sat May 15 14:40:09 2021]
+
+Error in rule classify_replicated_trajectories:
+    jobid: 1671
+    output: results/Rad21/2021_02_20_bn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_4hoursIAA_movie1-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_corrected.csv, results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+    jobid: 1651
+    wildcards: sample_group=Rad21, sample_name=2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi
+    jobid: 1763
+
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+rule classify_replicated_trajectories:
+    input: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl
+    output: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1392
+    wildcards: sample_group=C36, sample_name=2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    jobid: 1651
+
+    output: results/Rad21/2021_05_05_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_corrected.csv, results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_ML.csv
+    jobid: 1602
+    wildcards: sample_group=Rad21, sample_name=2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi
+    jobid: 1392
+
+    output: results/C36/2020_10_03_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1498
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+Error in rule classify_replicated_trajectories:
+
+    jobid: 1602
+    output: results/Rad21/2021_02_27_Fbn2_F1RAD21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_2hoursIAA_movie2-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1722
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    jobid: 1498
+
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+
+Error in rule classify_replicated_trajectories:
+[Sat May 15 14:40:09 2021]
+    jobid: 1722
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+    jobid: 1512
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_corrected.csv, results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+    jobid: 1737
+    wildcards: sample_group=Rad21, sample_name=2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+[Sat May 15 14:40:09 2021]
+
+Error in rule classify_replicated_trajectories:
+    jobid: 1512
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+    jobid: 1513
+    wildcards: sample_group=C27, sample_name=2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi
+Error in rule classify_replicated_trajectories:
+
+    jobid: 1737
+    output: results/Rad21/2020_10_22_Fbn2_F1Rad21M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_corrected.csv, results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+    jobid: 1569
+    wildcards: sample_group=Rad21, sample_name=2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi
+
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+    jobid: 1513
+    output: results/C27/2020_09_17_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie6-01_processed_low.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+
+[Sat May 15 14:40:09 2021]
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+rule classify_replicated_trajectories:
+    input: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.dot_volumes.pkl
+    output: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+    jobid: 1493
+    wildcards: sample_group=C27, sample_name=2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi
+    jobid: 1569
+
+    output: results/Rad21/2021_05_09_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+[Sat May 15 14:40:09 2021]
+Error in rule classify_replicated_trajectories:
+    jobid: 1493
+    output: results/C27/2020_09_11_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-01_processed_low.czi.tracks_ML.csv
+
+RuleException:
+URLError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+<urlopen error [Errno 2] No such file or directory: '/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/classify_dots_by_CNN.py'>
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 222, in urlopen
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 525, in open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 543, in _open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 503, in _call_chain
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1453, in file_open
+  File "/home/hbrandao/anaconda3/lib/python3.7/urllib/request.py", line 1492, in open_local_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-15T143955.677027.snakemake.log

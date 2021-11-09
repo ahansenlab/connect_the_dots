@@ -1,0 +1,292 @@
+# https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow
+# to first create the samples file
+# snakemake -s prep_samples_snakefile --cores 1
+# to run this workflow, use:
+# snakemake --resources mem_mb=240 --cores 20
+# to make report: snakemake --report
+# 
+
+from snakemake.utils import validate
+import pandas as pd
+import os
+
+configfile: "config/config.yaml"
+validate(config, schema="schemas/config.schema.yaml")
+
+samples_df = pd.read_csv(config["samples_file_name"], dtype = str)
+validate(samples_df, schema="schemas/samples.schema.yaml")
+
+SAMPLE_PATHS = samples_df.file_paths.values
+SAMPLE_NAMES = samples_df.file_names.values
+     
+rule all:
+    input:
+        #expand("results/tracks/{sample}.tracks.csv",sample=SAMPLE_NAMES)
+        expand("results/tracks/{sample}.movie.mp4",sample=SAMPLE_NAMES),
+        expand("results/tracks/{sample}.movie_filt.mp4",sample=SAMPLE_NAMES)
+        #expand("results/tracks/{sample}.refined_tracks.csv",sample=SAMPLE_NAMES)
+        #expand("results/data/{sample}.ch{channel}_filt.npy",sample=SAMPLE_NAMES,channel=[0,1])
+     
+
+def get_sample_path(wildcards):
+    fname = wildcards.sample
+    # assumes only one match
+    fpath = samples_df[samples_df.file_names==fname].file_paths.values[0]    
+    full_path = os.path.join(fpath,fname)
+    return full_path   
+    
+
+rule load_czi_zstack:
+    resources : mem_gb = 80 # estimate for the amount of memory space used by this rule
+    input:
+        get_sample_path#({sample})#expand("{path}/{sample}", zip, path=SAMPLE_PATHS,sample=SAMPLE_NAMES)
+    output:
+        temp(["results/data/{sample}.ch0_raw.npy", 
+         "results/data/{sample}.ch1_raw.npy",
+         "results/data/{sample}.metadata.pkl"])
+    run:
+        # retrieve the raw data, and save as numpy array
+        import time
+        import numpy as np  
+        import pickle
+        from connect_the_dots.io import get_CZI_metadata, get_CZI_zstack_timeseries
+        data_info, metadata = get_CZI_metadata(input[0])
+        frames = range(data_info[3])
+        for ch in [0,1]:
+            Z = get_CZI_zstack_timeseries(input[0],frames,ch)
+            np.save(output[ch],Z)
+        pickle.dump(metadata,open(output[2],'wb'))     
+          
+          
+rule wavelet_decomposition_in_4D:
+    resources : mem_gb = 160 # estimate for the amount of memory space used by this rule
+    input:
+        ["results/data/{sample}.ch0_raw.npy", "results/data/{sample}.ch1_raw.npy"]
+    output:
+        temp(["results/data/{sample}.ch0_filt.npy", "results/data/{sample}.ch1_filt.npy"])
+    run:
+        # perform wavelet filtering
+        import numpy as np
+        from connect_the_dots.filtering import wavelet_filter_zstack
+        for ch in [0,1]:
+            Z = np.load(input[ch])
+            W4 = wavelet_filter_zstack(Z,filtered_levels=[0,4])            
+            np.save(output[ch],W4)
+            
+rule track_dots:
+    resources : mem_gb = 160 # estimate for the amount of memory space used by this rule
+    input:
+        raw=["results/data/{sample}.ch0_raw.npy", "results/data/{sample}.ch1_raw.npy"],
+        filt=["results/data/{sample}.ch0_filt.npy", "results/data/{sample}.ch1_filt.npy"]
+    output:
+        ["results/tracks/{sample}.tracks.csv"]
+    run:
+        import numpy as np
+        import pandas as pd
+        from connect_the_dots.tracking import get_localizations_iterative
+        from connect_the_dots.tracking import filter_large_displacements_in_trackpy_trajectories
+        
+        linked_df_dict = {}
+        for ch in [0,1]:
+            Z = np.load(input.raw[ch])
+            W4 = np.load(input.filt[ch])
+            frames = range(Z.shape[3])
+            _ , linked_df = get_localizations_iterative(W4, Z, frames, ch,verbose=False)
+            linked_df_dict[ch] = linked_df
+            
+        # renumber the particle trajectory numbers
+        particle_count_ch0 = len(linked_df_dict[0].particle.unique())
+        for pi, p in enumerate(sorted(linked_df_dict[0].particle.unique())):
+            linked_df_dict[0]['particle'].replace(p,pi,inplace=True)
+        for pi, p in enumerate(sorted(linked_df_dict[1].particle.unique())):
+            linked_df_dict[1]['particle'].replace(p,pi+particle_count_ch0,inplace=True)
+
+        # quality check the trajectories (ensure there are no huge jumps)
+        linked_df = pd.concat([linked_df_dict[0],linked_df_dict[1]])
+        linked_df = filter_large_displacements_in_trackpy_trajectories(linked_df,
+                                                                       distance_max=35)
+        
+        # save the DataFrame
+        linked_df.to_csv(output[0])
+        
+
+rule find_trajectory_pairs:
+    input:
+        tracks="results/tracks/{sample}.tracks.csv"
+    output:
+        tracks="results/tracks/{sample}.joined_tracks.csv"
+    run:
+        import pandas as pd
+        from connect_the_dots.tracking import link_trajectories_across_channels
+        
+        # get trajectories from each channel
+        linked_df = pd.read_csv(input.tracks)
+        
+        # link trajectories across channels
+        joined_df, good_ids = link_trajectories_across_channels(linked_df,
+                                                                min_overlap_length=20,
+                                                                corrcoeff_min=0.5)
+        # keep only the "good" trajectories
+        joined_df = joined_df[joined_df.particle.apply(lambda x: x in good_ids)]
+        joined_df.to_csv(output.tracks)        
+        
+
+rule refine_tracks:
+    resources : mem_gb = 160 # estimate for the amount of memory space used by this rule
+    input:
+        raw=["results/data/{sample}.ch0_raw.npy", "results/data/{sample}.ch1_raw.npy"],
+        filt=["results/data/{sample}.ch0_filt.npy", "results/data/{sample}.ch1_filt.npy"], 
+        tracks="results/tracks/{sample}.joined_tracks.csv"
+    output:
+        ["results/tracks/{sample}.refined_tracks.csv","results/tracks/{sample}.dot_volumes.pkl" ]
+    run:    
+
+        from connect_the_dots.tracking import infer_missing_dot_locations
+        from connect_the_dots.tracking import fill_missing_dot_localizations2
+        from connect_the_dots.tracking import dot_volume_container
+        import pandas as pd
+        import pickle
+        import numpy as np
+        
+        # load data
+        Z_dict = {}
+        W_dict = {}
+        for ch in [0,1]:
+            Z_dict[ch] = np.load(input.raw[ch])
+            W_dict[ch] = np.load(input.filt[ch])       
+        
+        joined_df = pd.read_csv(input.tracks)
+        
+        # perform "gap filling inference" - estimate the missing "in between" dot positions
+        search_df = infer_missing_dot_locations(joined_df, max_gap_length=10)
+        
+        # actually "fill in" missing data points in space and time and refine the localizations
+        filled_df, dot_volumes = fill_missing_dot_localizations2(Z_dict,
+                                                                W_dict,
+                                                                search_df,
+                                                                window_XYZ=(6, 6, 4),
+                                                                verbose=False,
+                                                                min_vol=5,
+                                                                max_vol=400,
+                                                                img_percentile_threshold=99.995)
+        # save trajectories files
+        filled_df.to_csv(output[0])
+        
+        # save the dot "crops"
+        pickle.dump(dot_volumes,open(output[1],'wb'))
+        
+     
+rule make_dot_volume_pdfs:
+    input:
+        "results/tracks/{sample}.dot_volumes.pkl" 
+    output:
+        "results/tracks/{sample}.dot_volumes.pdf" 
+    run:
+        print("Hello world!")
+
+     
+rule make_movies:
+    input: 
+        tracks= "results/tracks/{sample}.refined_tracks.csv",
+        raw=["results/data/{sample}.ch0_raw.npy", "results/data/{sample}.ch1_raw.npy"],
+        filt=["results/data/{sample}.ch0_filt.npy", "results/data/{sample}.ch1_filt.npy"],
+        metadata="results/data/{sample}.metadata.pkl"
+    output:
+        mov="results/tracks/{sample}.movie.mp4",
+        movfiltered="results/tracks/{sample}.movie_filt.mp4"
+    run:
+        from connect_the_dots.io import make_movie
+        import numpy as np
+        import pickle 
+        import pandas as pd
+        
+        metadata = pickle.load(open(input.metadata,'rb'))
+        linked_df = pd.read_csv(input.tracks)        
+        
+        Z_dict = {}
+        for ch in [0,1]:
+            Z_dict[ch] = np.load(input.raw[ch])
+        make_movie(Z_dict,
+               linked_df,
+               output_filename=output.mov,
+               metadata=metadata,
+               desired_bar_length_um=10,
+               percent_cutoff=99.99,
+               disp_line_len=25,
+               verbose=False,
+               max_axis=0,
+               text_dist=10,
+               adaptive_text=False,
+               line_alpha=0.5,
+               adaptive_LUT=True,
+               millisecond_per_frame=50)
+            
+        Z_dict = {}
+        for ch in [0,1]:
+            Z_dict[ch] = np.load(input.filt[ch])               
+        make_movie(Z_dict,
+               linked_df,
+               output_filename=output.movfiltered,
+               metadata=metadata,
+               desired_bar_length_um=10,
+               percent_cutoff=99.99,
+               disp_line_len=25,
+               verbose=True,
+               max_axis=0,
+               text_dist=10,
+               adaptive_text=False,
+               line_alpha=0.5,
+               adaptive_LUT=True,
+               millisecond_per_frame=50)               
+    
+
+"""
+To see report:
+--------------
+sudo apt-get install graphviz graphviz-dev
+pip install pygraphviz
+
+Questions: 
+----------
+1. How to specify number of cores automatically without having to qualify it every time?
+2. How to create the report? 
+    snakemake --report report/report.html {rule name}
+    - include outputs in the report
+    
+3. How to create a self-contained docker environment for snakemake?
+    - should contain graphviz
+    - should contain connect_the_dots
+    - should contain the correct conda packages
+    - USE singularity directive, and run with the --use-singularity flag
+     singularity:
+         "docker://some-container:1.7"
+    
+4. How to not specify "target" from command line?
+    - create an 'all' rule with all the desired products as 'inputs'
+  
+5. How to make adaptive inputs to snakefile?
+    - use the configfile: "config.yaml" directive
+    
+
+6. output: 
+        pipe(filename) 
+   In case you do not want to save the thing?
+   Does it save the output?
+   Pipes can only be consumed once.
+"""
+
+
+
+
+"""
+Outline:
+1. rule for beads
+2. rule for loading and filtering 4D time-series
+   --> rule for getting tracks from movies
+3. rule for making movies from tracks
+4. rule for chromatic shift correction
+5. rule for running HMM on curated trajectories
+6. 
+"""
+
+    

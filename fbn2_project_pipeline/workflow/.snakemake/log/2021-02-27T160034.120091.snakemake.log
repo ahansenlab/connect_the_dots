@@ -1,0 +1,321 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	9	load_czi_zstack
+	9	refine_tracks
+	9	track_dots
+	9	wavelet_decomposition_in_4D
+	37
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.metadata.pkl
+    jobid: 10
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.metadata.pkl
+    jobid: 26
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.metadata.pkl
+    jobid: 14
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.metadata.pkl
+    jobid: 30
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.metadata.pkl
+    jobid: 18
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.metadata.pkl
+    jobid: 6
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.metadata.pkl
+    jobid: 34
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.metadata.pkl
+    jobid: 22
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:00:34 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi, /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_12_A/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.metadata.pkl
+    jobid: 2
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:00:47 2021]
+Finished job 6.
+1 of 37 steps (3%) done
+
+[Sat Feb 27 16:00:47 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy
+    jobid: 7
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:48 2021]
+Finished job 18.
+2 of 37 steps (5%) done
+
+[Sat Feb 27 16:00:48 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    jobid: 19
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:48 2021]
+Finished job 2.
+3 of 37 steps (8%) done
+
+[Sat Feb 27 16:00:48 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    jobid: 3
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:49 2021]
+Finished job 26.
+4 of 37 steps (11%) done
+
+[Sat Feb 27 16:00:49 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    jobid: 27
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:49 2021]
+Finished job 22.
+5 of 37 steps (14%) done
+
+[Sat Feb 27 16:00:49 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    jobid: 23
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:49 2021]
+Finished job 30.
+6 of 37 steps (16%) done
+
+[Sat Feb 27 16:00:49 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_filt.npy
+    jobid: 31
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:49 2021]
+Finished job 14.
+7 of 37 steps (19%) done
+
+[Sat Feb 27 16:00:49 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    jobid: 15
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:50 2021]
+Finished job 10.
+8 of 37 steps (22%) done
+
+[Sat Feb 27 16:00:50 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_filt.npy
+    jobid: 11
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:00:50 2021]
+Finished job 34.
+9 of 37 steps (24%) done
+
+[Sat Feb 27 16:00:50 2021]
+rule wavelet_decomposition_in_4D:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy
+    output: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    jobid: 35
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    resources: mem_mb=100
+
+[Sat Feb 27 16:02:05 2021]
+Finished job 7.
+10 of 37 steps (27%) done
+
+[Sat Feb 27 16:02:05 2021]
+rule track_dots:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.tracks.csv
+    jobid: 8
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 16:02:08 2021]
+Finished job 19.
+11 of 37 steps (30%) done
+
+[Sat Feb 27 16:02:08 2021]
+rule track_dots:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    jobid: 20
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:02:09 2021]
+Finished job 3.
+12 of 37 steps (32%) done
+
+[Sat Feb 27 16:02:09 2021]
+rule track_dots:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    jobid: 4
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:02:13 2021]
+Finished job 27.
+13 of 37 steps (35%) done
+
+[Sat Feb 27 16:02:13 2021]
+rule track_dots:
+    input: results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    jobid: 28
+    wildcards: sample=2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:02:14 2021]
+Finished job 31.
+14 of 37 steps (38%) done
+
+[Sat Feb 27 16:02:14 2021]
+rule track_dots:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi.tracks.csv
+    jobid: 32
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie4-01_processed_low.czi
+
+[Sat Feb 27 16:02:14 2021]
+Finished job 23.
+15 of 37 steps (41%) done
+
+[Sat Feb 27 16:02:14 2021]
+rule track_dots:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    jobid: 24
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:02:14 2021]
+Finished job 15.
+16 of 37 steps (43%) done
+
+[Sat Feb 27 16:02:14 2021]
+rule track_dots:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.tracks.csv
+    jobid: 16
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi
+
+[Sat Feb 27 16:02:15 2021]
+Finished job 35.
+17 of 37 steps (46%) done
+
+[Sat Feb 27 16:02:15 2021]
+rule track_dots:
+    input: results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.tracks.csv
+    jobid: 36
+    wildcards: sample=2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+
+[Sat Feb 27 16:02:15 2021]
+Finished job 11.
+18 of 37 steps (49%) done
+
+[Sat Feb 27 16:02:15 2021]
+rule track_dots:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.ch1_filt.npy
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi.tracks.csv
+    jobid: 12
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie5-01_processed_low.czi
+
+[Sat Feb 27 16:02:15 2021]
+Finished job 8.
+19 of 37 steps (51%) done
+
+[Sat Feb 27 16:02:15 2021]
+rule refine_tracks:
+    input: results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_raw.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch0_filt.npy, results/data/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.ch1_filt.npy, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.tracks.csv
+    output: results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.refined_tracks.csv, results/tracks/2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi.dot_volumes.pkl
+    jobid: 5
+    wildcards: sample=2020_12_07_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi
+
+[Sat Feb 27 16:02:20 2021]
+Finished job 20.
+20 of 37 steps (54%) done
+[Sat Feb 27 16:02:21 2021]
+Finished job 4.
+21 of 37 steps (57%) done
+[Sat Feb 27 16:02:26 2021]
+Finished job 32.
+22 of 37 steps (59%) done
+[Sat Feb 27 16:02:26 2021]
+Finished job 28.
+23 of 37 steps (62%) done
+[Sat Feb 27 16:02:26 2021]
+Finished job 24.
+24 of 37 steps (65%) done
+[Sat Feb 27 16:02:26 2021]
+Finished job 16.
+25 of 37 steps (68%) done
+[Sat Feb 27 16:02:28 2021]
+Finished job 36.
+26 of 37 steps (70%) done
+[Sat Feb 27 16:02:28 2021]
+Finished job 12.
+27 of 37 steps (73%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-02-27T160034.120091.snakemake.log

@@ -1,0 +1,21 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	get_bead_localizations
+	2
+
+[Thu May 13 10:33:08 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_09_A/2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    output: results/Beads/2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi.localizations.csv
+    jobid: 327
+    wildcards: bead_group=Beads, bead_name=2020_10_01_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie1-01_processed_low.czi
+    resources: mem_gb=50
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-13T103306.928084.snakemake.log

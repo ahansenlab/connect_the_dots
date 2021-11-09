@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	4	find_trajectory_pairs
+	4	load_czi_zstack
+	4	make_movies
+	4	refine_tracks
+	4	track_dots
+	4	wavelet_decomposition_in_4D
+	25
+
+[Sun Feb 28 16:26:22 2021]
+rule load_czi_zstack:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2020_08_A/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+    output: results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch0_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.ch1_raw.npy, results/data/2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi.metadata.pkl
+    jobid: 3
+    wildcards: sample=2020_08_31_Fbn2_C36_DISH1_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-03_processed_low.czi
+    resources: mem_gb=80
+

@@ -1,0 +1,30 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	413	classify_trajectories
+	414
+
+[Sat May 15 15:41:16 2021]
+rule classify_trajectories:
+    input: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/Rad21/2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML2.csv
+    jobid: 1387
+    wildcards: sample_group=Rad21, sample_name=2021_04_27_Fbn2_RAD21__twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+[Sat May 15 15:44:05 2021]
+Finished job 1387.
+1 of 414 steps (0.24%) done
+
+[Sat May 15 15:44:05 2021]
+rule classify_trajectories:
+    input: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_corrected.csv, results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.dot_volumes.pkl, ml_models/Replication_model_2021_04_14_hugo_classifications.h5, ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5
+    output: results/C27/2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi.tracks_ML2.csv
+    jobid: 1671
+    wildcards: sample_group=C27, sample_name=2020_09_21_Fbn2_C27_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie5-01_processed_low.czi
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

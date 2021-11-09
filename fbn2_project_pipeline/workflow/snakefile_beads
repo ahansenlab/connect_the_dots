@@ -1,0 +1,207 @@
+from snakemake.utils import validate
+import pandas as pd
+import os
+
+configfile: "config/config.yaml"
+validate(config, schema="schemas/config.schema.yaml")
+
+# BEADS
+beads_df = pd.read_csv(config["beads_file_name"], dtype = str)
+validate(beads_df, schema="schemas/samples.schema.yaml")
+BEAD_PATHS = beads_df.file_paths.values
+BEAD_NAMES = beads_df.file_names.values
+BEAD_GROUP = beads_df.group.values
+
+# SAMPLES
+samples_df = pd.read_csv(config["samples_file_name"], dtype = str)
+validate(samples_df, schema="schemas/samples.schema.yaml")
+SAMPLE_PATHS = samples_df.file_paths.values
+SAMPLE_NAMES = samples_df.file_names.values
+SAMPLE_GROUP = samples_df.group.values
+
+
+# HELPER FUNCTIONS
+def get_sample_path(wildcards):
+    fname = wildcards.sample_name
+    # assumes only one match
+    fpath = samples_df[samples_df.file_names==fname].file_paths.values[0]    
+    full_path = os.path.join(fpath,fname)
+    return full_path  
+    
+def get_sample_names_from_group(wildcards):
+    group = wildcards.sample_group
+    # get all matches
+    fpaths = samples_df[samples_df.group==group].file_paths.values   
+    fnames = samples_df[samples_df.group==group].file_paths.values   
+    full_paths = []
+    for fp, fn in zip(fpaths,fnames):
+        full_paths.append(os.path.join(fp,fn))
+    return full_paths      
+        
+def get_bead_path(wildcards):
+    fname = wildcards.bead_name
+    # assumes only one match
+    fpath = beads_df[beads_df.file_names==fname].file_paths.values[0]    
+    full_path = os.path.join(fpath,fname)
+    return full_path      
+    
+
+# RULES
+rule all:
+    input:
+        summary_sheets = expand("results/z_summaries/Summary_stats_{sample_group}.csv",
+                             sample_group=SAMPLE_GROUP),
+        histogram_pdf_tier2 = expand("results/z_analysis/histograms/{sample_group}_pdf.tier2.pdf",
+                             sample_group=SAMPLE_GROUP),
+        histogram_cdf_tier2 = expand("results/z_analysis/histograms/{sample_group}_cdf.tier2.pdf",
+                             sample_group=SAMPLE_GROUP),
+        histogram_npy_tier2 = expand("results/z_analysis/histograms/{sample_group}_distances.tier2.npy",
+                             sample_group=SAMPLE_GROUP),
+        histogram_pdf_tier3 = expand("results/z_analysis/histograms/{sample_group}_pdf.tier3.pdf",
+                             sample_group=SAMPLE_GROUP),
+        histogram_cdf_tier3 = expand("results/z_analysis/histograms/{sample_group}_cdf.tier3.pdf",
+                             sample_group=SAMPLE_GROUP),
+        histogram_npy_tier3 = expand("results/z_analysis/histograms/{sample_group}_distances.tier3.npy",
+                             sample_group=SAMPLE_GROUP),
+        
+
+rule get_bead_localizations:
+    resources : mem_gb = 50 # estimate for the amount of memory space used by this rule
+    input:
+        get_bead_path
+    output:    
+        localizations="results/{bead_group}/{bead_name}.localizations.csv"
+    run:
+        import numpy as np  
+        import pandas as pd
+        from connect_the_dots.io import get_CZI_metadata, get_CZI_zstack_timeseries    
+        from connect_the_dots.tracking import get_localizations_iterative
+                
+        print("Loading metadata...")
+        data_info, metadata = get_CZI_metadata(input[0])
+        frames = range(data_info[3])
+
+        linked_df_dict = {}
+        for ch in [0,1]:
+            
+            # get the image time series
+            print("Loading image time series...")
+            Z = get_CZI_zstack_timeseries(input[0],frames,ch)
+            
+            # localize dots
+            print("Localizing dots, creating trajectories...")
+            _ , linked_df = get_localizations_iterative(Z, Z, frames, ch,
+                                                        verbose=False,
+                                                        min_track_length=4,
+                                                        percentile_threshold=99.95, # 99.9
+                                                        max_dot_size = 20000,
+                                                        min_dot_size = 5,
+                                                        percentile_threshold_increment = 0.1,
+                                                        search_range=(3,5,5))
+            linked_df_dict[ch] = linked_df  
+        
+
+        # renumber the dot trajectory numbers
+        particle_count_ch0 = len(linked_df_dict[0].particle.unique())
+        for pi, p in enumerate(sorted(linked_df_dict[0].particle.unique())):
+            linked_df_dict[0]['particle'].replace(p,pi,inplace=True)
+        for pi, p in enumerate(sorted(linked_df_dict[1].particle.unique())):
+            linked_df_dict[1]['particle'].replace(p,pi+particle_count_ch0,inplace=True)
+    
+        linked_df = pd.concat([linked_df_dict[0],linked_df_dict[1]])
+        linked_df.to_csv(output.localizations)        
+
+
+rule get_chromatic_shift_corrections:
+    input:        
+        bead_localizations=expand("results/{bead_group}/{bead_name}.localizations.csv", 
+                        zip,bead_group=BEAD_GROUP,bead_name=BEAD_NAMES),       
+        traj="results/{sample_group}/{sample_name}.tracks.csv",
+        sample_czi=get_sample_path,
+    output:    
+        chromatic_shift="results/{sample_group}/{sample_name}.chromatic_shift.npz"
+    script:
+        "scripts/get_chromatic_shifts.py"
+
+
+rule apply_chromatic_shift_corrections:
+    input:
+        chromatic_shift = "results/{sample_group}/{sample_name}.chromatic_shift.npz",
+        traj = "results/{sample_group}/{sample_name}.tracks.csv",   
+    output:
+        traj = "results/{sample_group}/{sample_name}.tracks_corrected.csv",
+    script: 
+        "scripts/apply_chromatic_shifts.py"
+        
+
+
+rule classify_trajectories:
+    input:
+        traj="results/{sample_group}/{sample_name}.tracks_corrected.csv",
+        dot_volumes="results/{sample_group}/{sample_name}.dot_volumes.pkl",
+        ml_replication_model = config["ml_replication_model"],
+        ml_good_bad_model = config["ml_good_bad_model"],             
+    output:
+        traj_ml="results/{sample_group}/{sample_name}.tracks_ML.csv",
+    script:
+        "scripts/classify_dots_by_CNN.py"
+
+
+rule compute_summary_statistics:
+    input:
+        traj_ml = expand("results/{sample_group}/{sample_name}.tracks_ML.csv",
+                        zip,sample_group=SAMPLE_GROUP,sample_name=SAMPLE_NAMES),
+    output:
+        summary_sheets="results/z_summaries/Summary_stats_{sample_group}.csv",
+    script:
+        "scripts/create_summary_statistics.py"      
+            
+
+
+rule convert_into_tracklib_format_for_tier2:
+    input:
+        traj_ml= expand("results/{sample_group}/{sample_name}.tracks_ML.csv",
+                        zip,sample_group=SAMPLE_GROUP,sample_name=SAMPLE_NAMES),       
+        summary_file=expand("results/z_summaries/Summary_stats_{sample_group}.csv",sample_group=SAMPLE_GROUP),
+    output:
+        tagged_set_file="results/z_analysis/tagged_sets_tier_2/{sample_group}.tagged_set.tsv",
+    params:
+        do_tier_3 = False,
+    script:
+        "scripts/create_tagged_sets.py"
+       
+   
+rule convert_into_tracklib_format_for_tier3:
+    input:
+        traj_ml= expand("results/{sample_group}/{sample_name}.tracks_ML.csv",
+                        zip,sample_group=SAMPLE_GROUP,sample_name=SAMPLE_NAMES),       
+        summary_file=config['trajectory_curation_file'],
+    output:
+        tagged_set_file="results/z_analysis/tagged_sets_tier_3/{sample_group}.tagged_set.tsv",
+    params:
+        do_tier_3 = True,
+    script:
+        "scripts/create_tagged_sets.py"
+
+
+rule compute_distance_histograms_for_tier2:
+    input:
+        tagged_set_file = "results/z_analysis/tagged_sets_tier_2/{sample_group}.tagged_set.tsv",  
+    output:
+        histogram_pdf = "results/z_analysis/histograms/{sample_group}_pdf.tier2.pdf",
+        histogram_cdf = "results/z_analysis/histograms/{sample_group}_cdf.tier2.pdf",
+        histogram_numpy = "results/z_analysis/histograms/{sample_group}_distances.tier2.npy",
+    script:
+        "scripts/create_distance_histograms.py"                
+            
+            
+rule compute_distance_histograms_for_tier3:
+    input:
+        tagged_set_file = "results/z_analysis/tagged_sets_tier_3/{sample_group}.tagged_set.tsv",  
+    output:
+        histogram_pdf = "results/z_analysis/histograms/{sample_group}_pdf.tier3.pdf",
+        histogram_cdf = "results/z_analysis/histograms/{sample_group}_cdf.tier3.pdf",
+        histogram_numpy = "results/z_analysis/histograms/{sample_group}_distances.tier3.npy",
+    script:
+        "scripts/create_distance_histograms.py"                
+            

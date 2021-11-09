@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_files
+	1
+
+[Sat Feb 27 00:20:50 2021]
+rule get_files:
+    output: results/analysis_files_list.csv
+    jobid: 0
+
+/home/hbrandao/anaconda3/bin/python /home/hbrandao/libs/data_analysis_Fbn2/snakemake/.snakemake/scripts/tmp2k9vngs8.create_files_list.py
+[Sat Feb 27 00:20:52 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/.snakemake/log/2021-02-27T002050.565606.snakemake.log

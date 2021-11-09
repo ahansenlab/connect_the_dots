@@ -1,0 +1,155 @@
+## Need to tell snakemake --use-conda
+# Do not use tabs!
+# The configuration file must have the following variables defined
+# img_folder
+# samples_list
+# sample_groups
+
+img_folder: "/your/path/here/"
+samples_file_name: "config/samples.csv"
+beads_file_name: "config/samples_beads.csv"
+ml_replication_model: "ml_models/Replication_model_2021_04_14_hugo_classifications.h5" 
+ml_good_bad_model: "ml_models/4D_model_2021_04_08_mixedInputClean_v2_doubleClassification.h5" 
+
+trajectory_curation_file: "results/z_summaries/Trajectory_curation_spreadsheet_postML.xlsx"
+pixel_size_X_microns: 0.085  
+pixel_size_Y_microns: 0.085
+pixel_size_Z_microns: 0.250
+time_step_seconds: 20
+
+
+# This part below is optional (to be run with the snakemake file: `prep_samples_snakemake`)
+# It is used as a helper to create the samples file listed in `samples_file_name`:
+# It is configured as follows:
+# each group is defined by requiring the patterns `name_includes` and 
+# excluding patterns in `name_excludes`
+sample_groups:
+    Rad21_0_hr:
+        - 'Rad21_0_hr'
+    Rad21_2_hr:
+        - 'Rad21_2_hr'
+        - 'Rad21_2_hr_v2'
+    Rad21_4_hr:
+        - 'Rad21_4_hr'
+        - 'Rad21_4_hr_v2'
+    CTCF_0_hr:
+        - 'CTCF_0_hr'
+    CTCF_2_hr:
+        - 'CTCF_2_hr'
+    CTCF_4_hr:
+        - 'CTCF_4_hr'
+    WAPL_0_hr:
+        - 'WAPL_0_hr'
+    WAPL_4_hr:
+        - 'WAPL_4_hr'
+    WAPL_6_hr:
+        - 'WAPL_6_hr'
+    C27:
+        - 'C27'
+    C65:
+        - 'C65'
+    C36:
+        - 'C36'
+
+samples_list:
+  Rad21_0_hr:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+      - 'noI'
+    name_excludes:
+      - 'beads'
+  Rad21_2_hr:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+      - 'two'
+    name_excludes:
+      - 'beads'
+  Rad21_2_hr_v2:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+      - '2hour'
+    name_excludes:
+      - 'beads'     
+  Rad21_4_hr:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+      - 'four'
+    name_excludes:
+      - 'beads' 
+  Rad21_4_hr_v2:
+    name_includes:
+      - '.czi'
+      - 'rad21'
+      - '4hour'
+    name_excludes:
+      - 'beads' 
+  CTCF_0_hr:
+    name_includes:
+      - '.czi'
+      - 'ctcf'
+      - 'noIAA'
+    name_excludes:
+      - 'beads'     
+  CTCF_2_hr:
+    name_includes:
+      - '.czi'
+      - 'ctcf'
+      - 'two'
+    name_excludes:
+      - 'beads'       
+  CTCF_4_hr:
+    name_includes:
+      - '.czi'
+      - 'ctcf'
+      - 'four'
+    name_excludes:
+      - 'beads'     
+  WAPL_0_hr:
+    name_includes:
+      - '.czi'
+      - 'wapl'
+      - 'noIAA'
+    name_excludes:
+      - 'beads' 
+  WAPL_4_hr:
+    name_includes:
+      - '.czi'
+      - 'wapl'
+      - 'four'
+    name_excludes:
+      - 'beads' 
+  WAPL_6_hr:
+    name_includes:
+      - '.czi'
+      - 'wapl'
+      - 'six'
+    name_excludes:
+      - 'beads'     
+  C27:
+    name_includes:
+      - '.czi'
+      - 'c27'
+    name_excludes:
+      - 'beads'  
+  C65:
+    name_includes:
+      - '.czi'
+      - 'c65'
+    name_excludes:
+      - 'beads'
+  C36:
+    name_includes:
+      - '.czi'
+      - 'c36'
+    name_excludes:
+      - 'beads'      
+          
+chromatic_shift_superblocks:
+    - ('2020-08-27','2020-10-19') # Colibri 7 installed
+    - ('2020-10-20','2020-11-10') # Colibri 7 to 5 swap
+    - ('2020-11-11','2021-02-07') # Definite focus issue fixed
+    - ('2021-02-08','2021-12-31') # Piezo adjusted     

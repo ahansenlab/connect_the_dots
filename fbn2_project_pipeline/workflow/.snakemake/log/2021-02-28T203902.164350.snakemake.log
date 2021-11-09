@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	3	get_trajectories_from_timeseries
+	4
+
+[Sun Feb 28 20:39:02 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    output: results/tracks/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.tracks.csv, results/tracks/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.dot_volumes.pkl, results/tracks/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie.mp4, results/tracks/2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi.movie_filt.mp4
+    jobid: 1
+    wildcards: sample=2021_02_01_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-01_processed_low.czi
+    resources: mem_gb=200
+
+[Sun Feb 28 20:54:08 2021]
+Finished job 1.
+1 of 4 steps (25%) done
+
+[Sun Feb 28 20:54:08 2021]
+rule get_trajectories_from_timeseries:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_02_A/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    output: results/tracks/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.tracks.csv, results/tracks/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.dot_volumes.pkl, results/tracks/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie.mp4, results/tracks/2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.movie_filt.mp4
+    jobid: 3
+    wildcards: sample=2021_02_13_Fbn2_C36_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi
+    resources: mem_gb=200
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-02-28T203902.164350.snakemake.log

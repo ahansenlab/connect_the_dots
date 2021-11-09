@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 36 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
+Missing input files for rule filter_4D:
+results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch0_raw.npy
+results/2020_12_08_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie2-01_processed_low.czi.ch1_raw.npy

@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 19 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
+Missing input files for rule load_czi_zstack:
+/mnt/md0/Hansen Lab /2020_12_03_BEADS_488nm_1p5_561nm_1p5_SC8_2X_20z_160nm_780V_20T_0s_movie3-01_processed_low.czi

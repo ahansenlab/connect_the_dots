@@ -1,0 +1,3 @@
+AttributeError in line 22 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
+'function' object has no attribute 'html'
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 22, in <module>

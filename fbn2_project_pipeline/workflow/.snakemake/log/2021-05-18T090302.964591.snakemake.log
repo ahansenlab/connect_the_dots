@@ -1,0 +1,55 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	436	apply_chromatic_shift_corrections
+	436	classify_trajectories
+	17	compute_summary_statistics
+	40	get_bead_localizations
+	436	get_chromatic_shift_corrections
+	1366
+
+[Tue May 18 09:03:19 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_C/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01.czi
+    output: results/Beads/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01.czi.localizations.csv
+    jobid: 159
+    wildcards: bead_group=Beads, bead_name=2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie3-01.czi
+    resources: mem_gb=50
+
+Job failed, going on with independent jobs.
+
+[Tue May 18 09:03:34 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_C/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01.czi
+    output: results/Beads/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01.czi.localizations.csv
+    jobid: 177
+    wildcards: bead_group=Beads, bead_name=2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01.czi
+    resources: mem_gb=50
+
+Job failed, going on with independent jobs.
+
+[Tue May 18 09:03:49 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_C/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01.czi
+    output: results/Beads/2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01.czi.localizations.csv
+    jobid: 176
+    wildcards: bead_group=Beads, bead_name=2021_05_10_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie1-01.czi
+    resources: mem_gb=50
+
+Job failed, going on with independent jobs.
+
+[Tue May 18 09:04:03 2021]
+rule get_bead_localizations:
+    input: /mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/2021_05_C/2021_05_16_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie8-01.czi
+    output: results/Beads/2021_05_16_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie8-01.czi.localizations.csv
+    jobid: 161
+    wildcards: bead_group=Beads, bead_name=2021_05_16_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie8-01.czi
+    resources: mem_gb=50
+
+Terminating processes on user request, this might take some time.
+Job failed, going on with independent jobs.
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-18T090302.964591.snakemake.log

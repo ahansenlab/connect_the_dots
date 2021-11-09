@@ -1,0 +1,23 @@
+$schema: "http://json-schema.org/draft-04/schema#"
+
+description: Formatting requirements of the samples.csv file. 
+
+type: object
+
+properties:
+  group:
+    type: string
+    description: Identifier for the experiment
+    
+  file_names:
+    type: string
+    description: Name of the .czi file
+    
+  file_paths:
+    type: string
+    description: Path to the .czi file
+
+required:
+  - group
+  - file_names
+  - file_paths

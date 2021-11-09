@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 20
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=240
+Job counts:
+	count	jobs
+	1	all
+	1	classify_replicated_trajectories
+	2
+
+[Sat May 15 14:44:39 2021]
+rule classify_replicated_trajectories:
+    input: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_corrected.csv, results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.dot_volumes.pkl
+    output: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+    jobid: 1675
+    wildcards: sample_group=Rad21, sample_name=2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
+
+[Sat May 15 14:44:42 2021]
+Error in rule classify_replicated_trajectories:
+    jobid: 1675
+    output: results/Rad21/2021_05_11_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi.tracks_ML.csv
+
+RuleException:
+CalledProcessError in line 157 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+Command 'set -euo pipefail;  /home/hbrandao/anaconda3/bin/python /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/scripts/tmpv6_bv8gg.classify_dots_by_CNN.py' returned non-zero exit status 1.
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 157, in __rule_classify_replicated_trajectories
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-05-15T144426.047184.snakemake.log

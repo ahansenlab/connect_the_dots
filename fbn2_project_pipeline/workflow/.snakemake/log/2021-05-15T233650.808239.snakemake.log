@@ -1,0 +1,8 @@
+Building DAG of jobs...
+InputFunctionException in line 178 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
+Error:
+  AttributeError: 'Wildcards' object has no attribute 'group'
+Wildcards:
+  sample_group=Rad21_0_hr
+Traceback:
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 63, in get_sample_paths_from_group

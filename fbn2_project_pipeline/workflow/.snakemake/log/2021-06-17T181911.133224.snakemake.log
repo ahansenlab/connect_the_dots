@@ -1,0 +1,31 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	build_samples_file
+	1
+
+[Thu Jun 17 18:19:11 2021]
+rule build_samples_file:
+    output: config/samples.csv
+    jobid: 0
+
+[Thu Jun 17 18:19:11 2021]
+Error in rule build_samples_file:
+    jobid: 0
+    output: config/samples.csv
+
+RuleException:
+CalledProcessError in line 11 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/prep_samples_snakefile:
+Command 'set -euo pipefail;  /home/hbrandao/anaconda3/bin/python /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/scripts/tmpi4i42e4p.build_samples_file.py' returned non-zero exit status 1.
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2347, in run_wrapper
+  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/prep_samples_snakefile", line 11, in __rule_build_samples_file
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 568, in _callback
+  File "/home/hbrandao/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 554, in cached_or_run
+  File "/home/hbrandao/anaconda3/lib/python3.7/site-packages/snakemake/executors/__init__.py", line 2359, in run_wrapper
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/.snakemake/log/2021-06-17T181911.133224.snakemake.log

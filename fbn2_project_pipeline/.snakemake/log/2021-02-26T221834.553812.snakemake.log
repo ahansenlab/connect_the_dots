@@ -1,3 +1,0 @@
-AttributeError in line 2 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-'dict' object has no attribute 'yaml'
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 2, in <module>

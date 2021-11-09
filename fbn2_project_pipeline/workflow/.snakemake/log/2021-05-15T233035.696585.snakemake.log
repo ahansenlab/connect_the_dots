@@ -1,9 +1,0 @@
-Building DAG of jobs...
-InputFunctionException in line 131 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Error:
-  IndexError: index 0 is out of bounds for axis 0 with size 0
-Wildcards:
-  sample_group=Rad21_2_hr
-  sample_name=2021_05_04_Fbn2_RAD21_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie3-01.czi
-Traceback:
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 58, in get_sample_path

@@ -1,2 +1,0 @@
-SyntaxError in line 147 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Expected name or colon after rule or checkpoint keyword. (snakefile_beads, line 147)

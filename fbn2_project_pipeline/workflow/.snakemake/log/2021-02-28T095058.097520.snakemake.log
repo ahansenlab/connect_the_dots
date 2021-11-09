@@ -1,3 +1,0 @@
-NameError in line 34 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
-name 'sample' is not defined
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile", line 34, in <module>

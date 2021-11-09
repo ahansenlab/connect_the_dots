@@ -1,7 +1,0 @@
-Building DAG of jobs...
-Creating report...
-Missing metadata for file results/Rad21/Fbn2_Rad21F1M_noIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie2-01_processed_low.czi.chromatic_shift.npz. Maybe metadata was deleted or it was created using an older version of Snakemake. This is a non critical warning.
-Missing metadata for file results/Rad21/Fbn2_Rad21F1M_twohoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie1-02_processed_low.czi.chromatic_shift.npz. Maybe metadata was deleted or it was created using an older version of Snakemake. This is a non critical warning.
-Downloading resources and rendering HTML.
-Loading script code for rule get_chromatic_shift_corrections
-Report created: report_beads.html.

@@ -1,5 +1,0 @@
-Building DAG of jobs...
-Relative file path './results/config.txt' starts with './'. This is redundant and strongly discouraged. It can also lead to inconsistent results of the file-matching approach used by Snakemake. You can simply omit the './' for relative file paths.
-MissingInputException in line 19 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-Missing input files for rule aggregation:
-./results/config.txt

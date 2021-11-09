@@ -1,3 +1,0 @@
-NameError in line 44 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-name 'get_sample_path' is not defined
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 44, in <module>

@@ -1,3 +1,0 @@
-IndentationError in line 57 of <tokenize>:
-unindent does not match any outer indentation level (<tokenize>, line 57)
-  File "/home/hbrandao/anaconda3/lib/python3.7/tokenize.py", line 572, in _tokenize

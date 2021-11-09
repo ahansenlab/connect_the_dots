@@ -1,2 +1,0 @@
-SyntaxError in line 18 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
-import * only allowed at module level

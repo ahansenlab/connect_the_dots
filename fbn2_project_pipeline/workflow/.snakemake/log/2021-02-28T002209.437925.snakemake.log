@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 21 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
-Missing input files for rule load_czi_zstack:
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/wapl/2020_12_14_WAPL_noIAA_405nm_2p0_646nm_1p0_5_SC4_1X_1z_nm_900V_4hours_5min_movie2-01_processed_low.czi
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/wapl/2020_12_14_WAPL_IAA_405nm_2p0_646nm_1p0_5_SC4_1X_1z_nm_900V_4hours_5min_movie2-03_processed_low.czi
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/wapl/2020_12_13_WAPL_noIAA_405nm_2p0_646nm_1p0_5_SC4_1X_1z_nm_900V_4hours_5min_movie1-04_processed_low.czi
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/wapl/2020_12_13_WAPL_IAA_405nm_2p0_646nm_1p0_5_SC4_1X_1z_nm_900V_4hours_5min_movie1-02_processed_low.czi

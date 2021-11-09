@@ -1,3 +1,0 @@
-AttributeError in line 143 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-module 'snakemake' has no attribute 'config'
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads", line 143, in <module>

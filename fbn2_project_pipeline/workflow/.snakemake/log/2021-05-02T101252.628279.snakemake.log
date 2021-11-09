@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 57 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Missing input files for rule get_bead_localizations:
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/processed/2021_04_25_BeadSandwitch_488nm_1p5_561nm_1p5_SC8_2X_80z_160nm_780V_10T_0s_movie2-01.czi

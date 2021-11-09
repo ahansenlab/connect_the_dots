@@ -1,3 +1,0 @@
-WorkflowError in line 4 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-Config file config/config.yaml not found.
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 4, in <module>

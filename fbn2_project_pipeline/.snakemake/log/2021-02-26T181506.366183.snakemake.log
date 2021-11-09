@@ -1,4 +1,0 @@
-KeyError in line 10 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-'sample'
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 10, in <module>
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 10, in <listcomp>

@@ -1,3 +1,0 @@
-NameError in line 7 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-name 'rm' is not defined
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile", line 7, in <module>

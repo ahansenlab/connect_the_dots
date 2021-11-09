@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 150 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Missing input files for rule classify_replicated_trajectories:
-results/C65/2020_09_09_Fbn2_C65_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_780V_365T_20s_movie4-02_processed_low.czi.dot_volumes.csv

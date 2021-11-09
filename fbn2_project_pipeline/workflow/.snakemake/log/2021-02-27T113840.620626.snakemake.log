@@ -1,3 +1,0 @@
-NameError in line 4 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile:
-name 'validate' is not defined
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile", line 4, in <module>

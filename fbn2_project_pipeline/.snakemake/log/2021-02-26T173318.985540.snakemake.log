@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 4 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-Missing input files for rule all:
-/mnt/md0/Hansen Lab Dropbox/DataStorage/Imaging/Fbn2/processed/{}.czi

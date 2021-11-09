@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 2 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-Missing input files for rule stuff:
-config.yaml.yaml

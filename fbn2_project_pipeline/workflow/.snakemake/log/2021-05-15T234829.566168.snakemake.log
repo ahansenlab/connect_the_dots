@@ -1,4 +1,0 @@
-Building DAG of jobs...
-WildcardError in line 178 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Wildcards in input files cannot be determined from output files:
-'sample_name'

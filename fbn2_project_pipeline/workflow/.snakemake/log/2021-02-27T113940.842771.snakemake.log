@@ -1,3 +1,0 @@
-SyntaxError in line 27 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/rules/common.smk:
-invalid syntax
-  File "/home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile", line 73, in <module>

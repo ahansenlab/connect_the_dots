@@ -1,2 +1,0 @@
-SyntaxError in line 63 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/snakefile:
-No rule keywords allowed after run/shell/script/wrapper/cwl in rule get_tracks. (snakefile, line 63)

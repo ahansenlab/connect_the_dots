@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 97 of /home/hbrandao/libs/data_analysis_Fbn2/snakemake/workflow/snakefile_beads:
-Missing input files for rule get_chromatic_shift_corrections:
-results/Rad21/2020_12_09_Rad21F1M_fourhoursIAA_488nm_0p5_561nm_0p05_SC8_2X_30z_250nm_SC8_780V_365T_20s_movie3-01_processed_low.czi.tracks.csv

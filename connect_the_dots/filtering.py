@@ -260,11 +260,11 @@ def get_image_objects(zstack_to_mask,zstack,min_size_pixels=20,
     if return_mask == False:
         return df
     
-#     blobs_filt = np.zeros_like(blobs)
-#     for v in good_dots:
-#         blobs_filt[blobs_labels==(v+1)] = 1
+    blobs_filt = np.zeros_like(blobs)
+    for v in good_dots:
+        blobs_filt[blobs_labels==(v+1)] = 1
     
-    return df, blobs#, blobs_filt
+    return df, blobs, blobs_filt
 
 
 def filter_intensity_jumps(i0,winsz=20,num_quantiles=2,quantile=0.5):

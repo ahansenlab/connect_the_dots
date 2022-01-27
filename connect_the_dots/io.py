@@ -58,7 +58,7 @@ def search_for(start_folder, name_includes=None, name_excludes=None):
             continue
             
         filenames_list.append(path.name)
-        filepath_list.append(os.path.join(start_folder,path.parent.name))
+        filepath_list.append(str(path.parent))
     return filenames_list, filepath_list
 
 
@@ -233,8 +233,8 @@ def get_CZI_zstack_timeseries(filename,frames,channel,filepath=None,img_info=Non
 # get metadata from image
 def make_movie(Z_dict,
                linked_df,
+               metadata,               
                output_filename='test.mp4',
-               metadata=None,
                desired_bar_length_um=1,
                percent_cutoff=99.99,
                disp_line_len=25,
@@ -254,14 +254,14 @@ def make_movie(Z_dict,
         Dictionary of the z-stack timeseries data
     
     linked_df : pandas.DataFrame
-        DataFrame of dot locations for valid trajectories.
-        
-    output_filename : str
-        Name of the output file. Should contain the extension .mp4
-        
+        DataFrame of dot locations for valid trajectories. If None is provided, no trajectories are overlayed.
+
     metadata : dict
         Dictionary containing the OME-formatted metadata for the timeseries data. See
         e.g. `connect_the_dots.io.get_CZI_metadata()`.
+
+    output_filename : str
+        Name of the output file. Should contain the extension .mp4      
         
     desired_bar_length_um : float
         Desired length of the scale bar in microns.
@@ -304,6 +304,17 @@ def make_movie(Z_dict,
     bar_width = desired_bar_length_um/bar_pixel_width_um # for length in pixels/um
     bar_height = 5 # in pixels
 
+    # if linked_df is None, create a dummy list
+    if linked_df is None:
+        linked_df = pd.DataFrame({'x': {},
+         'y': {},
+         'z': {},
+         'mean_intensity': {},
+         'max_intensity': {},
+         'dot_size_in_pixels': {},
+         'frame': {},
+         'channel': {},
+         'particle': {}})
     # make initial image
     fig = plt.figure(figsize=(10,10))
     frame = 0
@@ -373,7 +384,7 @@ def make_movie(Z_dict,
         print('starting...')
     
     # update the figure
-    img_array = np.zeros((img.shape[1],img.shape[0],3))
+    img_array = np.zeros((img.shape[0],img.shape[1],3))
     
     def updatefig_2colour(*args):
         img = np.max(Z_dict[0][:,:,:,args[0]],axis=max_axis)

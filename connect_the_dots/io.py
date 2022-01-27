@@ -389,7 +389,13 @@ def make_movie(Z_dict,
     def updatefig_2colour(*args):
         img = np.max(Z_dict[0][:,:,:,args[0]],axis=max_axis)
         img2 = np.max(Z_dict[1][:,:,:,args[0]],axis=max_axis)
-        ic, ic2 = get_normalization(0)
+        frame = args[0]
+        
+        if adaptive_LUT==True:
+            ic, ic2 = get_normalization(frame)
+        else:
+            ic, ic2 = get_normalization(0)
+
         img = img/ic
         img2 = img2/ic2
         img[img>1] = 1
@@ -399,8 +405,7 @@ def make_movie(Z_dict,
         img_array[:,:,1] = img
         img_array[:,:,2] = img2
         im.set_array(img_array)
-        txt.set_text(f'Frame: {args[0]}')
-        frame = args[0]
+        txt.set_text(f'Frame: {frame}')
 
         for p in particle_set0:
             X = linked_df[(linked_df.particle==p) & (linked_df.channel==0) & linked_df.frame.between(frame-disp_line_len,frame, inclusive=True)].x.values

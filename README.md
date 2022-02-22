@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/239825406.svg)](https://zenodo.org/badge/latestdoi/239825406)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6224612.svg)](https://doi.org/10.5281/zenodo.6224612)
 
 # Connect the dots
 3D "dot" tracking for pairs of tagged chromatin loci. 
